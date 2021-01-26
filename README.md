@@ -9,9 +9,8 @@ The tool is for the moment based on web-dictaphone.
 
 ## Background
 
-### Why important for CLARIAH (scientific impact):
-
-Linguists studying language variation currently use surveys to obtain written examples of language use. Having the speech signal available would greatly enhance their possibilities for comparison and analysis.
+See the wiki pages on:
+https://github.com/knaw-huc/SPAQ/wiki
 
 ## Prerequisites
 
