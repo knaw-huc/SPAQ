@@ -1,0 +1,40 @@
+# log & changelog
+
+## 26-1-2020
+
+* brought code to github
+
+## 22-1-2020
+
+* fetch experimenting, JSON strange from PHP errors
+* fetch minimal example
+* TODO change audio formats configuration 
+* visual feedback from post to server with fetch
+
+## 21-1-2020
+
+* looked into license https://creativecommons.org/publicdomain/zero/1.0/ public domain
+* send the given name of the file as an extra header X-filename
+* it works! upload to php server from js (fetch) and storage on filesystem server. Lots of tweaking now needed.
+* converted the link into a nice button
+* convert an audio-blob to a downloadable link with a given name
+* wrote some minimal server php code
+
+## 20-1-2021
+
+* css tricks: https://css-tricks.com/the-checkbox-hack/
+* modifying and experimenting with web-dictaphone
+* added save button
+* added revokeObjectURL after delete
+* cleanup
+* experiments with objectURL Blob
+
+## 15-1-2021
+
+* experiments with async promises
+* investigate web-dictaphone
+* favicon
+
+## 20-11-2020
+
+* started this repository stack for client and server experiments, JavaScript for client. PHP for server. (LimeSurvey is made in PHP)
