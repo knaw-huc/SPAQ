@@ -16,20 +16,37 @@ let audioCtx;
 const canvasCtx = canvas.getContext("2d");
 
 //main block for doing the audio recording
+const constraints = { 
+    audio: true ,
+    sampleSize: 8,
+      echoCancellation: true
 
-if (navigator.mediaDevices.getUserMedia) {
+
+};
+const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
+console.log('constraints supported' , supportedConstraints);
+
+if (navigator.mediaDevices.getUserMedia(constraints)) {
+
+    
+
+
     console.log('getUserMedia supported.');
 
-    const constraints = { audio: true };
     let chunks = [];
 
     // configuration
     // let fileextension = 'ogg';
     const mimetypes = {
-        mp3 : "audio/mpeg",
-        ogg : "audio/ogg"
+        "mp3" : "audio/mpeg",
+        "ogg" : "audio/ogg",
+        "webm" :  "audio/webm"
     }
     const fileextension = 'ogg';
+    // const fileextension = 'mp3'; // blob plays the audio file not, probably more parameters in de constraints
+    // const fileextension = 'webm'; // 
+
+
     const mimetype = mimetypes[fileextension];
     // console.log(mimetype);
     const endpoint = 'http://localhost/server/upload.php';
@@ -107,7 +124,8 @@ if (navigator.mediaDevices.getUserMedia) {
 
 
             audio.controls = true;
-            const blob = new Blob(chunks, { 'type': `${mimetype}; codecs=opus` });
+            // this does not make it a file from a certain type...
+            const blob = new Blob(chunks, { 'type': `${mimetype}; codecs=0` });
             // chuncks is array filled during the recording stage, '.ondataavailable' event handler
             chunks = [];
             const audioURL = window.URL.createObjectURL(blob);
@@ -155,9 +173,9 @@ if (navigator.mediaDevices.getUserMedia) {
                 console.log('store');
 
                 
-                fetch(endpoint, { method: "POST",   headers: { "X-filename": clipName }, body: blob })
+                fetch(endpoint, { method: "POST",   headers: { "X-filename": clipName, "X-tension": fileextension }, body: blob })
                     .then((response) => {
-                        console.log(response);
+                        // console.log(response);
                         if (response.ok) {
                             // console.log('response status: ' + response.status);
                             console.log('response na ok ', response);

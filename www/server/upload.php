@@ -5,6 +5,7 @@ header('Content-Type: application/json');
 // print_r($_REQUEST);
 $headers = getallheaders();
 $name = $headers['X-filename'];
+$extension = $headers['X-tension'];
 $data = file_get_contents('php://input');
 // write the data out to the file
 
@@ -14,7 +15,7 @@ $typeproblem = '';
 
 
 
-$fp = fopen("storage/$name.ogg", "wb");
+$fp = fopen("storage/$name.$extension", "wb");
 
 
 
