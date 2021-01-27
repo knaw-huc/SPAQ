@@ -1,8 +1,13 @@
 # log & changelog
 
+## 27-1-2020
+
+- adapted instructions for local testing, after checkout test
+
 ## 26-1-2020
 
-* brought code to github
+- brought code to github
+- made a SPAQ wiki 
 
 ## 22-1-2020
 

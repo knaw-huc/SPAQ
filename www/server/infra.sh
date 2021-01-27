@@ -3,17 +3,18 @@
 cw=${PWD##*/} 
 
 
-for directory in cache templates_c config temp logs resources; do
+for directory in storage  tmp logs ; do
     if [ ! -d $directory ]; then
         mkdir $directory
-    	echo "Created $directory it didn't exist"
+        echo "Created $directory it didn't exist"
     fi
 done
 
-for dir in cache templates_c temp logs resources; do
+for dir in storage  tmp logs ; do
     chmod 777 $dir
     echo "chmod 777 on $dir"
 done
+
 
 
 rm -fr templates_c/*

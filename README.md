@@ -16,6 +16,16 @@ https://github.com/knaw-huc/SPAQ/wiki
 
 * Docker is up and running
 * a *nix based system
+* have run the infra.sh at least one time
+
+## infra.sh
+
+You have to run this once.
+
+```bash
+cd SPAQ/www/server
+./infra.sh #creates the directories with the right privileges
+```
 
 ## Quickstart
 
