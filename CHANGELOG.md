@@ -2,6 +2,7 @@
 
 ## 27-1-2020
 
+- bugfix change label after succesfull storage
 - adapted instructions for local testing, after checkout test
 
 ## 26-1-2020

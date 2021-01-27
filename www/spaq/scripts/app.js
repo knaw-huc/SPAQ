@@ -164,7 +164,6 @@ if (navigator.mediaDevices.getUserMedia) {
 
                             // visual feedback
                             // file stored remove store button
-                            // storeButton.textContent = 'Store Succes!';
 
                             return response.text();
                         } else {
@@ -175,7 +174,23 @@ if (navigator.mediaDevices.getUserMedia) {
                         // let data =  response.success;
                         // console.log('response: ' + response.status );
                         console.log('data:' + data);
-                        console.log(JSON.parse(data)); // dit werkt nu wel, maar ik snap nog niet waarom ik niet rechtstreeks json vanuit PHP krijg zoals bij mijn testoutput.php wel werkt...
+                        let json = JSON.parse(data);
+                        console.log(JSON.parse(data)); // it works but why ...
+                        if(json.storestatus === 'OK') {
+                            storeButton.textContent = 'Store Succes!';
+                            console.log('store succes')
+
+                        }  
+                    }).then(() => {
+                        console.log('He tied her up');
+                    }).then(() => {
+                        console.log('He threw her on the railroad tracks ');
+                    }).then(() => {
+                        console.log('A train started comin\'');  
+                    }).then(() => {                   
+                    }).then(() => {                                                                                                                                 
+                    }).then(() => {
+                        console.log('Along Came Jones', 'https://www.youtube.com/watch?v=eFyr49TwuiI');
                     })
                     .catch(err => {
                         alert(err);

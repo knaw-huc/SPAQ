@@ -7,14 +7,22 @@ $headers = getallheaders();
 $name = $headers['X-filename'];
 $data = file_get_contents('php://input');
 // write the data out to the file
+
+// SOME ERROR HANDLING 
+$status = "OK";
+$typeproblem = '';
+
+
+
 $fp = fopen("storage/$name.ogg", "wb");
+
+
 
 fwrite($fp, $data);
 fclose($fp);
 
-$status = "OK";
 if(! file_exists("storage/$name.ogg")){
     $status = "NOT OK";
 }
 
-echo json_encode(array("phpstatus" => $status));
+echo json_encode(array("storestatus" => $status));
