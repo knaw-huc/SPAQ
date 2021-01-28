@@ -1,5 +1,10 @@
 # log & changelog
 
+## 28-1-2020
+
+- ask for supported mime-types
+- fixed extension bug server-side
+
 ## 27-1-2020
 
 - bugfix change label after succesfull storage

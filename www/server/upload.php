@@ -2,7 +2,6 @@
 
 header('Content-Type: application/json');
 
-// print_r($_REQUEST);
 $headers = getallheaders();
 $name = $headers['X-filename'];
 $extension = $headers['X-tension'];
@@ -13,16 +12,11 @@ $data = file_get_contents('php://input');
 $status = "OK";
 $typeproblem = '';
 
-
-
 $fp = fopen("storage/$name.$extension", "wb");
-
-
-
 fwrite($fp, $data);
 fclose($fp);
 
-if(! file_exists("storage/$name.ogg")){
+if(! file_exists("storage/$name.$extension")){
     $status = "NOT OK";
 }
 

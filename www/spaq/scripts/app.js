@@ -17,9 +17,9 @@ const canvasCtx = canvas.getContext("2d");
 
 //main block for doing the audio recording
 const constraints = { 
-    audio: true ,
-    sampleSize: 8,
-      echoCancellation: true
+    audio: true,
+    video: false
+  
 
 
 };
@@ -28,7 +28,19 @@ console.log('constraints supported' , supportedConstraints);
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
 
-    
+    const types = [
+            "audio/mp4", 
+            "audio/vnd.wav",                      
+            "audio/mpeg",
+            "audio/ogg",
+            "audio/webm",
+            "audio/webm\;codecs=opus"
+    ];
+
+    for (let i in types) {
+    console.log( "Is " + types[i] + " supported? " + (MediaRecorder.isTypeSupported(types[i]) ? "Maybe!" : "Nope :("));
+    }
+
 
 
     console.log('getUserMedia supported.');
@@ -42,7 +54,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
         "ogg" : "audio/ogg",
         "webm" :  "audio/webm"
     }
-    const fileextension = 'ogg';
+    const fileextension = 'webm';
     // const fileextension = 'mp3'; // blob plays the audio file not, probably more parameters in de constraints
     // const fileextension = 'webm'; // 
 
@@ -54,14 +66,20 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
 
     let onSuccess = function (stream) { // function expression called from a resolved promise  line 173
+        const options = {
+            "mimeType": "audio/webm"
+        };
+
         const mediaRecorder = new MediaRecorder(stream);
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
-
+        console.log('mimetype', mediaRecorder.mimeType);
         visualize(stream); // draw an osciloscope, visual feedback
 
         record.onclick = function () {
             mediaRecorder.start();
-            console.log(mediaRecorder.state);
+            console.log('state', mediaRecorder.state);
+            console.log('mimetype', mediaRecorder.mimeType);
+
             console.log("recorder started");
             record.style.background = "red";
 

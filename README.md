@@ -4,8 +4,10 @@
 
 SPeech AQuisition (using Surveys) is a CLARIAH+ WP3 task
 
-This repository is for local development, experiments, findings.
-The tool is for the moment based on web-dictaphone.
+This repository is for local development, experiments, findings with webaudio / mediacapture
+The tool is based on web-dictaphone.
+
+NOT PRODUCTION READY
 
 ## Background
 
