@@ -4,6 +4,7 @@
 
 - ask for supported mime-types
 - fixed extension bug server-side
+- tried to convert video example to audio example for learning purposes
 
 ## 27-1-2020
 

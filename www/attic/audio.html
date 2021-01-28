@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MediaCapture and Streams API</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="styles/app.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+</head>
+
+<body>
+    <header>
+        <h1>MediaCapture, MediaRecorder and Streams API</h1>
+    </header>
+    <main>
+        <p>Converted user-media.html for audio only</p>
+
+        <section class="main-controls">
+            <canvas class="visualizer" height="60px"></canvas>
+            <div id="buttons">
+              <button id="btnStart class="record">Start Recording</button><br />
+              <button id="btnStop" class="stop">Stop recording </button>
+            </div>
+          </section>
+
+     
+
+        <!-- <audio controls></audio> -->
+
+        <audio id="result" controls></audio>
+
+        <!-- could save to canvas and do image manipulation and saving too -->
+    </main>
+    <script>
+    const canvas = document.querySelector('.visualizer');
+    let audioCtx;
+    const canvasCtx = canvas.getContext("2d");
+
+        let constraintObj = {
+            audio: true,
+            video: false
+        };
+        // width: 1280, height: 720  -- preference only
+        // facingMode: {exact: "user"}
+        // facingMode: "environment"
+
+        //handle older browsers that might implement getUserMedia in some way
+        if (navigator.mediaDevices === undefined) {
+            navigator.mediaDevices = {};
+            navigator.mediaDevices.getUserMedia = function (constraintObj) {
+                let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+                if (!getUserMedia) {
+                    return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+                }
+                return new Promise(function (resolve, reject) {
+                    getUserMedia.call(navigator, constraintObj, resolve, reject);
+                });
+            }
+        } else {
+            navigator.mediaDevices.enumerateDevices()
+                .then(devices => {
+                    devices.forEach(device => {
+                        console.log(device.kind.toUpperCase(), device.label);
+                        //, device.deviceId
+                    })
+                })
+                .catch(err => {
+                    console.log(err.name, err.message);
+                })
+        }
+
+        navigator.mediaDevices.getUserMedia(constraintObj)
+            .then(function (mediaStreamObj) {
+                //connect the media stream to the first audio element
+                // let audiosignal =  document.querySelector('audio');
+
+                // if ("srcObject" in audiosignal) {
+                //     audiosignal.srcObject = mediaStreamObj;
+                // } else {
+                //     //old version
+                //     audiosignal.src = window.URL.createObjectURL(mediaStreamObj);
+                // }
+                visualize(mediaStreamObj);
+
+                // audiosignal.onloadedmetadata = function (ev) {
+                //     //show in the audio element what is being captured by the webcam
+                //    ; // draw an osciloscope, visual feedback
+
+                //     // audiosignal.play();
+                // };
+
+                //add listeners for saving audio/audio
+                let start = document.getElementById('btnStart');
+                let stop = document.getElementById('btnStop');
+                let audio = document.getElementById('result');
+                let mediaRecorder = new MediaRecorder(mediaStreamObj);
+                let chunks = [];
+
+                start.addEventListener('click', (ev) => {
+                    mediaRecorder.start();
+                    console.log(mediaRecorder.state);
+                })
+                stop.addEventListener('click', (ev) => {
+                    mediaRecorder.stop();
+                    console.log(mediaRecorder.state);
+                });
+                mediaRecorder.ondataavailable = function (ev) {
+                    // visualize(mediaStreamObj)
+                    chunks.push(ev.data);
+                }
+                mediaRecorder.onstop = (ev) => {
+                    let blob = new Blob(chunks, { 'type': 'audio/mp4;' });
+                    chunks = [];
+                    let videoURL = window.URL.createObjectURL(blob);
+                    audio.src = videoURL;
+                }
+            })
+            .catch(function (err) {
+                console.log(err.name, err.message);
+            });
+
+        /*********************************
+        getUserMedia returns a Promise
+        resolve - returns a MediaStream Object
+        reject returns one of the following errors
+        AbortError - generic unknown cause
+        NotAllowedError (SecurityError) - user rejected permissions
+        NotFoundError - missing media track
+        NotReadableError - user permissions given but hardware/OS error
+        OverconstrainedError - constraint audio settings preventing
+        TypeError - audio: false, audio: false
+        *********************************/
+
+
+        function visualize(stream) {
+            if (!audioCtx) {
+                audioCtx = new AudioContext();
+            }
+
+            const source = audioCtx.createMediaStreamSource(stream);
+
+            const analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 2048;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            source.connect(analyser);
+            //analyser.connect(audioCtx.destination);
+
+            draw()
+
+            function draw() {
+                const WIDTH = canvas.width
+                const HEIGHT = canvas.height;
+
+                requestAnimationFrame(draw);
+
+                analyser.getByteTimeDomainData(dataArray);
+
+                canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+                canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                canvasCtx.lineWidth = 2;
+                canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+
+                canvasCtx.beginPath();
+
+                let sliceWidth = WIDTH * 1.0 / bufferLength;
+                let x = 0;
+
+
+                for (let i = 0; i < bufferLength; i++) {
+
+                    let v = dataArray[i] / 128.0;
+                    let y = v * HEIGHT / 2;
+
+                    if (i === 0) {
+                        canvasCtx.moveTo(x, y);
+                    } else {
+                        canvasCtx.lineTo(x, y);
+                    }
+
+                    x += sliceWidth;
+                }
+
+                canvasCtx.lineTo(canvas.width, canvas.height / 2);
+                canvasCtx.stroke();
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>
