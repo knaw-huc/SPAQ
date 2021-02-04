@@ -1,5 +1,10 @@
 # log & changelog
 
+## 4-2-2020
+
+- adapt php script for development server
+- generalized headers js
+
 ## 28-1-2020
 
 - ask for supported mime-types

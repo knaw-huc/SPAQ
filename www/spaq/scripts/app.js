@@ -62,6 +62,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
     const mimetype = mimetypes[fileextension];
     // console.log(mimetype);
     const endpoint = 'http://localhost/server/upload.php';
+    // change for development of production host
 
 
 
@@ -189,9 +190,15 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
             // push to server
             storeButton.onclick = function (e) {
                 console.log('store');
+                console.log('clipname', clipName);
 
+                console.log('extension', fileextension);
+                let myHeaders = new Headers();
+                myHeaders.append('Accept', 'application/json');
+                myHeaders.append("X-filename", clipName);
+                myHeaders.append("X-tension", fileextension);
                 
-                fetch(endpoint, { method: "POST",   headers: { "X-filename": clipName, "X-tension": fileextension }, body: blob })
+                fetch(endpoint, { method: "POST",  mode: 'cors', headers: myHeaders, body: blob })
                     .then((response) => {
                         // console.log(response);
                         if (response.ok) {

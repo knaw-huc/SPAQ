@@ -3,8 +3,9 @@
 header('Content-Type: application/json');
 
 $headers = getallheaders();
-$name = $headers['X-filename'];
-$extension = $headers['X-tension'];
+// added headers become lowercase, but no problem at first why?
+$name = $headers['x-filename'];
+$extension = $headers['x-tension'];
 $data = file_get_contents('php://input');
 // write the data out to the file
 

@@ -2,6 +2,8 @@
 
 
 let root = 'http://localhost/server/testoutput.php';
+// set via environmental variables in docker-compose  to the right one if possible
+
 // let id = Math.floor(Math.random() * 10) + 2;  //id 1 to 11 11 does not exist
 let uri = root;
 // headers
