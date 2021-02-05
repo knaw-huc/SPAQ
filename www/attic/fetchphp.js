@@ -1,18 +1,13 @@
+let uri = '../server/testoutput.php';
 
-
-
-let root = 'http://localhost/server/testoutput.php';
-// set via environmental variables in docker-compose  to the right one if possible
-
-// let id = Math.floor(Math.random() * 10) + 2;  //id 1 to 11 11 does not exist
-let uri = root;
 // headers
-let h = new Headers();
-h.append('Accept', 'application/json');
+let myHeaders = new Headers();
+myHeaders.append('accept', 'application/json');
+myHeaders.append('naam', 'Martino'); // 
 // request
 let req = new Request(uri, {
     method: 'POST',
-    headers: h,
+    headers: myHeaders,
     mode: 'cors'
 });
 
@@ -20,13 +15,16 @@ console.log(req);
 fetch(req)
     .then((response) => {
         if (response.ok) {
-            return response.json();
+            return response.text();
         } else {
             throw new Error('BAD HTTP stuff');
         }
     })
-    .then((jsonData) => {
-        console.log(jsonData);
+    .then((textData) => {
+        console.log('textData:', textData);
+        // text can give more information sometimes
+
+        console.log('jsonData:', JSON.parse(textData));
     })
     .catch((err) => {
         console.log('ERROR:', err.message);

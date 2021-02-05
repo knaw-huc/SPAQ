@@ -1,34 +1,39 @@
 # log & changelog
 
-## 4-2-2020
+## 5-2-2021
+
+- storage problems testscript
+- troubleshooting
+
+## 4-2-2021
 
 - adapt php script for development server
 - generalized headers js
 
-## 28-1-2020
+## 28-1-2021
 
 - ask for supported mime-types
 - fixed extension bug server-side
 - tried to convert video example to audio example for learning purposes
 
-## 27-1-2020
+## 27-1-2021
 
 - bugfix change label after succesfull storage
 - adapted instructions for local testing, after checkout test
 
-## 26-1-2020
+## 26-1-2021
 
 - brought code to github
 - made a SPAQ wiki 
 
-## 22-1-2020
+## 22-1-2021
 
 * fetch experimenting, JSON strange from PHP errors
 * fetch minimal example
 * TODO change audio formats configuration 
 * visual feedback from post to server with fetch
 
-## 21-1-2020
+## 21-1-2021
 
 * looked into license https://creativecommons.org/publicdomain/zero/1.0/ public domain
 * send the given name of the file as an extra header X-filename

@@ -16,29 +16,29 @@ let audioCtx;
 const canvasCtx = canvas.getContext("2d");
 
 //main block for doing the audio recording
-const constraints = { 
+const constraints = {
     audio: true,
     video: false
-  
+
 
 
 };
 const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
-console.log('constraints supported' , supportedConstraints);
+console.log('constraints supported', supportedConstraints);
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
 
     const types = [
-            "audio/mp4", 
-            "audio/vnd.wav",                      
-            "audio/mpeg",
-            "audio/ogg",
-            "audio/webm",
-            "audio/webm\;codecs=opus"
+        "audio/mp4",
+        "audio/vnd.wav",
+        "audio/mpeg",
+        "audio/ogg",
+        "audio/webm",
+        "audio/webm\;codecs=opus"
     ];
 
     for (let i in types) {
-    console.log( "Is " + types[i] + " supported? " + (MediaRecorder.isTypeSupported(types[i]) ? "Maybe!" : "Nope :("));
+        console.log("Is " + types[i] + " supported? " + (MediaRecorder.isTypeSupported(types[i]) ? "Maybe!" : "Nope :("));
     }
 
 
@@ -50,9 +50,9 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
     // configuration
     // let fileextension = 'ogg';
     const mimetypes = {
-        "mp3" : "audio/mpeg",
-        "ogg" : "audio/ogg",
-        "webm" :  "audio/webm"
+        "mp3": "audio/mpeg",
+        "ogg": "audio/ogg",
+        "webm": "audio/webm"
     }
     const fileextension = 'webm';
     // const fileextension = 'mp3'; // blob plays the audio file not, probably more parameters in de constraints
@@ -61,7 +61,10 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
     const mimetype = mimetypes[fileextension];
     // console.log(mimetype);
-    const endpoint = 'http://localhost/server/upload.php';
+    // const endpoint = 'http://localhost/server/upload.php';
+    const endpoint = '../server/upload.php';
+
+
     // change for development of production host
 
 
@@ -195,10 +198,10 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
                 console.log('extension', fileextension);
                 let myHeaders = new Headers();
                 myHeaders.append('Accept', 'application/json');
-                myHeaders.append("X-filename", clipName);
+                myHeaders.append("X-filename", clipName); // becomes lowercase in the request
                 myHeaders.append("X-tension", fileextension);
-                
-                fetch(endpoint, { method: "POST",  mode: 'cors', headers: myHeaders, body: blob })
+
+                fetch(endpoint, { method: "POST", mode: 'cors', headers: myHeaders, body: blob })
                     .then((response) => {
                         // console.log(response);
                         if (response.ok) {
@@ -218,20 +221,20 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
                         // console.log('response: ' + response.status );
                         console.log('data:' + data);
                         let json = JSON.parse(data);
-                        console.log(JSON.parse(data)); // it works but why ...
-                        if(json.storestatus === 'OK') {
+                        // console.log(JSON.parse(data)); // it works but why ...
+                        if (json.storestatus === 'OK') {
                             storeButton.textContent = 'Store Succes!';
                             console.log('store succes')
 
-                        }  
+                        }
                     }).then(() => {
                         console.log('He tied her up');
                     }).then(() => {
                         console.log('He threw her on the railroad tracks ');
                     }).then(() => {
-                        console.log('A train started comin\'');  
-                    }).then(() => {                   
-                    }).then(() => {                                                                                                                                 
+                        console.log('A train started comin\'');
+                    }).then(() => {
+                    }).then(() => {
                     }).then(() => {
                         console.log('Along Came Jones', 'https://www.youtube.com/watch?v=eFyr49TwuiI');
                     })
