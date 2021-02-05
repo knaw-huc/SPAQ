@@ -4,6 +4,8 @@
 
 - storage problems testscript
 - troubleshooting
+- ffmpeg -i hoihoi.webm hoihoi.mp3 works 
+- todo: ffmpeg install it in docker-image
 
 ## 4-2-2021
 
