@@ -1,6 +1,7 @@
 docker-compose-dev.yml
 reception*
 storage*
+inspect*
 *.sql
 *.csv
 compile

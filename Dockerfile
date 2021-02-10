@@ -12,4 +12,6 @@ RUN apt-get update && apt-get install -y libc-client-dev libfreetype6-dev libmcr
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install exif
 
+RUN apt-get update && apt-get install -y ffmpeg    
+
 RUN a2enmod rewrite

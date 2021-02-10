@@ -23,8 +23,8 @@ const constraints = {
 
 
 };
-const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
-console.log('constraints supported', supportedConstraints);
+// const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
+// console.log('constraints supported', supportedConstraints);
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
 
