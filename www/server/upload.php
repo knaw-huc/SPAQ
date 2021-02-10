@@ -3,6 +3,8 @@
 header('Content-Type: application/json');
 
 // $headers = getallheaders(); 
+define('APP_DIR', __DIR__ . '/'); // absolute path to current directory
+define('RECEPTION', APP_DIR . 'reception');
 
 $headers = array_change_key_case(getallheaders(), CASE_LOWER);
 // the fieldnames of added headers on the clientside become lowercase, keep everthing lowercase, best practice 
@@ -24,11 +26,11 @@ $data = file_get_contents('php://input');
 $status = "OK";
 $typeproblem = '';
 
-$fp = fopen("storage/$name.$extension", "wb");
+$fp = fopen( RECEPTION . "/$name.$extension", "wb");
 fwrite($fp, $data);
 fclose($fp);
 
-if(! file_exists("storage/$name.$extension")){
+if(! file_exists("reception/$name.$extension")){
     $status = "NOT OK";
 }
 

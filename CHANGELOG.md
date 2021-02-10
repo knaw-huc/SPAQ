@@ -1,5 +1,12 @@
 # log & changelog
 
+## 10-2-2021
+
+- different server infrastructure (in this demo), prep for conversion
+- reception: receives the files from the browser
+- inspect: will be used for immediate feedback to researcher, in a format readable with as many browsers as possible
+- storage: for 'long' term preservation
+
 ## 5-2-2021
 
 - storage problems testscript

@@ -38,7 +38,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
     ];
 
     for (let i in types) {
-        console.log("Is " + types[i] + " supported? " + (MediaRecorder.isTypeSupported(types[i]) ? "Maybe!" : "Nope :("));
+        console.log("Is " + types[i] + " supported? " + (MediaRecorder.isTypeSupported(types[i]) ? "'Yes'" : "No"));
     }
 
 
@@ -147,7 +147,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
             audio.controls = true;
             // this does not make it a file from a certain type...
-            const blob = new Blob(chunks, { 'type': `${mimetype}; codecs=0` });
+            const blob = new Blob(chunks, { 'type': `${mimetype}; codecs=opus` });
             // chuncks is array filled during the recording stage, '.ondataavailable' event handler
             chunks = [];
             const audioURL = window.URL.createObjectURL(blob);

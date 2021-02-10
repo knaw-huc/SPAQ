@@ -1,4 +1,5 @@
 docker-compose-dev.yml
+reception*
 storage*
 *.sql
 *.csv

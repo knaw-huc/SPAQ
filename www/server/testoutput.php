@@ -31,7 +31,7 @@ if($name === ''){
 $date = new DateTime();
 // echo $date->getTimestamp();
 $data = 'hoi: ' . date("Y-m-d H:i:s", $date->getTimestamp()) . "\n";
-$fp = fopen("storage/log.txt", "ab");
+$fp = fopen("reception/log.txt", "ab");
 // has to built by the webserver, had a write problem with a sync of log.txt 
 
 fwrite($fp, $data);
