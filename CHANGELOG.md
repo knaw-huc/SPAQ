@@ -2,6 +2,7 @@
 
 ## 10-2-2021
 
+- conversion with fmmpeg to .mp3 and .wav implemented 
 - added ffmpeg to Dockerfile
 - test `docker exec -it spaqpublic_php-apache_1 ffmpeg -i /var/www/html/server/reception/recording.webm /var/www/html/server/inspect/recording.mp3` Check
 - different server infrastructure (in this demo), prep for conversion
