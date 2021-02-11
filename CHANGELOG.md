@@ -1,5 +1,10 @@
 # log & changelog
 
+## 11-2-2021
+
+- better fake favicon.ico hack, for development
+
+
 ## 10-2-2021
 
 - conversion with fmmpeg to .mp3 and .wav implemented 

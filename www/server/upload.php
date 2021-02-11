@@ -43,9 +43,6 @@ if(! file_exists(RECEPTION . "$name.$extension")){
     $outputformat = '.mp3';
     $bashcmd = 'ffmpeg -i ' .  RECEPTION . $name . '.' . $extension . ' ' . INSPECT . $name . $outputformat;
     // convert with mpeg, this is for demo purposes, maybe node.js watcher thingie
-    // $bashcmd = 'find ' . $dir . ' -name ".DS_Store" -exec rm {} \;';
-    // echo 'CMD:' . $bashcmd . '<br>';
-    //        die; 
     $output = exec($bashcmd, $results, $return);
 
     // high-res for storage
