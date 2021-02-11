@@ -27,58 +27,51 @@ const constraints = {
 // console.log('constraints supported', supportedConstraints);
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
-
-    const types = [
-        "audio/mp4",
-        "audio/vnd.wav",
-        "audio/mpeg",
-        "audio/ogg",
-        "audio/webm",
-        "audio/webm\;codecs=opus"
-    ];
-
-    for (let i in types) {
-        console.log("Is " + types[i] + " supported? " + (MediaRecorder.isTypeSupported(types[i]) ? "'Yes'" : "No"));
-    }
-
-
-
     console.log('getUserMedia supported.');
+
+    const types = {
+        "audio/mp4": "mp4",
+        "audio/mpeg" : "mp4",
+        "audio/ogg" : "ogg",
+        "audio/webm" : "webm"
+    
+    };
+    let mimetype = "audio/ogg";
+    for (let i of Object.keys(types)) {
+        console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
+        if (MediaRecorder.isTypeSupported(i)) {
+            mimetype = i;
+            break;
+        }
+    }
+    console.log('mimetype: ', mimetype);
+    fileextension = types[mimetype];
+
+
 
     let chunks = [];
 
-    // configuration
-    // let fileextension = 'ogg';
-    const mimetypes = {
-        "mp3": "audio/mpeg",
-        "ogg": "audio/ogg",
-        "webm": "audio/webm"
-    }
-    const fileextension = 'webm';
-    // const fileextension = 'mp3'; // blob plays the audio file not, probably more parameters in de constraints
-    // const fileextension = 'webm'; // 
-
-
-    const mimetype = mimetypes[fileextension];
-    // console.log(mimetype);
-    // const endpoint = 'http://localhost/server/upload.php';
+  
     const endpoint = '../server/upload.php';
 
 
     // change for development of production host
 
-
-
     let onSuccess = function (stream) { // function expression called from a resolved promise  line 173
         const options = {
-            "mimeType": "audio/webm"
+            "mimeType": mimetype
         };
 
         const mediaRecorder = new MediaRecorder(stream);
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
-        console.log('mimetype', mediaRecorder.mimeType);
-        visualize(stream); // draw an osciloscope, visual feedback
+        // console.log('mimetype', mediaRecorder.mimeType);
 
+        if (mimetype === "audio/mp4") {
+
+        } else {
+            // audio ctx not supported yet in visualize
+            visualize(stream); // draw an osciloscope, visual feedback
+        }
         record.onclick = function () {
             mediaRecorder.start();
             console.log('state', mediaRecorder.state);
@@ -147,7 +140,13 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
             audio.controls = true;
             // this does not make it a file from a certain type...
-            const blob = new Blob(chunks, { 'type': `${mimetype}; codecs=opus` });
+            let mimestring = '';
+            if (mimetype === "audio/mp4") {
+                mimestring = mimetype;
+            } else {
+                mimestring = `${mimetype}; codecs=opus`;
+            }
+            const blob = new Blob(chunks, { 'type': mimestring });
             // chuncks is array filled during the recording stage, '.ondataavailable' event handler
             chunks = [];
             const audioURL = window.URL.createObjectURL(blob);

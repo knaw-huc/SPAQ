@@ -2,6 +2,8 @@
 
 ## 11-2-2021
 
+- a kind of support for Safari implemented, first attempt
+- no visualizer for Safari yet
 - better fake favicon.ico hack, for development
 
 
