@@ -1,7 +1,12 @@
 # log & changelog
 
+
+## 15-2-2021
+- minimal visual feedback for Safari
+- 
 ## 11-2-2021
 
+- MAYBE add codec aac for Safari
 - a kind of support for Safari implemented, first attempt
 - no visualizer for Safari yet
 - better fake favicon.ico hack, for development

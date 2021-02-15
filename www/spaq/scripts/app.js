@@ -5,6 +5,8 @@ const stop = document.querySelector('.stop');
 const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
+const message = document.getElementById('message');
+
 
 // disable stop button while not recording
 
@@ -41,13 +43,11 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
         console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
         if (MediaRecorder.isTypeSupported(i)) {
             mimetype = i;
-            break;
+            // break;
         }
     }
     console.log('mimetype: ', mimetype);
     fileextension = types[mimetype];
-
-
 
     let chunks = [];
 
@@ -66,7 +66,8 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
         // console.log('mimetype', mediaRecorder.mimeType);
 
-        if (mimetype === "audio/mp4") {
+        if (mimetype === "audio/mp4") { // Safari
+            message.innerHTML = 'Ready for recording';
 
         } else {
             // audio ctx not supported yet in visualize
@@ -79,6 +80,8 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
             console.log("recorder started");
             record.style.background = "red";
+            message.innerHTML = '';
+
 
             stop.disabled = false;
             record.disabled = true;
@@ -94,6 +97,8 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
             stop.disabled = true;
             record.disabled = false;
+            message.innerHTML = 'Ready for recording';
+
         }
 
         mediaRecorder.onstop = function (e) {

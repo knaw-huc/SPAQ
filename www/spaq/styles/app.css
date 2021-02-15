@@ -32,6 +32,9 @@ h1, h2 {
   padding: 0.5rem 0 0 0;
 }
 
+
+
+
 .main-controls {
   margin-top: 4rem;
   padding: 0.5rem 0;
@@ -185,6 +188,17 @@ input[type=checkbox]:checked ~ aside {
   cursor: pointer;
 }
 
+/* message */
+
+#message {
+    color: grey;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+
 /* Adjustments for wider screens */
 @media all and (min-width: 800px) {
   /* Don't take all the space as readability is lost when line length
@@ -195,3 +209,5 @@ input[type=checkbox]:checked ~ aside {
     margin: 0 auto;
   }
 }
+
+
