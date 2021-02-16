@@ -1,9 +1,16 @@
 # log & changelog
 
 
+## 16-2-2021
+
+- ultra-lite backend for web browsing through the uploaded files, just for development, testing
+- added smarty
+- more informal tests (iPads, iPhones, phones): need server-side browser for testing
+
 ## 15-2-2021
 - minimal visual feedback for Safari
-- 
+- informal test with old Motorola G3 with Android 6.0.6 (sec.patch 2017) Chrome: succes but interface trouble
+
 ## 11-2-2021
 
 - MAYBE add codec aac for Safari

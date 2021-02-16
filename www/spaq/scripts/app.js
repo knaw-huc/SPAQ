@@ -30,7 +30,8 @@ const constraints = {
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
     console.log('getUserMedia supported.');
-
+    
+    // Determine mimetype
     const types = {
         "audio/mp4": "mp4",
         "audio/mpeg" : "mp4",
@@ -59,7 +60,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
     let onSuccess = function (stream) { // function expression called from a resolved promise  line 173
         const options = {
-            "mimeType": mimetype
+            mimeType: mimetype
         };
 
         const mediaRecorder = new MediaRecorder(stream);
@@ -68,6 +69,8 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
         if (mimetype === "audio/mp4") { // Safari
             message.innerHTML = 'Ready for recording';
+            visualize(stream); // draw an osciloscope, visual feedback
+
 
         } else {
             // audio ctx not supported yet in visualize
@@ -284,7 +287,34 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
     console.log('getUserMedia not supported on your browser!');
 }
 
+
+let isAudioContextSupported = function () {
+    // This feature is still prefixed in Safari
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(window.AudioContext){
+        return true;
+    }
+    else {
+        return false;
+    }
+};
+
+
+
+
 function visualize(stream) {
+
+    var audioContext;
+    if(isAudioContextSupported()) {
+        audioContext = new window.AudioContext();
+        console.log('audiocontext supported')
+    } else {
+        console.log('audiocontext NOT supported')
+        return;
+    }
+
+
+
     if (!audioCtx) {
         audioCtx = new AudioContext();
     }
