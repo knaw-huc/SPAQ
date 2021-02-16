@@ -3,6 +3,7 @@
 
 ## 16-2-2021
 
+- added administration clean.sh script
 - ultra-lite back end for web browsing through the uploaded files, just for development, testing
 - added smarty
 - more informal tests (iPads, iPhones, phones): need server-side browser for testing

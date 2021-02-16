@@ -3,6 +3,8 @@
 include_once('config.inc.php');
 
 $dir = 'reception';
+$list = array();
+
 if ($handle = opendir(RECEPTION)) {
     while (false !== ($entry = readdir($handle))) {
         if(substr($entry, 0, 1) !== "."  && $entry != '.' && $entry != '..'){
