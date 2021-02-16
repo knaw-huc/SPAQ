@@ -3,6 +3,7 @@
 
 ## 16-2-2021
 
+- added possibility to show also the inspect (mp3) and storage (wav) versions
 - added administration clean.sh script
 - ultra-lite back end for web browsing through the uploaded files, just for development, testing
 - added smarty
