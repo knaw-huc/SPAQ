@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+{include file="menu.tpl"}
 
         {foreach from=$list item="f"}
             <div>

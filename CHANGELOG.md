@@ -1,5 +1,9 @@
 # log & changelog
 
+## 17-2--2021
+
+- escaping, preventing js injection, although this is just a concept
+- added menu for file browsing
 
 ## 16-2-2021
 

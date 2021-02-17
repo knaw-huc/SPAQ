@@ -8,6 +8,9 @@
         <title>{$smarty.const.TITLE}</title>
     </head>
     <body>
-        <h1>{$smarty.const.TITLE}: {$smarty.const.SUBTITLE}</h1>
+
+        <div class="container">
+                <h1>{$smarty.const.TITLE}: {$smarty.const.SUBTITLE} {$subsub|escape:'html'}</h1>
+
         
     
