@@ -14,7 +14,7 @@ stop.disabled = true;
 
 // visualiser setup - create web audio api context and canvas
 
-let audioCtx;
+// let audioCtx;
 const canvasCtx = canvas.getContext("2d");
 
 //main block for doing the audio recording
@@ -44,7 +44,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
         console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
         if (MediaRecorder.isTypeSupported(i)) {
             mimetype = i;
-            // break;
+            break;
         }
     }
     console.log('mimetype: ', mimetype);
@@ -67,15 +67,17 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
         // console.log('mimetype', mediaRecorder.mimeType);
 
-        if (mimetype === "audio/mp4") { // Safari
-            message.innerHTML = 'Ready for recording';
-            visualize(stream); // draw an osciloscope, visual feedback
+        // if (mimetype === "audio/mp4") { // Safari
+        //     message.innerHTML = 'Ready for recording';
+        //     visualize(stream); // draw an osciloscope, visual feedback
 
 
-        } else {
-            // audio ctx not supported yet in visualize
-            visualize(stream); // draw an osciloscope, visual feedback
-        }
+        // } else {
+        //     // audio ctx not supported yet in visualize
+        //     visualize(stream); // draw an osciloscope, visual feedback
+        // }
+
+        visualize(stream);
         record.onclick = function () {
             mediaRecorder.start();
             console.log('state', mediaRecorder.state);
@@ -100,7 +102,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
             stop.disabled = true;
             record.disabled = false;
-            message.innerHTML = 'Ready for recording';
+            // message.innerHTML = 'Ready for recording';
 
         }
 
@@ -288,35 +290,45 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 }
 
 
-let isAudioContextSupported = function () {
-    // This feature is still prefixed in Safari
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    if(window.AudioContext){
-        return true;
-    }
-    else {
-        return false;
-    }
-};
+
 
 
 
 
 function visualize(stream) {
 
-    var audioContext;
-    if(isAudioContextSupported()) {
-        audioContext = new window.AudioContext();
+    // var audioContext;
+    // if(isAudioContextSupported()) {
+    //     audioContext = new window.AudioContext();
+    //     console.log('audiocontext supported')
+    // } else {
+    //     console.log('audiocontext NOT supported')
+    //     return;
+    // }
+    let isAudioContextSupported = function () {
+        // This feature is still prefixed in Safari
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        if(window.AudioContext){
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+
+    // if (!audioCtx ) {
+    //     audioCtx = new AudioContext();
+    // }
+
+    let audioCtx;
+    if (isAudioContextSupported() && !audioCtx ) {
+        audioCtx = new window.AudioContext();
         console.log('audiocontext supported')
+
     } else {
         console.log('audiocontext NOT supported')
-        return;
-    }
-
-
-
-    if (!audioCtx) {
-        audioCtx = new AudioContext();
+            return;
     }
 
     const source = audioCtx.createMediaStreamSource(stream);

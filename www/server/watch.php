@@ -19,7 +19,7 @@ $dir = getGET('dir', 'reception');
 if(! in_array($dir, array_keys($route))){
     die('don\'t mangle with the parameters');
 }
-
+$subsub = $dir;
 
 if(array_key_exists($dir, $route)) {
     $scandir = $route[$dir];

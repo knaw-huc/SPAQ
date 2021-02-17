@@ -1,7 +1,8 @@
 # log & changelog
 
-## 17-2--2021
+## 17-2-2021
 
+- prevent command shell injection
 - escaping, preventing js injection, although this is just a concept
 - added menu for file browsing
 

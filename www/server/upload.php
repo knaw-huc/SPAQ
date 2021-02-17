@@ -35,23 +35,30 @@ fwrite($fp, $data);
 fclose($fp);
 
 $bashcmd = 'nothing';
+https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
+// also spaces in fielnames possible, but in reality no names allowed?
 
 if(! file_exists(RECEPTION . "$name.$extension")){
     $status = "NOT OK";
 } else {
     // low-res for checking
     $outputformat = '.mp3';
-    $bashcmd = 'ffmpeg -i ' .  RECEPTION . $name . '.' . $extension . ' ' . INSPECT . $name . $outputformat;
+    $input = escapeshellarg(RECEPTION . $name . '.' . $extension);
+    $output = escapeshellarg(INSPECT . $name . $outputformat);
+    $bashcmd = 'ffmpeg -i ' .  $input . ' ' .  $output;
+  
     // convert with mpeg, this is for demo purposes, maybe node.js watcher thingie
     $output = exec($bashcmd, $results, $return);
 
     // high-res for storage
     $outputformat = '.wav';
-    $bashcmd = 'ffmpeg -i ' .  RECEPTION . $name . '.' . $extension . ' ' . STORAGE . $name . $outputformat;
+    $input = escapeshellarg(RECEPTION . $name . '.' . $extension);
+    $output = escapeshellarg(STORAGE . $name . $outputformat);
+    $bashcmd = 'ffmpeg -i ' .  $input . ' ' .  $output;
     $output = exec($bashcmd, $results, $return);
 
 
     // echo '<br>';
 }
-
+// todo more info for both conversion, depends on userdemands a
 echo json_encode(array("storestatus" => $status, "bashcmd" => $bashcmd, "return"=>$return, "results" => $results));
