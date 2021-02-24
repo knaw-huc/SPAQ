@@ -1,7 +1,15 @@
 # log & changelog
 
+## 24-2-2021
+
+- changed 'lowres' format for inspect to mp4 (aac), Safari, can't read webm and ogg... so you can use Safari for backend
+- mp42mp3 conversion is truncating with fmmpeg, mp3 is obsolete mp4 with aac is now becoming more prominent
+- not important now, pragmatic choice is mp4 (aac)
+- removed storage part and storage folder for now
+
 ## 17-2-2021
 
+- interface tweaks
 - prevent command shell injection
 - escaping, preventing js injection, although this is just a concept
 - added menu for file browsing

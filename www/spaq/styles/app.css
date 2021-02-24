@@ -16,13 +16,14 @@ body {
 }
 
 header {
-  margin-bottom: 100px;
+  margin-bottom: 40px;
 }
 
 .wrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 2px;
 }
 
 h1, h2 {
