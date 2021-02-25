@@ -21,25 +21,31 @@ const canvasCtx = canvas.getContext("2d");
 const constraints = {
     audio: true,
     video: false
-
-
-
 };
+
+const MAXRECORDINGTIME = 10000; // 10s;
+let timeoutID;
+
 // const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
 // console.log('constraints supported', supportedConstraints);
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
     console.log('getUserMedia supported.');
-    
+
+
+
+
+
     // Determine mimetype
     const types = {
         "audio/mp4": "mp4",
-        "audio/mpeg" : "mp4",
-        "audio/ogg" : "ogg",
-        "audio/webm" : "webm"
-    
+        "audio/mpeg": "mp4",
+        "audio/ogg": "ogg",
+        "audio/webm": "webm"
+
     };
     let mimetype = "audio/ogg";
+    mimetype = "audio/webm";
     for (let i of Object.keys(types)) {
         console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
         if (MediaRecorder.isTypeSupported(i)) {
@@ -52,7 +58,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
     let chunks = [];
 
-  
+
     const endpoint = '../server/upload.php';
 
 
@@ -65,23 +71,15 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
         const mediaRecorder = new MediaRecorder(stream);
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
-        // console.log('mimetype', mediaRecorder.mimeType);
-
-        // if (mimetype === "audio/mp4") { // Safari
-        //     message.innerHTML = 'Ready for recording';
-        //     visualize(stream); // draw an osciloscope, visual feedback
-
-
-        // } else {
-        //     // audio ctx not supported yet in visualize
-        //     visualize(stream); // draw an osciloscope, visual feedback
-        // }
+      
 
         visualize(stream);
         record.onclick = function () {
             mediaRecorder.start();
+            timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME); 
             console.log('state', mediaRecorder.state);
             console.log('mimetype', mediaRecorder.mimeType);
+            console.log('timeoutID', timeoutID);
 
             console.log("recorder started");
             record.style.background = "red";
@@ -92,18 +90,28 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
             record.disabled = true;
         }
 
+        function stopRecording() {
+            if (mediaRecorder.state === "recording") {
+                mediaRecorder.stop();
+                console.log(mediaRecorder.state); // inactive
+                console.log("recorder stopped");
+                record.style.background = "";
+                record.style.color = "";
+                // mediaRecorder.requestData();
+
+                stop.disabled = true;
+                record.disabled = false;
+                console.log('timeoutID after stop', timeoutID);
+
+            }
+        }
+
         stop.onclick = function () {
-            mediaRecorder.stop();
-            console.log(mediaRecorder.state); // inactive
-            console.log("recorder stopped");
-            record.style.background = "";
-            record.style.color = "";
-            // mediaRecorder.requestData();
+            clearTimeout(timeoutID); // cancel the timeout before the timeout...
+            // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
+            // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
 
-            stop.disabled = true;
-            record.disabled = false;
-            // message.innerHTML = 'Ready for recording';
-
+            stopRecording();
         }
 
         mediaRecorder.onstop = function (e) {
@@ -236,16 +244,6 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
                             console.log('store succes')
 
                         }
-                    }).then(() => {
-                        console.log('He tied her up');
-                    }).then(() => {
-                        console.log('He threw her on the railroad tracks ');
-                    }).then(() => {
-                        console.log('A train started comin\'');
-                    }).then(() => {
-                    }).then(() => {
-                    }).then(() => {
-                        console.log('Along Came Jones', 'https://www.youtube.com/watch?v=eFyr49TwuiI');
                     })
                     .catch(err => {
                         alert(err);
@@ -297,18 +295,11 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
 function visualize(stream) {
 
-    // var audioContext;
-    // if(isAudioContextSupported()) {
-    //     audioContext = new window.AudioContext();
-    //     console.log('audiocontext supported')
-    // } else {
-    //     console.log('audiocontext NOT supported')
-    //     return;
-    // }
+
     let isAudioContextSupported = function () {
         // This feature is still prefixed in Safari
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        if(window.AudioContext){
+        if (window.AudioContext) {
             return true;
         }
         else {
@@ -316,19 +307,14 @@ function visualize(stream) {
         }
     };
 
-
-    // if (!audioCtx ) {
-    //     audioCtx = new AudioContext();
-    // }
-
     let audioCtx;
-    if (isAudioContextSupported() && !audioCtx ) {
+    if (isAudioContextSupported() && !audioCtx) {
         audioCtx = new window.AudioContext();
         console.log('audiocontext supported')
 
     } else {
         console.log('audiocontext NOT supported')
-            return;
+        return;
     }
 
     const source = audioCtx.createMediaStreamSource(stream);

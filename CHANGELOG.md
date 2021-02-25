@@ -1,5 +1,10 @@
 # log & changelog
 
+## 25-2-2021
+
+- client-side timer (10s) for recordings
+- a cleanup, a bit
+
 ## 24-2-2021
 
 - changed 'lowres' format for inspect to mp4 (aac), Safari, can't read webm and ogg... so you can use Safari for backend
