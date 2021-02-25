@@ -26,8 +26,8 @@ const constraints = {
 
 const MAXRECORDINGTIME = 10000; // 10s;
 let timeoutID;
-// const endpoint = '../server/upload.php';
-const endpoint = 'http://localhost/server/upload.php';
+const endpoint = '../server/upload.php';
+// const endpoint = 'http://localhost/server/upload.php';
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
     console.log('getUserMedia supported.');

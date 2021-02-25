@@ -4,7 +4,8 @@
 
 - client-side timer (10s) for recordings
 - a cleanup, a bit
-- - cors experiments
+- cors experiments
+- removed cors for now
 
 ## 24-2-2021
 
