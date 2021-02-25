@@ -1,7 +1,17 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");   // activate for cors but it will not become a public api 
+header("Access-Control-Allow-Headers: *");  // activate for cors
+
+// used it for testing with light python server on port 8000 in server dir python3 -m http.server 
+// https://www.moesif.com/blog/technical/cors/Authoritative-Guide-to-CORS-Cross-Origin-Resource-Sharing-for-REST-APIs/
+
+// if you don't want to use an .htaccess, this does take care of it
+// header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // not necessary, hmm
+
+
 header('Content-Type: application/json');
-// $headers = getallheaders(); 
+
 
 define('APP_DIR', __DIR__ . '/'); // absolute path to current directory
 define('RECEPTION', APP_DIR . 'reception/'); // what's recorded, temporary (format of the browser)

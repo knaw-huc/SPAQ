@@ -23,18 +23,14 @@ const constraints = {
     video: false
 };
 
+
 const MAXRECORDINGTIME = 10000; // 10s;
 let timeoutID;
-
-// const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
-// console.log('constraints supported', supportedConstraints);
+// const endpoint = '../server/upload.php';
+const endpoint = 'http://localhost/server/upload.php';
 
 if (navigator.mediaDevices.getUserMedia(constraints)) {
     console.log('getUserMedia supported.');
-
-
-
-
 
     // Determine mimetype
     const types = {
@@ -59,7 +55,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
     let chunks = [];
 
 
-    const endpoint = '../server/upload.php';
+    
 
 
     // change for development of production host
@@ -71,12 +67,12 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
         const mediaRecorder = new MediaRecorder(stream);
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
-      
+
 
         visualize(stream);
         record.onclick = function () {
             mediaRecorder.start();
-            timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME); 
+            timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
             console.log('state', mediaRecorder.state);
             console.log('mimetype', mediaRecorder.mimeType);
             console.log('timeoutID', timeoutID);
@@ -215,6 +211,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
                 console.log('extension', fileextension);
                 let myHeaders = new Headers();
                 myHeaders.append('Accept', 'application/json');
+
                 myHeaders.append("X-filename", clipName); // becomes lowercase in the request
                 myHeaders.append("X-tension", fileextension);
 

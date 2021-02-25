@@ -14,4 +14,4 @@ RUN apt-get update && apt-get install -y libc-client-dev libfreetype6-dev libmcr
 
 RUN apt-get update && apt-get install -y ffmpeg    
 
-RUN a2enmod rewrite
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && a2enmod rewrite && a2enmod headers && service apache2 restart
