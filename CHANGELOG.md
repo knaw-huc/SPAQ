@@ -1,5 +1,10 @@
 # log & changelog
 
+
+## 3-3-2021
+
+- added dictaphone that works also under Safari
+
 ## 25-2-2021
 
 - client-side timer (10s) for recordings
