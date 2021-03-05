@@ -13,13 +13,9 @@ const message = document.getElementById('message');
 stopButton.disabled = true;
 
 // visualiser setup - create web audio api context and canvas
-
 let audioCtx;
-
-
 const canvasCtx = canvas.getContext("2d");
 
-//main block for doing the audio recording
 const constraints = {
     audio: true,
     video: false
@@ -30,15 +26,21 @@ const MAXRECORDINGTIME = 10000; // 10s;
 let timeoutID;
 const endpoint = '../server/upload.php';
 // const endpoint = 'http://localhost/server/upload.php';
-let counter = 0;
+let counter = 0; // name audio files
+
+let words = ['kat', 'muis', 'hond'];
+
+
+//main block for doing the audio recording
 
 navigator.mediaDevices.getUserMedia(constraints)
     .then(function (stream) {
 
         // Determine mimetype
+
         const types = {
             "audio/mp4": "mp4",
-            "audio/mpeg": "mp4",
+            "audio/mpeg": "mp4", // away?
             "audio/ogg": "ogg",
             "audio/webm": "webm"
 
@@ -66,11 +68,18 @@ navigator.mediaDevices.getUserMedia(constraints)
         const mediaRecorder = new MediaRecorder(stream);
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
 
-
         visualize(stream);
-        // visualizealt(stream);
+
+        message.innerHTML = words[counter];
+
 
         recordButton.onclick = function () {
+
+            let clip = document.querySelector('div.clip');
+            if (clip !== null) {
+                clip.parentNode.removeChild(clip);
+            }
+
             mediaRecorder.start();
             timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
             console.log('state', mediaRecorder.state);
@@ -79,10 +88,7 @@ navigator.mediaDevices.getUserMedia(constraints)
 
             console.log("recorder started");
             recordButton.style.background = "red";
-            message.innerHTML = '';
-
-
-            stopButton.disabled = false;
+              stopButton.disabled = false;
             recordButton.disabled = true;
         }
 
@@ -94,6 +100,7 @@ navigator.mediaDevices.getUserMedia(constraints)
                 recordButton.style.background = "";
                 recordButton.style.color = "";
                 // mediaRecorder.requestData();
+                // message.innerHTML = '';
 
                 stopButton.disabled = true;
                 recordButton.disabled = false;
@@ -118,54 +125,7 @@ navigator.mediaDevices.getUserMedia(constraints)
             // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 
             console.log("data available after MediaRecorder.stopButton() called.");
-            counter++;
-            // let clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
-            let clipName = 'Audio' + counter;
 
-            // let it's a global within function can change after name-eventchange
-
-            const clipContainer = document.createElement('article');
-            const clipLabel = document.createElement('p');
-            const audio = document.createElement('audio');
-            const deleteButton = document.createElement('button');
-            const downloadButton = document.createElement('button');
-            const downloadLink = document.createElement('a');
-            const storeButton = document.createElement('button');
-
-
-
-            clipContainer.classList.add('clip');
-            audio.setAttribute('controls', '');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete';
-
-            downloadButton.textContent = 'Download';
-            downloadButton.className = 'download';
-
-            storeButton.textContent = 'Store';
-            storeButton.className = 'store';
-
-            console.log('audioelement', audio);
-
-            // if (clipName === null) {
-            //     clipLabel.textContent = 'My unnamed clip';
-            // } else {
-            //     // clipLabel.textContent = clipName;
-            //     clipLabel.textContent = 'Audio 1';
-
-            // }
-
-            clipLabel.textContent = 'Audio ' + counter;
-
-
-            clipContainer.appendChild(audio);
-            clipContainer.appendChild(clipLabel);
-            clipContainer.appendChild(deleteButton);
-            clipContainer.appendChild(storeButton);
-
-
-
-            audio.controls = true;
             // this does not make it a file from a certain type...
             let mimestring = '';
             if (mimetype === "audio/mp4") {
@@ -178,10 +138,54 @@ navigator.mediaDevices.getUserMedia(constraints)
             chunks = [];
             const audioURL = window.URL.createObjectURL(blob);
             console.log('audiourl: ', audioURL);
-
-            audio.src = audioURL;
-            console.log("recorder stopped, audioURL added");
             console.log("blob", blob);
+
+            // VISUAL representation
+            // if(counter === 5) {
+            //     console.log('enough is enough');
+            //     message.innerHTML = 'Bedankt!';
+
+            // } else {
+            //     // console.log('word:', counter, words[counter + 1]);
+
+            // }
+            // const soundClipContainer = createAudioPlayer(counter, audioURL);
+
+            // let clipName = 'Audio' + counter;
+            console.log('word after stop:', counter, words[counter]);
+
+            let clipName = words[counter];
+
+            const soundClipContainer = document.createElement('div');
+            const clipLabel = document.createElement('p');
+            const audio = document.createElement('audio');
+            const deleteButton = document.createElement('button');
+            const downloadButton = document.createElement('button');
+            const downloadLink = document.createElement('a');
+            const storeButton = document.createElement('button');
+
+            soundClipContainer.classList.add('clip');
+            audio.setAttribute('controls', '');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete';
+
+            downloadButton.textContent = 'Download';
+            downloadButton.className = 'download';
+
+            storeButton.textContent = 'Store';
+            storeButton.className = 'store';
+
+            console.log('audioelement', audio);
+            clipLabel.textContent = words[counter];
+
+
+            soundClipContainer.appendChild(audio);
+            soundClipContainer.appendChild(clipLabel);
+            soundClipContainer.appendChild(deleteButton);
+            soundClipContainer.appendChild(storeButton);
+            audio.controls = true;
+            audio.src = audioURL;
+
 
             // download handling
             downloadLink.href = audioURL;
@@ -190,20 +194,15 @@ navigator.mediaDevices.getUserMedia(constraints)
             // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
             // downloadLink.text = 'Download';
             downloadLink.appendChild(downloadButton);
-            clipContainer.appendChild(downloadLink);
-
-            soundClips.appendChild(clipContainer);
-
+            soundClipContainer.appendChild(downloadLink);
+            soundClips.appendChild(soundClipContainer); // declared at the top
 
             // store handling store means store on a server
 
-
+            // eventlisteners 
             // download file
-
             downloadButton.onclick = function (e) {
                 downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
-                // add clipName late, cause maybe a namechange has occured
-                console.log('')
             }
 
             // delete file
@@ -220,11 +219,9 @@ navigator.mediaDevices.getUserMedia(constraints)
             storeButton.onclick = function (e) {
                 console.log('store');
                 console.log('clipname', clipName);
-
                 console.log('extension', fileextension);
                 let myHeaders = new Headers();
                 myHeaders.append('Accept', 'application/json');
-
                 myHeaders.append("X-filename", clipName); // becomes lowercase in the request
                 myHeaders.append("X-tension", fileextension);
 
@@ -248,39 +245,33 @@ navigator.mediaDevices.getUserMedia(constraints)
                         // console.log('response: ' + response.status );
                         console.log('data:' + data);
                         let json = JSON.parse(data);
-                        // console.log(JSON.parse(data)); // it works but why ...
                         if (json.storestatus === 'OK') {
                             storeButton.textContent = 'Store Succes!';
-                            console.log('store succes')
+                            console.log('store succes');
+                            if (counter === words.length -1) {
+                                console.log('enough is enough');
+                                message.innerHTML = 'Bedankt!';
+                                // remove everything
+                                let evtTgt = e.target;
+                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
 
+                                let elem = document.getElementById("buttons")
+                                elem.parentNode.removeChild(elem);
+
+
+                            } else {
+                                counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
+                                message.innerHTML = words[counter];
+                                // remove clip div with class clip
+                                let evtTgt = e.target;
+                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                            }
                         }
                     })
                     .catch(err => {
                         alert(err);
                     });
-
-                // console.log('ajax: ' + ajax.status);    
             }
-
-
-            // change name of clip
-            // clipLabel.onclick = function () {
-
-            //     const existingName = clipLabel.textContent;
-            //     const newClipName = prompt('Enter a new name for your sound clip?');
-  
-
-            //     if (newClipName === null) {
-            //         clipLabel.textContent = existingName;
-            //     } else {
-            //         clipLabel.textContent = newClipName;
-            //         // downloadLink.setAttribute('download', `${newClipName}.${fileextension}`); // not neccessary anymore
-            //         clipName = newClipName;
-
-
-            //     }
-
-            // }
         }
 
         mediaRecorder.ondataavailable = function (e) {
@@ -356,16 +347,10 @@ navigator.mediaDevices.getUserMedia(constraints)
         }
 
 
-
-        // here it starts
-
     })
     .catch(function (err) {
         console.log('The following error occured: ' + err);
     });
-
-
-
 
 
 window.onresize = function () {
