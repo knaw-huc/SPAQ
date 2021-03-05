@@ -6,7 +6,7 @@ const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
 const message = document.getElementById('message');
-
+// let t;
 
 // disable stop button while not recording
 
@@ -15,6 +15,8 @@ stop.disabled = true;
 // visualiser setup - create web audio api context and canvas
 
 // let audioCtx;
+let audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // still needed for Safari
+
 const canvasCtx = canvas.getContext("2d");
 
 //main block for doing the audio recording
@@ -55,9 +57,6 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
     let chunks = [];
 
 
-    
-
-
     // change for development of production host
 
     let onSuccess = function (stream) { // function expression called from a resolved promise  line 173
@@ -70,6 +69,8 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
 
         visualize(stream);
+        // visualizealt(stream);
+
         record.onclick = function () {
             mediaRecorder.start();
             timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
@@ -287,32 +288,8 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
 
 
-
-
-
 function visualize(stream) {
 
-
-    let isAudioContextSupported = function () {
-        // This feature is still prefixed in Safari
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (window.AudioContext) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-
-    let audioCtx;
-    if (isAudioContextSupported() && !audioCtx) {
-        audioCtx = new window.AudioContext();
-        console.log('audiocontext supported')
-
-    } else {
-        console.log('audiocontext NOT supported')
-        return;
-    }
 
     const source = audioCtx.createMediaStreamSource(stream);
 
@@ -324,15 +301,21 @@ function visualize(stream) {
     source.connect(analyser);
     //analyser.connect(audioCtx.destination);
 
-    draw()
+    draw();
 
     function draw() {
+        // canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
         const WIDTH = canvas.width
         const HEIGHT = canvas.height;
-
+        // cancelAnimationFrame(t);
         requestAnimationFrame(draw);
+        // console.log('t', t);
+        console.log('listening & drawing');
+
 
         analyser.getByteTimeDomainData(dataArray);
+        // analyser.getFloatTimeDomainData(dataArray);
 
         canvasCtx.fillStyle = 'rgb(200, 200, 200)';
         canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
@@ -364,6 +347,8 @@ function visualize(stream) {
         canvasCtx.stroke();
 
     }
+
+
 }
 
 window.onresize = function () {
