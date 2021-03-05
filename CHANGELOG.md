@@ -3,6 +3,7 @@
 
 ## 5-3-2021
 
+- implemented user story: read words 
 - refactored 'superfluous' call to getUserMedia away
 - refactored in branch 'smallercode'
 - added audioContext.resume() (needed for Chrome)
