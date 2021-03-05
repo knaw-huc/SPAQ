@@ -1,6 +1,14 @@
 # log & changelog
 
 
+## 5-3-2021
+
+- refactored 'superfluous' call to getUserMedia away
+- refactored in branch 'smallercode'
+- added audioContext.resume() (needed for Chrome)
+- fixed audio visualisation in Safari, apparently the prompt interaction has consequences there... 
+- removed audio renaming, automatic naming with a counter crude but pragmatic and effective way of solving this problem, also not neccessary for real surveys at this moment
+
 ## 3-3-2021
 
 - added dictaphone that works also under Safari

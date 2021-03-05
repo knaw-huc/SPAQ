@@ -46,6 +46,14 @@ canvas {
   margin-bottom: 0.5rem;
 }
 
+ul {
+  margin-left: 1rem;
+}
+
+ul li {
+  font-size: 1rem;
+}
+
 #buttons {
   display: flex;
   flex-direction: row;

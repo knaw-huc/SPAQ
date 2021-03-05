@@ -1,21 +1,21 @@
 // set up basic variables for app
 
-const record = document.querySelector('.record');
-const stop = document.querySelector('.stop');
+const recordButton = document.querySelector('.recordButton');
+const stopButton = document.querySelector('.stopButton');
 const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
 const message = document.getElementById('message');
 // let t;
 
-// disable stop button while not recording
+// disable stopButton button while not recording
 
-stop.disabled = true;
+stopButton.disabled = true;
 
 // visualiser setup - create web audio api context and canvas
 
-// let audioCtx;
-let audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // still needed for Safari
+let audioCtx;
+
 
 const canvasCtx = canvas.getContext("2d");
 
@@ -30,36 +30,35 @@ const MAXRECORDINGTIME = 10000; // 10s;
 let timeoutID;
 const endpoint = '../server/upload.php';
 // const endpoint = 'http://localhost/server/upload.php';
+let counter = 0;
 
-if (navigator.mediaDevices.getUserMedia(constraints)) {
-    console.log('getUserMedia supported.');
+navigator.mediaDevices.getUserMedia(constraints)
+    .then(function (stream) {
 
-    // Determine mimetype
-    const types = {
-        "audio/mp4": "mp4",
-        "audio/mpeg": "mp4",
-        "audio/ogg": "ogg",
-        "audio/webm": "webm"
+        // Determine mimetype
+        const types = {
+            "audio/mp4": "mp4",
+            "audio/mpeg": "mp4",
+            "audio/ogg": "ogg",
+            "audio/webm": "webm"
 
-    };
-    let mimetype = "audio/ogg";
-    mimetype = "audio/webm";
-    for (let i of Object.keys(types)) {
-        console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
-        if (MediaRecorder.isTypeSupported(i)) {
-            mimetype = i;
-            break;
+        };
+        let mimetype = "audio/ogg";
+        mimetype = "audio/webm";
+        for (let i of Object.keys(types)) {
+            console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
+            if (MediaRecorder.isTypeSupported(i)) {
+                mimetype = i;
+                break;
+            }
         }
-    }
-    console.log('mimetype: ', mimetype);
-    fileextension = types[mimetype];
+        console.log('mimetype: ', mimetype);
+        fileextension = types[mimetype];
 
-    let chunks = [];
+        let chunks = [];
 
+        // change for development of production host
 
-    // change for development of production host
-
-    let onSuccess = function (stream) { // function expression called from a resolved promise  line 173
         const options = {
             mimeType: mimetype
         };
@@ -71,7 +70,7 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
         visualize(stream);
         // visualizealt(stream);
 
-        record.onclick = function () {
+        recordButton.onclick = function () {
             mediaRecorder.start();
             timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
             console.log('state', mediaRecorder.state);
@@ -79,12 +78,12 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
             console.log('timeoutID', timeoutID);
 
             console.log("recorder started");
-            record.style.background = "red";
+            recordButton.style.background = "red";
             message.innerHTML = '';
 
 
-            stop.disabled = false;
-            record.disabled = true;
+            stopButton.disabled = false;
+            recordButton.disabled = true;
         }
 
         function stopRecording() {
@@ -92,18 +91,22 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
                 mediaRecorder.stop();
                 console.log(mediaRecorder.state); // inactive
                 console.log("recorder stopped");
-                record.style.background = "";
-                record.style.color = "";
+                recordButton.style.background = "";
+                recordButton.style.color = "";
                 // mediaRecorder.requestData();
 
-                stop.disabled = true;
-                record.disabled = false;
-                console.log('timeoutID after stop', timeoutID);
+                stopButton.disabled = true;
+                recordButton.disabled = false;
+                console.log('timeoutID after stopButton', timeoutID);
+                // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
 
             }
+            // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
         }
 
-        stop.onclick = function () {
+        stopButton.onclick = function () {
             clearTimeout(timeoutID); // cancel the timeout before the timeout...
             // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
             // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
@@ -112,9 +115,13 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
         }
 
         mediaRecorder.onstop = function (e) {
-            console.log("data available after MediaRecorder.stop() called.");
+            // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 
-            let clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
+            console.log("data available after MediaRecorder.stopButton() called.");
+            counter++;
+            // let clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
+            let clipName = 'Audio' + counter;
+
             // let it's a global within function can change after name-eventchange
 
             const clipContainer = document.createElement('article');
@@ -140,11 +147,16 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
             console.log('audioelement', audio);
 
-            if (clipName === null) {
-                clipLabel.textContent = 'My unnamed clip';
-            } else {
-                clipLabel.textContent = clipName;
-            }
+            // if (clipName === null) {
+            //     clipLabel.textContent = 'My unnamed clip';
+            // } else {
+            //     // clipLabel.textContent = clipName;
+            //     clipLabel.textContent = 'Audio 1';
+
+            // }
+
+            clipLabel.textContent = 'Audio ' + counter;
+
 
             clipContainer.appendChild(audio);
             clipContainer.appendChild(clipLabel);
@@ -252,104 +264,109 @@ if (navigator.mediaDevices.getUserMedia(constraints)) {
 
 
             // change name of clip
-            clipLabel.onclick = function () {
-                const existingName = clipLabel.textContent;
-                const newClipName = prompt('Enter a new name for your sound clip?');
-                if (newClipName === null) {
-                    clipLabel.textContent = existingName;
-                } else {
-                    clipLabel.textContent = newClipName;
-                    // downloadLink.setAttribute('download', `${newClipName}.${fileextension}`); // not neccessary anymore
-                    clipName = newClipName;
+            // clipLabel.onclick = function () {
 
-                }
+            //     const existingName = clipLabel.textContent;
+            //     const newClipName = prompt('Enter a new name for your sound clip?');
+  
 
-            }
+            //     if (newClipName === null) {
+            //         clipLabel.textContent = existingName;
+            //     } else {
+            //         clipLabel.textContent = newClipName;
+            //         // downloadLink.setAttribute('download', `${newClipName}.${fileextension}`); // not neccessary anymore
+            //         clipName = newClipName;
+
+
+            //     }
+
+            // }
         }
 
         mediaRecorder.ondataavailable = function (e) {
             chunks.push(e.data);
             // console.log(e.data);
         }
-    }
+        function visualize(stream) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // need to put it here for Chrome
+            audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+            // audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // still needed for Safari
 
-    let onError = function (err) {
-        console.log('The following error occured: ' + err);
-    }
-    // here it starts
+            const source = audioCtx.createMediaStreamSource(stream);
 
-    navigator.mediaDevices.getUserMedia(constraints)
-        .then(onSuccess, onError);
+            const analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 2048;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
 
-} else {
-    console.log('getUserMedia not supported on your browser!');
-}
+            source.connect(analyser);
+            //analyser.connect(audioCtx.destination);
 
+            draw();
 
+            function draw() {
+                // canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 
-
-function visualize(stream) {
-
-
-    const source = audioCtx.createMediaStreamSource(stream);
-
-    const analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2048;
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    source.connect(analyser);
-    //analyser.connect(audioCtx.destination);
-
-    draw();
-
-    function draw() {
-        // canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const WIDTH = canvas.width
-        const HEIGHT = canvas.height;
-        // cancelAnimationFrame(t);
-        requestAnimationFrame(draw);
-        // console.log('t', t);
-        console.log('listening & drawing');
+                const WIDTH = canvas.width
+                const HEIGHT = canvas.height;
 
 
-        analyser.getByteTimeDomainData(dataArray);
-        // analyser.getFloatTimeDomainData(dataArray);
-
-        canvasCtx.fillStyle = 'rgb(200, 200, 200)';
-        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-        canvasCtx.lineWidth = 2;
-        canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
-
-        canvasCtx.beginPath();
-
-        let sliceWidth = WIDTH * 1.0 / bufferLength;
-        let x = 0;
+                // cancelAnimationFrame(t);
+                requestAnimationFrame(draw);
+                // console.log('t', t);
+                console.log('listening & drawing');
 
 
-        for (let i = 0; i < bufferLength; i++) {
+                analyser.getByteTimeDomainData(dataArray);
+                // analyser.getFloatTimeDomainData(dataArray);
 
-            let v = dataArray[i] / 128.0;
-            let y = v * HEIGHT / 2;
+                canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+                canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
-            if (i === 0) {
-                canvasCtx.moveTo(x, y);
-            } else {
-                canvasCtx.lineTo(x, y);
+                canvasCtx.lineWidth = 2;
+                canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+
+                canvasCtx.beginPath();
+
+                let sliceWidth = WIDTH * 1.0 / bufferLength;
+                let x = 0;
+
+
+                for (let i = 0; i < bufferLength; i++) {
+
+                    let v = dataArray[i] / 128.0;
+                    let y = v * HEIGHT / 2;
+
+                    if (i === 0) {
+                        canvasCtx.moveTo(x, y);
+                    } else {
+                        canvasCtx.lineTo(x, y);
+                    }
+
+                    x += sliceWidth;
+                }
+
+                canvasCtx.lineTo(canvas.width, canvas.height / 2);
+                canvasCtx.stroke();
+
             }
 
-            x += sliceWidth;
+            // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
         }
 
-        canvasCtx.lineTo(canvas.width, canvas.height / 2);
-        canvasCtx.stroke();
-
-    }
 
 
-}
+        // here it starts
+
+    })
+    .catch(function (err) {
+        console.log('The following error occured: ' + err);
+    });
+
+
+
+
 
 window.onresize = function () {
     canvas.width = mainSection.offsetWidth;
