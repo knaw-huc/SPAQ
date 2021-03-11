@@ -279,9 +279,8 @@ navigator.mediaDevices.getUserMedia(constraints)
             // console.log(e.data);
         }
         function visualize(stream) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // need to put it here for Chrome
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // need to put it here for Safari
             audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
-            // audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // still needed for Safari
 
             const source = audioCtx.createMediaStreamSource(stream);
 

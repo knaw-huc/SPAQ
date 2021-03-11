@@ -38,10 +38,16 @@ Go to:
 client
 *    <http://localhost/spaq/>
 
-server
-*    <http://localhost/server/>
+server (view the submitted files)
+
+* http://localhost/server/watch.php
 
     
-    
+## Utility script
+
+cd server
+./clean.sh
+
+removes all audio files  
 
 

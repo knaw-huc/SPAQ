@@ -1,5 +1,10 @@
 # log & changelog
 
+## 11-3-2021
+
+- timestamps in filenamesd
+- corrected servername
+- adapted css & html
 
 ## 5-3-2021
 

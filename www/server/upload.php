@@ -32,29 +32,34 @@ $data = file_get_contents('php://input');
 $status = "OK";
 $typeproblem = '';
 
+$time = date("-Y-m-d-H-i-s");  
+
+$name = $name . $time;
+
 $fp = fopen(RECEPTION . "$name.$extension", "wb");
 fwrite($fp, $data);
-fclose($fp);
+// fclose($fp);
 
 $bashcmd = 'nothing';
 $return = 'x';
 // https: //cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
 // also spaces in fielnames possible, but in reality no names allowed?
 
+
 if (!file_exists(RECEPTION . "$name.$extension")) {
     $status = "NOT OK";
 } else {
     if ($extension == 'mp4') {
         // copy to inspect
-        copy(RECEPTION . $name . '.' . $extension, INSPECT . $name . '.' . $extension);
+        copy(RECEPTION . $name . '.' . $extension, INSPECT . $name .  '.' . $extension);
     } else {
 
         // 'low-res' mp4 (aac) for checking
         $outputformat = '.mp4';
-        $input = escapeshellarg(RECEPTION . $name . '.' . $extension);
-        $output = escapeshellarg(INSPECT . $name . $outputformat);
-        // $input = RECEPTION . $name . '.' . $extension;
-        // $output = INSPECT . $name . $outputformat;
+        // $input = escapeshellarg(RECEPTION . $name . '.' . $extension);
+        // $output = escapeshellarg(INSPECT . $name . $outputformat);
+        $input = RECEPTION . $name . '.' . $extension;
+        $output = INSPECT . $name .  $outputformat;
         $bashcmd = 'ffmpeg -i ' .  $input . ' ' .  $output;
 
         // convert with mpeg, this is for demo purposes, maybe node.js watcher thingie
