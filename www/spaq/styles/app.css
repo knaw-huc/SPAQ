@@ -200,8 +200,8 @@ input[type=checkbox]:checked ~ aside {
 /* message */
 
 #message {
-    color: grey;
-    font-size: 1.25rem;
+    color: dark-grey;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: normal;
     padding: 0.5rem 0 0.5rem 0;
