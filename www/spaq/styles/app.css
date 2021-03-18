@@ -207,7 +207,13 @@ input[type=checkbox]:checked ~ aside {
     padding: 0.5rem 0 0.5rem 0;
   }
 
-
+  #question {
+    color: dark-grey;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0.5rem 0;
+  }
 /* Adjustments for wider screens */
 @media all and (min-width: 800px) {
   /* Don't take all the space as readability is lost when line length

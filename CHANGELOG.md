@@ -2,6 +2,7 @@
 
 ## 18-3-2021
 
+- feedback about succesful store
 - changed colorscheme
 - added key control, r: record, s: stop recording, p: play recording
 

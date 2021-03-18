@@ -5,7 +5,9 @@ const stopButton = document.querySelector('.stopButton');
 const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
+const question = document.getElementById('question');
 const message = document.getElementById('message');
+
 // let t;
 
 // disable stopButton button while not recording
@@ -70,13 +72,16 @@ navigator.mediaDevices.getUserMedia(constraints)
 
         visualize(stream);
 
-        message.innerHTML = words[counter];
+        question.innerHTML = words[counter];
 
         function startRecording() {
             let clip = document.querySelector('div.clip');
             if (clip !== null) {
                 clip.parentNode.removeChild(clip);
             }
+            message.innerHTML = '';
+
+
 
             mediaRecorder.start();
             timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
@@ -164,7 +169,7 @@ navigator.mediaDevices.getUserMedia(constraints)
             // VISUAL representation
             // if(counter === 5) {
             //     console.log('enough is enough');
-            //     message.innerHTML = 'Bedankt!';
+            //     question.innerHTML = 'Bedankt!';
 
             // } else {
             //     // console.log('word:', counter, words[counter + 1]);
@@ -270,10 +275,18 @@ navigator.mediaDevices.getUserMedia(constraints)
                         let json = JSON.parse(data);
                         if (json.storestatus === 'OK') {
                             storeButton.textContent = 'Store Succes!';
+
                             console.log('store succes');
                             if (counter === words.length - 1) {
                                 console.log('enough is enough');
-                                message.innerHTML = 'Bedankt!';
+                                question.innerHTML = 'Thanx!';
+                                message.innerHTML = clipName + ' stored succesful!';
+                                setTimeout(function() {
+                                    message.style.transition = '.5s';
+                                    message.style.opacity = '0';
+                                    message.style.visibility = 'hidden';
+                                  }, 1250);    
+
                                 // remove everything
                                 let evtTgt = e.target;
                                 evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
@@ -288,7 +301,13 @@ navigator.mediaDevices.getUserMedia(constraints)
 
                             } else {
                                 counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
-                                message.innerHTML = words[counter];
+                                message.innerHTML = clipName + ' stored succesful!';
+                                setTimeout(function() {
+                                    message.style.transition = '.5s';
+                                    message.style.opacity = '0';
+                                    message.style.visibility = 'hidden';
+                                  }, 1250);  
+                                question.innerHTML = words[counter];
                                 // remove clip div with class clip
                                 let evtTgt = e.target;
                                 evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
@@ -302,7 +321,8 @@ navigator.mediaDevices.getUserMedia(constraints)
                     .catch(err => {
                         alert(err);
                     });
-
+                    message.style.visibility = 'visible';
+                    message.style.opacity = '1';
 
             }
 
