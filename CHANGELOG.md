@@ -1,8 +1,14 @@
 # log & changelog
 
+## 18-3-2021
+
+- changed colorscheme
+- added key control, r: record, s: stop recording, p: play recording, a: archive recording
+
 ## 11-3-2021
 
-- timestamps in filenamesd
+- fixed conversion bug
+- timestamps in filenames
 - corrected servername
 - adapted css & html
 

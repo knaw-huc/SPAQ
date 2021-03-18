@@ -28,7 +28,7 @@ const endpoint = '../server/upload.php';
 // const endpoint = 'http://localhost/server/upload.php';
 let counter = 0; // name audio files
 
-let words = ['kat', 'muis', 'hond'];
+let words = ['kat', 'muis', 'hond', 'mier'];
 
 
 //main block for doing the audio recording
@@ -72,9 +72,7 @@ navigator.mediaDevices.getUserMedia(constraints)
 
         message.innerHTML = words[counter];
 
-
-        recordButton.onclick = function () {
-
+        function startRecording() {
             let clip = document.querySelector('div.clip');
             if (clip !== null) {
                 clip.parentNode.removeChild(clip);
@@ -88,9 +86,34 @@ navigator.mediaDevices.getUserMedia(constraints)
 
             console.log("recorder started");
             recordButton.style.background = "red";
-              stopButton.disabled = false;
+            stopButton.disabled = false;
             recordButton.disabled = true;
         }
+
+        recordButton.addEventListener("click", function (e) {
+            console.log(e);
+            startRecording(e);
+        });
+
+        document.addEventListener("keydown", function (e) {
+            console.log(e);
+            if (e.key === 'r') {
+                startRecording(e);
+            } else if (e.key === 's') {
+                stopRecording();
+            } else if (e.key === 'p') {
+                https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/paused
+                if (document.getElementById('myrecording').paused) {
+                    document.getElementById('myrecording').play();
+                } else {
+                    document.getElementById('myrecording').pause();
+                }
+            } else {
+                console.log(e.key);
+            }
+
+
+        });
 
         function stopRecording() {
             if (mediaRecorder.state === "recording") {
@@ -99,8 +122,6 @@ navigator.mediaDevices.getUserMedia(constraints)
                 console.log("recorder stopped");
                 recordButton.style.background = "";
                 recordButton.style.color = "";
-                // mediaRecorder.requestData();
-                // message.innerHTML = '';
 
                 stopButton.disabled = true;
                 recordButton.disabled = false;
@@ -166,6 +187,7 @@ navigator.mediaDevices.getUserMedia(constraints)
 
             soundClipContainer.classList.add('clip');
             audio.setAttribute('controls', '');
+            audio.setAttribute("id", "myrecording");
             deleteButton.textContent = 'Delete';
             deleteButton.className = 'delete';
 
@@ -214,9 +236,15 @@ navigator.mediaDevices.getUserMedia(constraints)
                 // https://stackoverflow.com/questions/49209756/do-i-always-need-to-call-url-revokeobjecturl-explicitly
 
             }
+            document.addEventListener("keydown", function (e) {
+                console.log(e);
+                if (e.key === 'a') {
+                    archive(e);
+                }
 
-            // push to server
-            storeButton.onclick = function (e) {
+            });
+
+            function archive(e) {
                 console.log('store');
                 console.log('clipname', clipName);
                 console.log('extension', fileextension);
@@ -248,29 +276,47 @@ navigator.mediaDevices.getUserMedia(constraints)
                         if (json.storestatus === 'OK') {
                             storeButton.textContent = 'Store Succes!';
                             console.log('store succes');
-                            if (counter === words.length -1) {
+                            if (counter === words.length - 1) {
                                 console.log('enough is enough');
                                 message.innerHTML = 'Bedankt!';
                                 // remove everything
-                                let evtTgt = e.target;
-                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                // let evtTgt = e.target;
+                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                let clip = document.querySelector("div.clip");
+                                if (clip !== null) {
+                                    clip.parentNode.removeChild(clip);
+                                }
 
-                                let elem = document.getElementById("buttons")
-                                elem.parentNode.removeChild(elem);
+                                // let elem = document.getElementById("buttons")
+                                // elem.parentNode.removeChild(elem);
 
 
                             } else {
                                 counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
                                 message.innerHTML = words[counter];
                                 // remove clip div with class clip
-                                let evtTgt = e.target;
-                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                // let evtTgt = e.target;
+                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                let clip = document.querySelector("div.clip");
+                                if (clip !== null) {
+                                    clip.parentNode.removeChild(clip);
+                                }
                             }
                         }
                     })
                     .catch(err => {
                         alert(err);
                     });
+
+
+            }
+
+
+            // push to server
+            storeButton.onclick = function (e) {
+                archive(e);
+               
+
             }
         }
 
