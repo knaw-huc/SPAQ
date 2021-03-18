@@ -28,7 +28,7 @@ const endpoint = '../server/upload.php';
 // const endpoint = 'http://localhost/server/upload.php';
 let counter = 0; // name audio files
 
-let words = ['kat', 'muis', 'hond', 'mier'];
+let words = ['kat', 'muis', 'hond'];
 
 
 //main block for doing the audio recording
@@ -96,7 +96,7 @@ navigator.mediaDevices.getUserMedia(constraints)
         });
 
         document.addEventListener("keydown", function (e) {
-            console.log(e);
+            // console.log(e);
             if (e.key === 'r') {
                 startRecording(e);
             } else if (e.key === 's') {
@@ -109,7 +109,7 @@ navigator.mediaDevices.getUserMedia(constraints)
                     document.getElementById('myrecording').pause();
                 }
             } else {
-                console.log(e.key);
+                // console.log(e.key);
             }
 
 
@@ -228,23 +228,18 @@ navigator.mediaDevices.getUserMedia(constraints)
             }
 
             // delete file
-            deleteButton.onclick = function (e) {
+            deleteButton.addEventListener("click", function (e) {
                 let evtTgt = e.target;
                 evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
                 console.log('delete audiourl: ', audioURL);
                 window.URL.revokeObjectURL(audioURL); // necessary otherwise memory leak or not from mediastream?? Does seem to work.
                 // https://stackoverflow.com/questions/49209756/do-i-always-need-to-call-url-revokeobjecturl-explicitly
 
-            }
-            document.addEventListener("keydown", function (e) {
-                console.log(e);
-                if (e.key === 'a') {
-                    archive(e);
-                }
-
             });
 
-            function archive(e) {
+
+            function archive(e) { // post to the server
+                console.log('e',e);
                 console.log('store');
                 console.log('clipname', clipName);
                 console.log('extension', fileextension);
@@ -280,27 +275,27 @@ navigator.mediaDevices.getUserMedia(constraints)
                                 console.log('enough is enough');
                                 message.innerHTML = 'Bedankt!';
                                 // remove everything
-                                // let evtTgt = e.target;
-                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                                let clip = document.querySelector("div.clip");
-                                if (clip !== null) {
-                                    clip.parentNode.removeChild(clip);
-                                }
+                                let evtTgt = e.target;
+                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                // let clip = document.querySelector("div.clip");
+                                // if (clip !== null) {
+                                //     clip.parentNode.parentNode.removeChild(clip);
+                                // }
 
-                                // let elem = document.getElementById("buttons")
-                                // elem.parentNode.removeChild(elem);
+                                let elem = document.getElementById("buttons")
+                                elem.parentNode.removeChild(elem);
 
 
                             } else {
                                 counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
                                 message.innerHTML = words[counter];
                                 // remove clip div with class clip
-                                // let evtTgt = e.target;
-                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                                let clip = document.querySelector("div.clip");
-                                if (clip !== null) {
-                                    clip.parentNode.removeChild(clip);
-                                }
+                                let evtTgt = e.target;
+                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                // let clip = document.querySelector("div.clip");
+                                // if (clip !== null) {
+                                //     clip.parentNode.parentNode.removeChild(clip);
+                                // }
                             }
                         }
                     })
@@ -313,17 +308,33 @@ navigator.mediaDevices.getUserMedia(constraints)
 
 
             // push to server
-            storeButton.onclick = function (e) {
-                archive(e);
-               
+            // storeButton.onclick = function (e) {
+            //     archive(e);
 
-            }
+
+            // }
+
+            // push to server
+            storeButton.addEventListener("click", function (e) {
+                archive(e);
+            });
+
+
+            // document.addEventListener("keydown", function (e) {
+            //     // console.log(e);
+            //     if (e.key === 'a') {
+            //         archive(e);
+            //     }
+
+            // });
         }
 
         mediaRecorder.ondataavailable = function (e) {
             chunks.push(e.data);
             // console.log(e.data);
         }
+
+
         function visualize(stream) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // need to put it here for Safari
             audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio

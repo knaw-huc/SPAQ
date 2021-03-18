@@ -3,7 +3,7 @@
 ## 18-3-2021
 
 - changed colorscheme
-- added key control, r: record, s: stop recording, p: play recording, a: archive recording
+- added key control, r: record, s: stop recording, p: play recording
 
 ## 11-3-2021
 
