@@ -1,5 +1,9 @@
 # log & changelog
 
+## 19-3-2021
+
+- thank you note on the right spot
+
 ## 18-3-2021
 
 - feedback about succesful store

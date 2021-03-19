@@ -33,6 +33,9 @@ let counter = 0; // name audio files
 let words = ['kat', 'muis', 'hond'];
 
 
+
+
+
 //main block for doing the audio recording
 
 navigator.mediaDevices.getUserMedia(constraints)
@@ -68,6 +71,7 @@ navigator.mediaDevices.getUserMedia(constraints)
         };
 
         const mediaRecorder = new MediaRecorder(stream);
+        const naam = 'klootzak';
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
 
         visualize(stream);
@@ -113,6 +117,9 @@ navigator.mediaDevices.getUserMedia(constraints)
                 } else {
                     document.getElementById('myrecording').pause();
                 }
+
+            } else if (e.key === 'a') {
+                console.log('archive from the top', e.key);
             } else {
                 // console.log(e.key);
             }
@@ -139,13 +146,13 @@ navigator.mediaDevices.getUserMedia(constraints)
 
         }
 
-        stopButton.onclick = function () {
+        stopButton.addEventListener('click', function (e) {
             clearTimeout(timeoutID); // cancel the timeout before the timeout...
             // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
             // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
 
             stopRecording();
-        }
+        });
 
         mediaRecorder.onstop = function (e) {
             // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
@@ -227,10 +234,11 @@ navigator.mediaDevices.getUserMedia(constraints)
             // store handling store means store on a server
 
             // eventlisteners 
+
             // download file
-            downloadButton.onclick = function (e) {
+            downloadButton.addEventListener("click", function (e) {
                 downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
-            }
+            });
 
             // delete file
             deleteButton.addEventListener("click", function (e) {
@@ -241,10 +249,25 @@ navigator.mediaDevices.getUserMedia(constraints)
                 // https://stackoverflow.com/questions/49209756/do-i-always-need-to-call-url-revokeobjecturl-explicitly
 
             });
+            // push to server, archive
+            storeButton.addEventListener("click", function (e) {
+                archive(e);
+            });
+
+            document.addEventListener("keydown", function (e) {
+                // console.log(e);
+               if (e.key === 'a') {
+                    console.log('archive within', e.key);
+                    archive(e);
+                }
+    
+    
+            });
 
 
-            function archive(e) { // post to the server
-                console.log('e',e);
+
+            function archive(e) { // post/push to the server
+                console.log('e', e);
                 console.log('store');
                 console.log('clipname', clipName);
                 console.log('extension', fileextension);
@@ -279,50 +302,59 @@ navigator.mediaDevices.getUserMedia(constraints)
                             console.log('store succes');
                             if (counter === words.length - 1) {
                                 console.log('enough is enough');
-                                question.innerHTML = 'Thanx!';
+                                // question.innerHTML = 'Thanx!';
                                 message.innerHTML = clipName + ' stored succesful!';
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     message.style.transition = '.5s';
                                     message.style.opacity = '0';
                                     message.style.visibility = 'hidden';
-                                  }, 1250);    
+                                }, 1250);
+                                question.innerHTML = '';
+
+                                setTimeout(function () {
+                                    message.innerHTML = 'Thank you!';
+
+                                    message.style.transition = '0.5s';
+                                    message.style.opacity = '1';
+                                    message.style.visibility = 'visible';
+                                }, 2000);
 
                                 // remove everything
-                                let evtTgt = e.target;
-                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                                // let clip = document.querySelector("div.clip");
-                                // if (clip !== null) {
-                                //     clip.parentNode.parentNode.removeChild(clip);
-                                // }
+                                // let evtTgt = e.target;
+                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                let clip = document.querySelector("div.clip");
+                                if (clip !== null) {
+                                    clip.parentNode.removeChild(clip);
+                                }
 
-                                let elem = document.getElementById("buttons")
+                                let elem = document.getElementById("buttons"); // stop and record button
                                 elem.parentNode.removeChild(elem);
 
 
                             } else {
                                 counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
                                 message.innerHTML = clipName + ' stored succesful!';
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     message.style.transition = '.5s';
                                     message.style.opacity = '0';
                                     message.style.visibility = 'hidden';
-                                  }, 1250);  
+                                }, 1250);
                                 question.innerHTML = words[counter];
                                 // remove clip div with class clip
-                                let evtTgt = e.target;
-                                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                                // let clip = document.querySelector("div.clip");
-                                // if (clip !== null) {
-                                //     clip.parentNode.parentNode.removeChild(clip);
-                                // }
+                                // let evtTgt = e.target;
+                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                let clip = document.querySelector("div.clip");
+                                if (clip !== null) {
+                                    clip.parentNode.removeChild(clip);
+                                }
                             }
                         }
                     })
                     .catch(err => {
                         alert(err);
                     });
-                    message.style.visibility = 'visible';
-                    message.style.opacity = '1';
+                message.style.visibility = 'visible';
+                message.style.opacity = '1';
 
             }
 
@@ -334,13 +366,10 @@ navigator.mediaDevices.getUserMedia(constraints)
 
             // }
 
-            // push to server
-            storeButton.addEventListener("click", function (e) {
-                archive(e);
-            });
 
 
-            // document.addEventListener("keydown", function (e) {
+
+            // window.addEventListener("keydown", function (e) {
             //     // console.log(e);
             //     if (e.key === 'a') {
             //         archive(e);
