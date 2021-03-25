@@ -47,14 +47,15 @@
             // Determine mimetype
 
             const types = {
-                "audio/mp4": "mp4",
-                "audio/mpeg": "mp4", // away?
-                "audio/ogg": "ogg",
-                "audio/webm": "webm"
+                "audio/ogg": "ogg", // FireFox, although is suppports also webm
+                "audio/webm": "webm", // Chrome
+                "audio/mp4": "mp4", // Safari
 
             };
-            let mimetype = "audio/ogg";
-            mimetype = "audio/webm";
+
+
+
+            let mimetype = "audio/webm";
             for (let i of Object.keys(types)) {
                 console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
                 if (MediaRecorder.isTypeSupported(i)) {
@@ -62,8 +63,10 @@
                     break;
                 }
             }
+
             console.log('mimetype: ', mimetype);
-            fileextension = types[mimetype];
+            const fileextension = types[mimetype];
+          
 
             let chunks = [];
 
@@ -74,7 +77,7 @@
             };
 
             const mediaRecorder = new MediaRecorder(stream);
-            const naam = 'klootzak';
+            
             // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
 
             visualize(stream);
@@ -87,13 +90,10 @@
                     clip.parentNode.removeChild(clip);
                 }
                 message.innerHTML = '';
-
-
-
                 mediaRecorder.start();
                 timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
                 console.log('state', mediaRecorder.state);
-                console.log('mimetype', mediaRecorder.mimeType);
+                // console.log('mimetype', mediaRecorder.mimeType);
                 console.log('timeoutID', timeoutID);
 
                 console.log("recorder started");

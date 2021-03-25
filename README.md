@@ -9,10 +9,15 @@ The tool is based on web-dictaphone.
 
 NOT PRODUCTION READY
 
-## Background
+## Background 
 
 See the wiki pages on:
 https://github.com/knaw-huc/SPAQ/wiki
+
+
+[Powerpoint presentation Clariah TechDay March, 25th 2021](
+https://github.com/knaw-huc/SPAQ/wiki/files/HuC-DI-SD-CLP-WP3-SPAQ.pdf "techday presentation ")
+
 
 ## Prerequisites
 
