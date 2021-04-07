@@ -68,7 +68,9 @@ ul li {
 
 button {
   font-size: 1rem;
-  background: #af02a7;
+  /* background: #af02a7; */
+  background: #04a311;
+
   text-align: center;
   color: white;
   border: none;
@@ -77,8 +79,8 @@ button {
 }
 
 button:hover, button:focus {
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: rgb(238, 143, 0);
+  box-shadow: inset 0px 0px 0px 0px  rgb(0, 0, 0);
+  background: #05d617;
 }
 
 button:active {
