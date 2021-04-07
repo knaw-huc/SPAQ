@@ -1,5 +1,12 @@
 # log & changelog
 
+## 7-4-2021
+
+- UX improvement record button
+- preventDefault() on click eventHandlers, 
+- integration in LS template uses submit default for the buttons, embedded in form
+- removed download button
+
 ## 26-3-2021
 
 - added Powerpoint Presentation

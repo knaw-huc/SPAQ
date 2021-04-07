@@ -103,6 +103,8 @@
             }
 
             recordButton.addEventListener("click", function (e) {
+                e.preventDefault();
+
                 console.log(e);
                 startRecording(e);
             });
@@ -150,6 +152,7 @@
             }
 
             stopButton.addEventListener('click', function (e) {
+                e.preventDefault();
                 clearTimeout(timeoutID); // cancel the timeout before the timeout...
                 // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
                 // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
@@ -196,8 +199,8 @@
                 const clipLabel = document.createElement('p');
                 const audio = document.createElement('audio');
                 const deleteButton = document.createElement('button');
-                const downloadButton = document.createElement('button');
-                const downloadLink = document.createElement('a');
+                // const downloadButton = document.createElement('button');
+                // const downloadLink = document.createElement('a');
                 const storeButton = document.createElement('button');
 
                 soundClipContainer.classList.add('clip');
@@ -206,8 +209,8 @@
                 deleteButton.textContent = 'Delete';
                 deleteButton.className = 'delete';
 
-                downloadButton.textContent = 'Download';
-                downloadButton.className = 'download';
+                // downloadButton.textContent = 'Download';
+                // downloadButton.className = 'download';
 
                 storeButton.textContent = 'Store';
                 storeButton.className = 'store';
@@ -225,13 +228,14 @@
 
 
                 // download handling
-                downloadLink.href = audioURL;
+                // downloadLink.href = audioURL;
+                // downloadLink.innerHTML = 'Download';
                 // let filenaam = clipLabel.textContent; // not necessary anymore "global" clipName is changed 
 
                 // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
                 // downloadLink.text = 'Download';
-                downloadLink.appendChild(downloadButton);
-                soundClipContainer.appendChild(downloadLink);
+                // downloadLink.appendChild(downloadButton);
+                // soundClipContainer.appendChild(downloadLink);
                 soundClips.appendChild(soundClipContainer); // declared at the top
 
                 // store handling store means store on a server
@@ -239,12 +243,30 @@
                 // eventlisteners 
 
                 // download file
-                downloadButton.addEventListener("click", function (e) {
-                    downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
-                });
+                // downloadButton.addEventListener("click", function (e) {
+                //     // e.stopImmediatePropagation();
 
-                // delete file
+                //     console.log('download');
+
+                //     // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+                //     // e.preventDefault(); does not work?
+
+                // });
+
+
+                // downloadLink.addEventListener("click", function (e) {
+                //     // e.stopImmediatePropagation();
+                //     // e.preventDefault(); // does not work?
+                //     console.log('download');
+
+                //     downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+                //     // e.preventDefault(); does not work?
+
+                // });
+
+                // delete blob
                 deleteButton.addEventListener("click", function (e) {
+                    e.preventDefault();
                     let evtTgt = e.target;
                     evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
                     console.log('delete audiourl: ', audioURL);
@@ -254,15 +276,17 @@
                 });
                 // push to server, archive
                 storeButton.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    console.log('archive');
                     archive(e);
                 });
 
                 document.addEventListener("keydown", function (e) {
-                    // console.log(e);
-                    if (e.key === 'a') {
-                        console.log('archive within', e.key);
-                        archive(e);
-                    }
+                    // console.log(e); // Does not work.
+                    // if (e.key === 'a') {
+                    //     console.log('archive within', e.key);
+                    //     archive(e);
+                    // }
 
 
                 });

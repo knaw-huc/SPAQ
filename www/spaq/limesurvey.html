@@ -1,210 +1,212 @@
-
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    font-size: 100%;
+    /* the default is 16px, according to this: https://www.sitepoint.com/understanding-and-using-rem-units-in-css/ */
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+  }
+
+  header {
+    margin-bottom: 40px;
+  }
+
+  .wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+  }
+
+  h1,
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0 0;
+  }
 
 
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-html, body {
-  height: 100%;
-  font-size: 100%;
-  /* the default is 16px, according to this: https://www.sitepoint.com/understanding-and-using-rem-units-in-css/ */
-}
+  .main-controls {
+    margin-top: 4rem;
+    padding: 0.5rem 0;
+  }
 
-body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.8rem;
-}
+  canvas {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
 
-header {
-  margin-bottom: 40px;
-}
+  ul {
+    margin-left: 1rem;
+  }
 
-.wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 2px;
-}
+  ul li {
+    font-size: 1rem;
+  }
 
-h1, h2 {
-  font-size: 2rem;
-  text-align: center;
-  font-weight: normal;
-  padding: 0.5rem 0 0 0;
-}
+  #buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
+  #buttons button {
+    font-size: 1rem;
+    padding: 1rem;
+    width: calc(50% - 0.25rem);
+  }
 
+  button {
+    font-size: 1rem;
+    /* background: #af02a7; */
+    background: #04a311;
 
+    text-align: center;
+    color: white;
+    border: none;
+    transition: all 0.2s;
+    padding: 0.5rem;
+  }
 
-.main-controls {
-  margin-top: 4rem;
-  padding: 0.5rem 0;
-}
+  button:hover,
+  button:focus {
+    box-shadow: inset 0px 0px 0px 0px rgb(0, 0, 0);
+    background: #05d617;
+  }
 
-canvas {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-ul {
-  margin-left: 1rem;
-}
-
-ul li {
-  font-size: 1rem;
-}
-
-#buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#buttons button {
-  font-size: 1rem;
-  padding: 1rem;
-  width: calc(50% - 0.25rem);
-}
-
-button {
-  font-size: 1rem;
-  background: #af02a7;
-  text-align: center;
-  color: white;
-  border: none;
-  transition: all 0.2s;
-  padding: 0.5rem;
-}
-
-button:hover, button:focus {
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 1);
-  background: rgb(238, 143, 0);
-}
-
-button:active {
-  box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
-  transform: translateY(2px);
-}
+  button:active {
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(2px);
+  }
 
 
-/* Make the clips use as much space as possible, and
+  /* Make the clips use as much space as possible, and
  * also show a scrollbar when there are too many clips to show
  * in the available space */
-.sound-clips {
-  flex: 1;
-  overflow: auto;
-}
+  .sound-clips {
+    flex: 1;
+    overflow: auto;
+  }
 
-section, article {
-  display: block;
-}
+  section,
+  article {
+    display: block;
+  }
 
-.clip {
-  padding-bottom: 1rem;
-}
+  .clip {
+    padding-bottom: 1rem;
+  }
 
-audio {
-  width: 100%;
-  display: block;
-  margin: 1rem auto 0.5rem;
-}
+  audio {
+    width: 100%;
+    display: block;
+    margin: 1rem auto 0.5rem;
+  }
 
-.clip p {
-  display: inline-block;
-  font-size: 1rem;
-}
+  .clip p {
+    display: inline-block;
+    font-size: 1rem;
+  }
 
-.clip button {
-  font-size: 1rem;
-  float: right;
-}
+  .clip button {
+    font-size: 1rem;
+    float: right;
+  }
 
-button.delete {
-  background: #f00;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8rem;
-}
+  button.delete {
+    background: #f00;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
 
-button.download {
-  background: rgb(30, 163, 12);
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8rem;
-}
+  button.download {
+    background: rgb(30, 163, 12);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
 
-button.store {
-  background: rgb(168, 9, 142);
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8rem;
-}
+  button.store {
+    background: rgb(168, 9, 142);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
 
-/* Checkbox hack to control information box display */
+  /* Checkbox hack to control information box display */
 
-label {
-  font-size: 3rem;
-  position: absolute;
-  top: 2px;
-  right: 3px;
-  z-index: 5;
-  cursor: pointer;
-  background-color: white;
-  border-radius: 10px;
-}
+  label {
+    font-size: 3rem;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    z-index: 5;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
+  }
 
-input[type=checkbox] {
-   position: absolute;
-   top: -100px;
-}
+  input[type=checkbox] {
+    position: absolute;
+    top: -100px;
+  }
 
-aside {
-  position: fixed;
-  top: 15%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateX(100%);
-  transition: 0.3s all ease-out;
-  background-color: #efefef;
-  padding: 1rem;
-}
+  aside {
+    position: fixed;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: 0.3s all ease-out;
+    background-color: #efefef;
+    padding: 1rem;
+  }
 
 
-header h1 {
-  position: relative;
-  z-index: 6;
-}
+  header h1 {
+    position: relative;
+    z-index: 6;
+  }
 
-/* how did they do this declarative css animation trick?  */
+  /* how did they do this declarative css animation trick?  */
 
-/* end css trick */
+  /* end css trick */
 
-aside p {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
-}
+  aside p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
 
-aside a {
-  color: #666;
-}
+  aside a {
+    color: #666;
+  }
 
-/* Toggled State of information box */
-input[type=checkbox]:checked ~ aside {
-  transform: translateX(0);
-}
+  /* Toggled State of information box */
+  input[type=checkbox]:checked~aside {
+    transform: translateX(0);
+  }
 
-/* Cursor when clip name is clicked over */
+  /* Cursor when clip name is clicked over */
 
-.clip p {
-  cursor: pointer;
-}
+  .clip p {
+    cursor: pointer;
+  }
 
-/* message */
+  /* message */
 
-#message {
+  #message {
     color: dark-grey;
     font-size: 1.5rem;
     text-align: center;
@@ -219,61 +221,57 @@ input[type=checkbox]:checked ~ aside {
     font-weight: normal;
     padding: 0.5rem 0 0.5rem 0;
   }
-/* Adjustments for wider screens */
-@media all and (min-width: 800px) {
-  /* Don't take all the space as readability is lost when line length
+
+  /* Adjustments for wider screens */
+  @media all and (min-width: 800px) {
+
+    /* Don't take all the space as readability is lost when line length
      goes past a certain size */
-  .wrapper {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
+    .wrapper {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
   }
-}
-
-
-
-
-
 </style>
 
 
 <div class="wrapper">
 
-<h3>Spreekt u de volgende 3 woorden in: </h3>
+  <h3>Spreekt u de volgende 3 woorden in: </h3>
 
-    <section class="main-controls">
-      <div id="question"></div>
-      <canvas class="visualizer" width="200" height="50"></canvas>
-      
-      <div id="buttons">
-        <button class="recordButton">Record</button>
-        <button class="stopButton">Stop</button>
-      </div>
-      <div id="message"></div>
+  <section class="main-controls">
+    <div id="question"></div>
+    <canvas class="visualizer" width="200" height="50"></canvas>
 
-    </section>
+    <div id="buttons">
+      <button class="recordButton">Record</button>
+      <button class="stopButton">Stop</button>
+    </div>
+    <div id="message"></div>
 
-    <section class="sound-clips">
+  </section>
 
-
-    </section>
-
-  </div>
+  <section class="sound-clips">
 
 
+  </section>
 
- 
+</div>
 
 
 
 
-  <script>
-
-console.log('hello');
-// set up basic variables for app
 
 
-(function () {
+
+
+<script>
+
+  console.log('hello');
+  // set up basic variables for app
+
+  (function () {
 
 const recordButton = document.querySelector('.recordButton');
 const stopButton = document.querySelector('.stopButton');
@@ -319,14 +317,15 @@ navigator.mediaDevices.getUserMedia(constraints)
         // Determine mimetype
 
         const types = {
-            "audio/mp4": "mp4",
-            "audio/mpeg": "mp4", // away?
-            "audio/ogg": "ogg",
-            "audio/webm": "webm"
+            "audio/ogg": "ogg", // FireFox, although is suppports also webm
+            "audio/webm": "webm", // Chrome
+            "audio/mp4": "mp4", // Safari
 
         };
-        let mimetype = "audio/ogg";
-        mimetype = "audio/webm";
+
+
+
+        let mimetype = "audio/webm";
         for (let i of Object.keys(types)) {
             console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
             if (MediaRecorder.isTypeSupported(i)) {
@@ -334,8 +333,10 @@ navigator.mediaDevices.getUserMedia(constraints)
                 break;
             }
         }
+
         console.log('mimetype: ', mimetype);
-        fileextension = types[mimetype];
+        const fileextension = types[mimetype];
+      
 
         let chunks = [];
 
@@ -346,7 +347,7 @@ navigator.mediaDevices.getUserMedia(constraints)
         };
 
         const mediaRecorder = new MediaRecorder(stream);
-        const naam = 'klootzak';
+        
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
 
         visualize(stream);
@@ -359,13 +360,10 @@ navigator.mediaDevices.getUserMedia(constraints)
                 clip.parentNode.removeChild(clip);
             }
             message.innerHTML = '';
-
-
-
             mediaRecorder.start();
             timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
             console.log('state', mediaRecorder.state);
-            console.log('mimetype', mediaRecorder.mimeType);
+            // console.log('mimetype', mediaRecorder.mimeType);
             console.log('timeoutID', timeoutID);
 
             console.log("recorder started");
@@ -375,6 +373,8 @@ navigator.mediaDevices.getUserMedia(constraints)
         }
 
         recordButton.addEventListener("click", function (e) {
+            e.preventDefault();
+
             console.log(e);
             startRecording(e);
         });
@@ -422,6 +422,7 @@ navigator.mediaDevices.getUserMedia(constraints)
         }
 
         stopButton.addEventListener('click', function (e) {
+            e.preventDefault();
             clearTimeout(timeoutID); // cancel the timeout before the timeout...
             // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
             // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
@@ -468,8 +469,8 @@ navigator.mediaDevices.getUserMedia(constraints)
             const clipLabel = document.createElement('p');
             const audio = document.createElement('audio');
             const deleteButton = document.createElement('button');
-            const downloadButton = document.createElement('button');
-            const downloadLink = document.createElement('a');
+            // const downloadButton = document.createElement('button');
+            // const downloadLink = document.createElement('a');
             const storeButton = document.createElement('button');
 
             soundClipContainer.classList.add('clip');
@@ -478,8 +479,8 @@ navigator.mediaDevices.getUserMedia(constraints)
             deleteButton.textContent = 'Delete';
             deleteButton.className = 'delete';
 
-            downloadButton.textContent = 'Download';
-            downloadButton.className = 'download';
+            // downloadButton.textContent = 'Download';
+            // downloadButton.className = 'download';
 
             storeButton.textContent = 'Store';
             storeButton.className = 'store';
@@ -497,13 +498,14 @@ navigator.mediaDevices.getUserMedia(constraints)
 
 
             // download handling
-            downloadLink.href = audioURL;
+            // downloadLink.href = audioURL;
+            // downloadLink.innerHTML = 'Download';
             // let filenaam = clipLabel.textContent; // not necessary anymore "global" clipName is changed 
 
             // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
             // downloadLink.text = 'Download';
-            downloadLink.appendChild(downloadButton);
-            soundClipContainer.appendChild(downloadLink);
+            // downloadLink.appendChild(downloadButton);
+            // soundClipContainer.appendChild(downloadLink);
             soundClips.appendChild(soundClipContainer); // declared at the top
 
             // store handling store means store on a server
@@ -511,12 +513,30 @@ navigator.mediaDevices.getUserMedia(constraints)
             // eventlisteners 
 
             // download file
-            downloadButton.addEventListener("click", function (e) {
-                downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
-            });
+            // downloadButton.addEventListener("click", function (e) {
+            //     // e.stopImmediatePropagation();
 
-            // delete file
+            //     console.log('download');
+
+            //     // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+            //     // e.preventDefault(); does not work?
+
+            // });
+
+
+            // downloadLink.addEventListener("click", function (e) {
+            //     // e.stopImmediatePropagation();
+            //     // e.preventDefault(); // does not work?
+            //     console.log('download');
+
+            //     downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+            //     // e.preventDefault(); does not work?
+
+            // });
+
+            // delete blob
             deleteButton.addEventListener("click", function (e) {
+                e.preventDefault();
                 let evtTgt = e.target;
                 evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
                 console.log('delete audiourl: ', audioURL);
@@ -526,15 +546,17 @@ navigator.mediaDevices.getUserMedia(constraints)
             });
             // push to server, archive
             storeButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                console.log('archive');
                 archive(e);
             });
 
             document.addEventListener("keydown", function (e) {
-                // console.log(e);
-                if (e.key === 'a') {
-                    console.log('archive within', e.key);
-                    archive(e);
-                }
+                // console.log(e); // Does not work.
+                // if (e.key === 'a') {
+                //     console.log('archive within', e.key);
+                //     archive(e);
+                // }
 
 
             });
@@ -744,5 +766,4 @@ window.onresize();
 })();
 
 
-  </script>
-
+</script>
