@@ -3,7 +3,8 @@
 
 
 header('Content-Type: application/json');
-
+header("Access-Control-Allow-Origin: *"); // activate for cors but it will not become a public api TODO more subtility 
+header("Access-Control-Allow-Headers: *"); // activate for cors
 
 define('APP_DIR', __DIR__ . '/'); // absolute path to current directory
 define('RECEPTION', APP_DIR . 'reception/'); // what's recorded, temporary (format of the browser)

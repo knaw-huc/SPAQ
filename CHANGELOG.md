@@ -2,6 +2,7 @@
 
 ## 7-4-2021
 
+- solved CORS problem
 - UX improvement record button
 - preventDefault() on click eventHandlers, 
 - integration in LS template uses submit default for the buttons, embedded in form
