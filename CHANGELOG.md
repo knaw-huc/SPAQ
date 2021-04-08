@@ -1,5 +1,9 @@
 # log & changelog
 
+## 8-4-2021
+
+- primitive logging
+
 ## 7-4-2021
 
 - solved CORS problem

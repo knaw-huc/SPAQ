@@ -10,6 +10,7 @@ define('APP_DIR', __DIR__ . '/'); // absolute path to current directory
 define('RECEPTION', APP_DIR . 'reception/'); // what's recorded, temporary (format of the browser)
 define('INSPECT', APP_DIR . 'inspect/'); // for previews and checks (mp3 or aac)
 define('STORAGE', APP_DIR . 'storage/'); // for long term storage wav or flac
+define('LOGDIR', APP_DIR . 'logs/'); // for long term storage wav or flac
 
 define('FFMPEG', '/usr/bin/ffmpeg'); // not necessary in docker-environmnet I think
 
@@ -25,6 +26,9 @@ $headers = array_change_key_case(getallheaders(), CASE_LOWER);
 
 $name = $headers['x-filename'];
 $extension = $headers['x-tension']; // also from client
+// $useragent = $headers['x-user-agent']; // also from client
+
+
 
 $data = file_get_contents('php://input');
 // write the data out to the file1
@@ -40,6 +44,16 @@ $name = $name . $time;
 $fp = fopen(RECEPTION . "$name.$extension", "wb");
 fwrite($fp, $data);
 // fclose($fp);
+
+// Logging date user agent
+$logfilename = LOGDIR . 'access.log';
+$fh = fopen($logfilename, "a+") or die('');
+// fwrite($fh, $date = date("Y-m-d H:i:s") . "\t" . "$message" . "\t" . $_SERVER['REMOTE_ADDR'] . "\t" . $_SERVER['HTTP_USER_AGENT'] . "\n");
+fwrite($fh, $date = date("Y-m-d H:i:s") . "\t" . "$name.$extension" . "\t" .  $_SERVER['REMOTE_ADDR'] . "\t" . $_SERVER['HTTP_USER_AGENT'] . "\n");
+fclose($fh);
+
+
+
 
 $bashcmd = 'nothing';
 $return = 'x';
