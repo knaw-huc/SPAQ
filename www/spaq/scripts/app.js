@@ -303,10 +303,6 @@
                     myHeaders.append('Accept', 'application/json');
                     myHeaders.append("X-filename", clipName); // becomes lowercase in the request
                     myHeaders.append("X-tension", fileextension);
-                    // let ua= navigator.userAgent; // is known on the server, obtain a unique id coupled to session
-                    // console.log(ua);
-                    // myHeaders.append("X-user-agent", ua);
-
 
                     fetch(endpoint, { method: "POST", mode: 'cors', headers: myHeaders, body: blob })
                         .then((response) => {

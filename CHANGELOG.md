@@ -2,6 +2,7 @@
 
 ## 8-4-2021
 
+- getenv()
 - primitive logging
 
 ## 7-4-2021

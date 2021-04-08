@@ -48,11 +48,11 @@ fwrite($fp, $data);
 // Logging date user agent
 $logfilename = LOGDIR . 'access.log';
 $fh = fopen($logfilename, "a+") or die('');
-// fwrite($fh, $date = date("Y-m-d H:i:s") . "\t" . "$message" . "\t" . $_SERVER['REMOTE_ADDR'] . "\t" . $_SERVER['HTTP_USER_AGENT'] . "\n");
-fwrite($fh, $date = date("Y-m-d H:i:s") . "\t" . "$name.$extension" . "\t" .  $_SERVER['REMOTE_ADDR'] . "\t" . $_SERVER['HTTP_USER_AGENT'] . "\n");
+$forward = getenv('HTTP_X_FORWARDED_FOR');
+fwrite($fh, $date = date("Y-m-d H:i:s") . "\t" . "$name.$extension" . "\t" .  $forward . "\t" . $_SERVER['HTTP_USER_AGENT'] . "\n");
 fclose($fh);
 
-
+// https://stackoverflow.com/questions/9548934/notice-undefined-index-http-x-forwarded-for-error-in-function/9548986
 
 
 $bashcmd = 'nothing';
