@@ -1,5 +1,10 @@
 # log & changelog
 
+## 21-4-2021
+
+- PHP7.4
+- GD adaptation for rebuild
+
 ## 8-4-2021
 
 - getenv()
