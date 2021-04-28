@@ -1,0 +1,2085 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+ <LimeSurveyDocType>Survey</LimeSurveyDocType>
+ <DBVersion>441</DBVersion>
+ <languages>
+  <language>en</language>
+ </languages>
+ <answers>
+  <fields>
+   <fieldname>aid</fieldname>
+   <fieldname>qid</fieldname>
+   <fieldname>code</fieldname>
+   <fieldname>sortorder</fieldname>
+   <fieldname>assessment_value</fieldname>
+   <fieldname>scale_id</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <aid><![CDATA[1]]></aid>
+    <qid><![CDATA[3]]></qid>
+    <code><![CDATA[AO01]]></code>
+    <sortorder><![CDATA[0]]></sortorder>
+    <assessment_value><![CDATA[0]]></assessment_value>
+    <scale_id><![CDATA[0]]></scale_id>
+   </row>
+   <row>
+    <aid><![CDATA[2]]></aid>
+    <qid><![CDATA[3]]></qid>
+    <code><![CDATA[AO02]]></code>
+    <sortorder><![CDATA[1]]></sortorder>
+    <assessment_value><![CDATA[0]]></assessment_value>
+    <scale_id><![CDATA[0]]></scale_id>
+   </row>
+   <row>
+    <aid><![CDATA[3]]></aid>
+    <qid><![CDATA[3]]></qid>
+    <code><![CDATA[AO03]]></code>
+    <sortorder><![CDATA[2]]></sortorder>
+    <assessment_value><![CDATA[0]]></assessment_value>
+    <scale_id><![CDATA[0]]></scale_id>
+   </row>
+   <row>
+    <aid><![CDATA[4]]></aid>
+    <qid><![CDATA[3]]></qid>
+    <code><![CDATA[AO04]]></code>
+    <sortorder><![CDATA[3]]></sortorder>
+    <assessment_value><![CDATA[0]]></assessment_value>
+    <scale_id><![CDATA[0]]></scale_id>
+   </row>
+   <row>
+    <aid><![CDATA[5]]></aid>
+    <qid><![CDATA[3]]></qid>
+    <code><![CDATA[AO05]]></code>
+    <sortorder><![CDATA[4]]></sortorder>
+    <assessment_value><![CDATA[0]]></assessment_value>
+    <scale_id><![CDATA[0]]></scale_id>
+   </row>
+  </rows>
+ </answers>
+ <answer_l10ns>
+  <fields>
+   <fieldname>id</fieldname>
+   <fieldname>aid</fieldname>
+   <fieldname>answer</fieldname>
+   <fieldname>language</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <id><![CDATA[1]]></id>
+    <aid><![CDATA[1]]></aid>
+    <answer><![CDATA[fantastisch]]></answer>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <id><![CDATA[2]]></id>
+    <aid><![CDATA[2]]></aid>
+    <answer><![CDATA[goed]]></answer>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <id><![CDATA[3]]></id>
+    <aid><![CDATA[3]]></aid>
+    <answer><![CDATA[gemiddeld]]></answer>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <id><![CDATA[4]]></id>
+    <aid><![CDATA[4]]></aid>
+    <answer><![CDATA[slecht]]></answer>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <id><![CDATA[5]]></id>
+    <aid><![CDATA[5]]></aid>
+    <answer><![CDATA[bagger]]></answer>
+    <language><![CDATA[en]]></language>
+   </row>
+  </rows>
+ </answer_l10ns>
+ <groups>
+  <fields>
+   <fieldname>gid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>group_order</fieldname>
+   <fieldname>randomization_group</fieldname>
+   <fieldname>grelevance</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <gid><![CDATA[1]]></gid>
+    <sid><![CDATA[664113]]></sid>
+    <group_order><![CDATA[1]]></group_order>
+    <randomization_group/>
+    <grelevance/>
+   </row>
+  </rows>
+ </groups>
+ <group_l10ns>
+  <fields>
+   <fieldname>id</fieldname>
+   <fieldname>gid</fieldname>
+   <fieldname>group_name</fieldname>
+   <fieldname>description</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>group_order</fieldname>
+   <fieldname>randomization_group</fieldname>
+   <fieldname>grelevance</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <id><![CDATA[1]]></id>
+    <gid><![CDATA[1]]></gid>
+    <group_name><![CDATA[algemeen]]></group_name>
+    <description/>
+    <language><![CDATA[en]]></language>
+    <sid><![CDATA[664113]]></sid>
+    <group_order><![CDATA[1]]></group_order>
+    <randomization_group/>
+    <grelevance/>
+   </row>
+  </rows>
+ </group_l10ns>
+ <questions>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>parent_qid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>gid</fieldname>
+   <fieldname>type</fieldname>
+   <fieldname>title</fieldname>
+   <fieldname>preg</fieldname>
+   <fieldname>other</fieldname>
+   <fieldname>mandatory</fieldname>
+   <fieldname>encrypted</fieldname>
+   <fieldname>question_order</fieldname>
+   <fieldname>scale_id</fieldname>
+   <fieldname>same_default</fieldname>
+   <fieldname>relevance</fieldname>
+   <fieldname>modulename</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[664113]]></sid>
+    <gid><![CDATA[1]]></gid>
+    <type><![CDATA[N]]></type>
+    <title><![CDATA[G01Q01]]></title>
+    <preg/>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <encrypted><![CDATA[N]]></encrypted>
+    <question_order><![CDATA[1]]></question_order>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[664113]]></sid>
+    <gid><![CDATA[1]]></gid>
+    <type><![CDATA[X]]></type>
+    <title><![CDATA[G01Q02]]></title>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <encrypted><![CDATA[N]]></encrypted>
+    <question_order><![CDATA[1]]></question_order>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[664113]]></sid>
+    <gid><![CDATA[1]]></gid>
+    <type><![CDATA[L]]></type>
+    <title><![CDATA[G01Q03]]></title>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <encrypted><![CDATA[N]]></encrypted>
+    <question_order><![CDATA[1]]></question_order>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+  </rows>
+ </questions>
+ <question_l10ns>
+  <fields>
+   <fieldname>id</fieldname>
+   <fieldname>qid</fieldname>
+   <fieldname>question</fieldname>
+   <fieldname>help</fieldname>
+   <fieldname>script</fieldname>
+   <fieldname>language</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <id><![CDATA[1]]></id>
+    <qid><![CDATA[1]]></qid>
+    <question><![CDATA[Hoe oud bent u?]]></question>
+    <help/>
+    <script/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <id><![CDATA[2]]></id>
+    <qid><![CDATA[2]]></qid>
+    <question><![CDATA[<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    font-size: 100%;
+    /* the default is 16px, according to this: https://www.sitepoint.com/understanding-and-using-rem-units-in-css/ */
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+  }
+
+  header {
+    margin-bottom: 40px;
+  }
+
+  .wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+  }
+
+  h1,
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0 0;
+  }
+
+
+
+
+  .main-controls {
+    margin-top: 4rem;
+    padding: 0.5rem 0;
+  }
+
+  canvas {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    margin-left: 1rem;
+  }
+
+  ul li {
+    font-size: 1rem;
+  }
+
+  #buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #buttons button {
+    font-size: 1rem;
+    padding: 1rem;
+    width: calc(50% - 0.25rem);
+  }
+
+  button {
+    font-size: 1rem;
+    /* background: #af02a7; */
+    background: #04a311;
+
+    text-align: center;
+    color: white;
+    border: none;
+    transition: all 0.2s;
+    padding: 0.5rem;
+  }
+
+  button:hover,
+  button:focus {
+    box-shadow: inset 0px 0px 0px 0px rgb(0, 0, 0);
+    background: #05d617;
+  }
+
+  button:active {
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(2px);
+  }
+
+
+  /* Make the clips use as much space as possible, and
+ * also show a scrollbar when there are too many clips to show
+ * in the available space */
+  .sound-clips {
+    flex: 1;
+    overflow: auto;
+  }
+
+  section,
+  article {
+    display: block;
+  }
+
+  .clip {
+    padding-bottom: 1rem;
+  }
+
+  audio {
+    width: 100%;
+    display: block;
+    margin: 1rem auto 0.5rem;
+  }
+
+  .clip p {
+    display: inline-block;
+    font-size: 1rem;
+  }
+
+  .clip button {
+    font-size: 1rem;
+    float: right;
+  }
+
+  button.delete {
+    background: #f00;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  button.download {
+    background: rgb(30, 163, 12);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  button.store {
+    background: rgb(168, 9, 142);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  /* Checkbox hack to control information box display */
+
+  label {
+    font-size: 3rem;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    z-index: 5;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  input[type=checkbox] {
+    position: absolute;
+    top: -100px;
+  }
+
+  aside {
+    position: fixed;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: 0.3s all ease-out;
+    background-color: #efefef;
+    padding: 1rem;
+  }
+
+
+  header h1 {
+    position: relative;
+    z-index: 6;
+  }
+
+  /* how did they do this declarative css animation trick?  */
+
+  /* end css trick */
+
+  aside p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  aside a {
+    color: #666;
+  }
+
+  /* Toggled State of information box */
+  input[type=checkbox]:checked~aside {
+    transform: translateX(0);
+  }
+
+  /* Cursor when clip name is clicked over */
+
+  .clip p {
+    cursor: pointer;
+  }
+
+  /* message */
+
+  #message {
+    color: dark-grey;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  #question {
+    color: dark-grey;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  /* Adjustments for wider screens */
+  @media all and (min-width: 800px) {
+
+    /* Don't take all the space as readability is lost when line length
+     goes past a certain size */
+    .wrapper {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+
+<div class="wrapper">
+
+  <h3>Spreekt u de volgende 3 woorden in: </h3>
+
+  <section class="main-controls">
+    <div id="question"></div>
+    <canvas class="visualizer" width="200" height="50"></canvas>
+
+    <div id="buttons">
+      <button class="recordButton">Record</button>
+      <button class="stopButton">Stop</button>
+    </div>
+    <div id="message"></div>
+
+  </section>
+
+  <section class="sound-clips">
+
+
+  </section>
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+  console.log('hello');
+  // set up basic variables for app
+
+  (function () {
+
+const recordButton = document.querySelector('.recordButton');
+const stopButton = document.querySelector('.stopButton');
+const soundClips = document.querySelector('.sound-clips');
+const canvas = document.querySelector('.visualizer');
+const mainSection = document.querySelector('.main-controls');
+const question = document.getElementById('question');
+const message = document.getElementById('message');
+
+// let t;
+
+// disable stopButton button while not recording
+
+stopButton.disabled = true;
+
+// visualiser setup - create web audio api context and canvas
+let audioCtx;
+const canvasCtx = canvas.getContext("2d");
+
+const constraints = {
+    audio: true,
+    video: false
+};
+
+
+const MAXRECORDINGTIME = 10000; // 10s;
+let timeoutID;
+// const endpoint = '../server/upload.php';
+//
+const endpoint = 'http://localhost/server/upload.php';
+let counter = 0; // name audio files
+
+let words = ['kat', 'muis', 'hond'];
+
+
+
+
+
+//main block for doing the audio recording
+
+navigator.mediaDevices.getUserMedia(constraints)
+    .then(function (stream) {
+
+        // Determine mimetype
+
+        const types = {
+            "audio/ogg": "ogg", // FireFox, although is suppports also webm
+            "audio/webm": "webm", // Chrome
+            "audio/mp4": "mp4", // Safari
+
+        };
+
+
+
+        let mimetype = "audio/webm";
+        for (let i of Object.keys(types)) {
+            console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
+            if (MediaRecorder.isTypeSupported(i)) {
+                mimetype = i;
+                break;
+            }
+        }
+
+        console.log('mimetype: ', mimetype);
+        const fileextension = types[mimetype];
+      
+
+        let chunks = [];
+
+        // change for development of production host
+
+        const options = {
+            mimeType: mimetype
+        };
+
+        const mediaRecorder = new MediaRecorder(stream);
+        
+        // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
+
+        visualize(stream);
+
+        question.innerHTML = words[counter];
+
+        function startRecording() {
+            let clip = document.querySelector('div.clip');
+            if (clip !== null) {
+                clip.parentNode.removeChild(clip);
+            }
+            message.innerHTML = '';
+            mediaRecorder.start();
+            timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
+            console.log('state', mediaRecorder.state);
+            // console.log('mimetype', mediaRecorder.mimeType);
+            console.log('timeoutID', timeoutID);
+
+            console.log("recorder started");
+            recordButton.style.background = "red";
+            stopButton.disabled = false;
+            recordButton.disabled = true;
+        }
+
+        recordButton.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            console.log(e);
+            startRecording(e);
+        });
+
+        document.addEventListener("keydown", function (e) {
+            // console.log(e);
+            if (e.key === 'r') {
+                startRecording(e);
+            } else if (e.key === 's') {
+                stopRecording();
+            } else if (e.key === 'p') {
+                https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/paused
+                if (document.getElementById('myrecording').paused) {
+                    document.getElementById('myrecording').play();
+                } else {
+                    document.getElementById('myrecording').pause();
+                }
+
+            } else if (e.key === 'a') {
+                console.log('archive from the top', e.key);
+            } else {
+                // console.log(e.key);
+            }
+
+
+        });
+
+        function stopRecording() {
+            if (mediaRecorder.state === "recording") {
+                mediaRecorder.stop();
+                console.log(mediaRecorder.state); // inactive
+                console.log("recorder stopped");
+                recordButton.style.background = "";
+                recordButton.style.color = "";
+
+                stopButton.disabled = true;
+                recordButton.disabled = false;
+                console.log('timeoutID after stopButton', timeoutID);
+                // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
+
+            }
+            // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
+        }
+
+        stopButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            clearTimeout(timeoutID); // cancel the timeout before the timeout...
+            // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
+            // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
+
+            stopRecording();
+        });
+
+        mediaRecorder.onstop = function (e) {
+            // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
+            console.log("data available after MediaRecorder.stopButton() called.");
+
+            // this does not make it a file from a certain type...
+            let mimestring = '';
+            if (mimetype === "audio/mp4") {
+                mimestring = mimetype;
+            } else {
+                mimestring = `${mimetype}; codecs=opus`;
+            }
+            const blob = new Blob(chunks, { 'type': mimestring });
+            // chuncks is array filled during the recording stage, '.ondataavailable' event handler
+            chunks = [];
+            const audioURL = window.URL.createObjectURL(blob);
+            console.log('audiourl: ', audioURL);
+            console.log("blob", blob);
+
+            // VISUAL representation
+            // if(counter === 5) {
+            //     console.log('enough is enough');
+            //     question.innerHTML = 'Bedankt!';
+
+            // } else {
+            //     // console.log('word:', counter, words[counter + 1]);
+
+            // }
+            // const soundClipContainer = createAudioPlayer(counter, audioURL);
+
+            // let clipName = 'Audio' + counter;
+            console.log('word after stop:', counter, words[counter]);
+
+            let clipName = words[counter];
+
+            const soundClipContainer = document.createElement('div');
+            const clipLabel = document.createElement('p');
+            const audio = document.createElement('audio');
+            const deleteButton = document.createElement('button');
+            // const downloadButton = document.createElement('button');
+            // const downloadLink = document.createElement('a');
+            const storeButton = document.createElement('button');
+
+            soundClipContainer.classList.add('clip');
+            audio.setAttribute('controls', '');
+            audio.setAttribute("id", "myrecording");
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete';
+
+            // downloadButton.textContent = 'Download';
+            // downloadButton.className = 'download';
+
+            storeButton.textContent = 'Store';
+            storeButton.className = 'store';
+
+            console.log('audioelement', audio);
+            clipLabel.textContent = words[counter];
+
+
+            soundClipContainer.appendChild(audio);
+            soundClipContainer.appendChild(clipLabel);
+            soundClipContainer.appendChild(deleteButton);
+            soundClipContainer.appendChild(storeButton);
+            audio.controls = true;
+            audio.src = audioURL;
+
+
+            // download handling
+            // downloadLink.href = audioURL;
+            // downloadLink.innerHTML = 'Download';
+            // let filenaam = clipLabel.textContent; // not necessary anymore "global" clipName is changed 
+
+            // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+            // downloadLink.text = 'Download';
+            // downloadLink.appendChild(downloadButton);
+            // soundClipContainer.appendChild(downloadLink);
+            soundClips.appendChild(soundClipContainer); // declared at the top
+
+            // store handling store means store on a server
+
+            // eventlisteners 
+
+            // download file
+            // downloadButton.addEventListener("click", function (e) {
+            //     // e.stopImmediatePropagation();
+
+            //     console.log('download');
+
+            //     // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+            //     // e.preventDefault(); does not work?
+
+            // });
+
+
+            // downloadLink.addEventListener("click", function (e) {
+            //     // e.stopImmediatePropagation();
+            //     // e.preventDefault(); // does not work?
+            //     console.log('download');
+
+            //     downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+            //     // e.preventDefault(); does not work?
+
+            // });
+
+            // delete blob
+            deleteButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                let evtTgt = e.target;
+                evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                console.log('delete audiourl: ', audioURL);
+                window.URL.revokeObjectURL(audioURL); // necessary otherwise memory leak or not from mediastream?? Does seem to work.
+                // https://stackoverflow.com/questions/49209756/do-i-always-need-to-call-url-revokeobjecturl-explicitly
+
+            });
+            // push to server, archive
+            storeButton.addEventListener("click", function (e) {
+                e.preventDefault();
+                console.log('archive');
+                archive(e);
+            });
+
+            document.addEventListener("keydown", function (e) {
+                // console.log(e); // Does not work.
+                // if (e.key === 'a') {
+                //     console.log('archive within', e.key);
+                //     archive(e);
+                // }
+
+
+            });
+
+
+
+            function archive(e) { // post/push to the server
+                console.log('e', e);
+                console.log('store');
+                console.log('clipname', clipName);
+                console.log('extension', fileextension);
+                let myHeaders = new Headers();
+                myHeaders.append('Accept', 'application/json');
+                myHeaders.append("X-filename", clipName); // becomes lowercase in the request
+                myHeaders.append("X-tension", fileextension);
+
+                fetch(endpoint, { method: "POST", mode: 'cors', headers: myHeaders, body: blob })
+                    .then((response) => {
+                        // console.log(response);
+                        if (response.ok) {
+                            // console.log('response status: ' + response.status);
+                            console.log('response na ok ', response);
+
+                            // visual feedback
+                            // file stored remove store button
+
+                            return response.text();
+                        } else {
+                            throw Error(`Server returned ${response.status}: ${response.statusText}`)
+                        }
+                    })
+                    .then((data) => {
+                        // let data =  response.success;
+                        // console.log('response: ' + response.status );
+                        console.log('data:' + data);
+                        let json = JSON.parse(data);
+                        if (json.storestatus === 'OK') {
+                            storeButton.textContent = 'Store Succes!';
+
+                            console.log('store succes');
+                            if (counter === words.length - 1) {
+                                console.log('enough is enough');
+                                // question.innerHTML = 'Thanx!';
+                                message.innerHTML = clipName + ' stored succesful!';
+                                setTimeout(function () {
+                                    message.style.transition = '.5s';
+                                    message.style.opacity = '0';
+                                    message.style.visibility = 'hidden';
+                                }, 1250);
+                                question.innerHTML = '';
+
+                                setTimeout(function () {
+                                    message.innerHTML = 'Thank you!';
+
+                                    message.style.transition = '0.5s';
+                                    message.style.opacity = '1';
+                                    message.style.visibility = 'visible';
+                                }, 2000);
+
+                                // remove everything
+                                // let evtTgt = e.target;
+                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                let clip = document.querySelector("div.clip");
+                                if (clip !== null) {
+                                    clip.parentNode.removeChild(clip);
+                                }
+
+                                let elem = document.getElementById("buttons"); // stop and record button
+                                elem.parentNode.removeChild(elem);
+
+
+                            } else {
+                                counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
+                                message.innerHTML = clipName + ' stored succesful!';
+                                setTimeout(function () {
+                                    message.style.transition = '.5s';
+                                    message.style.opacity = '0';
+                                    message.style.visibility = 'hidden';
+                                }, 1250);
+                                question.innerHTML = words[counter];
+                                // remove clip div with class clip
+                                // let evtTgt = e.target;
+                                // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                let clip = document.querySelector("div.clip");
+                                if (clip !== null) {
+                                    clip.parentNode.removeChild(clip);
+                                }
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        alert(err);
+                    });
+                message.style.visibility = 'visible';
+                message.style.opacity = '1';
+
+            }
+
+
+            // push to server
+            // storeButton.onclick = function (e) {
+            //     archive(e);
+
+
+            // }
+
+
+
+
+            // window.addEventListener("keydown", function (e) {
+            //     // console.log(e);
+            //     if (e.key === 'a') {
+            //         archive(e);
+            //     }
+
+            // });
+        }
+
+        mediaRecorder.ondataavailable = function (e) {
+            chunks.push(e.data);
+            // console.log(e.data);
+        }
+
+
+        function visualize(stream) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // need to put it here for Safari
+            audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
+            const source = audioCtx.createMediaStreamSource(stream);
+
+            const analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 2048;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+
+            source.connect(analyser);
+            //analyser.connect(audioCtx.destination);
+
+            draw();
+
+            function draw() {
+                // canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const WIDTH = canvas.width
+                const HEIGHT = canvas.height;
+
+
+                // cancelAnimationFrame(t);
+                requestAnimationFrame(draw);
+                // console.log('t', t);
+                console.log('listening & drawing');
+
+
+                analyser.getByteTimeDomainData(dataArray);
+                // analyser.getFloatTimeDomainData(dataArray);
+
+                canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+                canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                canvasCtx.lineWidth = 2;
+                canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+
+                canvasCtx.beginPath();
+
+                let sliceWidth = WIDTH * 1.0 / bufferLength;
+                let x = 0;
+
+
+                for (let i = 0; i < bufferLength; i++) {
+
+                    let v = dataArray[i] / 128.0;
+                    let y = v * HEIGHT / 2;
+
+                    if (i === 0) {
+                        canvasCtx.moveTo(x, y);
+                    } else {
+                        canvasCtx.lineTo(x, y);
+                    }
+
+                    x += sliceWidth;
+                }
+
+                canvasCtx.lineTo(canvas.width, canvas.height / 2);
+                canvasCtx.stroke();
+
+            }
+
+            // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
+        }
+
+
+    })
+    .catch(function (err) {
+        console.log('The following error occured: ' + err);
+    });
+
+
+window.onresize = function () {
+    canvas.width = mainSection.offsetWidth;
+}
+
+window.onresize();
+
+
+
+})();
+
+
+</script>]]></question>
+    <help/>
+    <script/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <id><![CDATA[3]]></id>
+    <qid><![CDATA[3]]></qid>
+    <question><![CDATA[Hoe vond u deze vragenlijst]]></question>
+    <help/>
+    <script/>
+    <language><![CDATA[en]]></language>
+   </row>
+  </rows>
+ </question_l10ns>
+ <question_attributes>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>attribute</fieldname>
+   <fieldname>value</fieldname>
+   <fieldname>language</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[clear_default]]></attribute>
+    <value><![CDATA[N]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[cssclass]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[display_rows]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[em_validation_q]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[em_validation_q_tip]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[em_validation_sq]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[em_validation_sq_tip]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[hidden]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[hide_tip]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[input_size]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_city]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_country]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_defaultcoordinates]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_mapheight]]></attribute>
+    <value><![CDATA[300]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_mapservice]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_mapwidth]]></attribute>
+    <value><![CDATA[500]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_mapzoom]]></attribute>
+    <value><![CDATA[11]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_nodefaultfromip]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_postal]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[location_state]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[max_num_value_n]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[maximum_chars]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[min_num_value_n]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[num_value_int_only]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[numbers_only]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[page_break]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[placeholder]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[prefix]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[printable_help]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[public_statistics]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[question_template]]></attribute>
+    <value><![CDATA[core]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[random_group]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[save_as_default]]></attribute>
+    <value><![CDATA[N]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[statistics_graphtype]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[statistics_showgraph]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[statistics_showmap]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[suffix]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[text_input_width]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_action]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_countdown_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_disable_next]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_disable_prev]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_message_delay]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_message_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_timer_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning_2]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_display_time]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning_display_time]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[1]]></qid>
+    <attribute><![CDATA[time_limit_warning_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[clear_default]]></attribute>
+    <value><![CDATA[N]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[cssclass]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[hidden]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[hide_tip]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[page_break]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[question_template]]></attribute>
+    <value><![CDATA[boilerplate]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[random_group]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[save_as_default]]></attribute>
+    <value><![CDATA[N]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[statistics_graphtype]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[statistics_showgraph]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_action]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_countdown_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_disable_next]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_disable_prev]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_message_delay]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_message_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_timer_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_display_time]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_display_time]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[alphasort]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[array_filter]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[array_filter_exclude]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[array_filter_style]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[crop_or_resize]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[cssclass]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[display_columns]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[em_validation_q]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[em_validation_q_tip]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[fix_height]]></attribute>
+    <value><![CDATA[200]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[fix_width]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[hidden]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[hide_tip]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[horizontal_scroll]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[keep_aspect]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[other_comment_mandatory]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[other_numbers_only]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[other_replace_text]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[page_break]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[printable_help]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[public_statistics]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[question_template]]></attribute>
+    <value><![CDATA[core]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[random_group]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[random_order]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[save_as_default]]></attribute>
+    <value><![CDATA[Y]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[scale_export]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[statistics_graphtype]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[statistics_showgraph]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_action]]></attribute>
+    <value><![CDATA[1]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_countdown_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_disable_next]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_disable_prev]]></attribute>
+    <value><![CDATA[0]]></value>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_message_delay]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_message_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_timer_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning_2]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_display_time]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_style]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning_display_time]]></attribute>
+    <value/>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[3]]></qid>
+    <attribute><![CDATA[time_limit_warning_style]]></attribute>
+    <value/>
+   </row>
+  </rows>
+ </question_attributes>
+ <surveys>
+  <fields>
+   <fieldname>sid</fieldname>
+   <fieldname>gsid</fieldname>
+   <fieldname>admin</fieldname>
+   <fieldname>expires</fieldname>
+   <fieldname>startdate</fieldname>
+   <fieldname>adminemail</fieldname>
+   <fieldname>anonymized</fieldname>
+   <fieldname>faxto</fieldname>
+   <fieldname>format</fieldname>
+   <fieldname>savetimings</fieldname>
+   <fieldname>template</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>additional_languages</fieldname>
+   <fieldname>datestamp</fieldname>
+   <fieldname>usecookie</fieldname>
+   <fieldname>allowregister</fieldname>
+   <fieldname>allowsave</fieldname>
+   <fieldname>autonumber_start</fieldname>
+   <fieldname>autoredirect</fieldname>
+   <fieldname>allowprev</fieldname>
+   <fieldname>printanswers</fieldname>
+   <fieldname>ipaddr</fieldname>
+   <fieldname>ipanonymize</fieldname>
+   <fieldname>refurl</fieldname>
+   <fieldname>showsurveypolicynotice</fieldname>
+   <fieldname>publicstatistics</fieldname>
+   <fieldname>publicgraphs</fieldname>
+   <fieldname>listpublic</fieldname>
+   <fieldname>htmlemail</fieldname>
+   <fieldname>sendconfirmation</fieldname>
+   <fieldname>tokenanswerspersistence</fieldname>
+   <fieldname>assessments</fieldname>
+   <fieldname>usecaptcha</fieldname>
+   <fieldname>usetokens</fieldname>
+   <fieldname>bounce_email</fieldname>
+   <fieldname>attributedescriptions</fieldname>
+   <fieldname>emailresponseto</fieldname>
+   <fieldname>emailnotificationto</fieldname>
+   <fieldname>tokenlength</fieldname>
+   <fieldname>showxquestions</fieldname>
+   <fieldname>showgroupinfo</fieldname>
+   <fieldname>shownoanswer</fieldname>
+   <fieldname>showqnumcode</fieldname>
+   <fieldname>bouncetime</fieldname>
+   <fieldname>bounceprocessing</fieldname>
+   <fieldname>bounceaccounttype</fieldname>
+   <fieldname>bounceaccounthost</fieldname>
+   <fieldname>bounceaccountpass</fieldname>
+   <fieldname>bounceaccountencryption</fieldname>
+   <fieldname>bounceaccountuser</fieldname>
+   <fieldname>showwelcome</fieldname>
+   <fieldname>showprogress</fieldname>
+   <fieldname>questionindex</fieldname>
+   <fieldname>navigationdelay</fieldname>
+   <fieldname>nokeyboard</fieldname>
+   <fieldname>alloweditaftercompletion</fieldname>
+   <fieldname>googleanalyticsstyle</fieldname>
+   <fieldname>googleanalyticsapikey</fieldname>
+   <fieldname>tokenencryptionoptions</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <sid><![CDATA[664113]]></sid>
+    <gsid><![CDATA[1]]></gsid>
+    <admin><![CDATA[inherit]]></admin>
+    <adminemail><![CDATA[inherit]]></adminemail>
+    <anonymized><![CDATA[N]]></anonymized>
+    <faxto/>
+    <format><![CDATA[S]]></format>
+    <savetimings><![CDATA[I]]></savetimings>
+    <template><![CDATA[extends_fruity_maarten]]></template>
+    <language><![CDATA[en]]></language>
+    <additional_languages/>
+    <datestamp><![CDATA[I]]></datestamp>
+    <usecookie><![CDATA[I]]></usecookie>
+    <allowregister><![CDATA[I]]></allowregister>
+    <allowsave><![CDATA[I]]></allowsave>
+    <autonumber_start><![CDATA[0]]></autonumber_start>
+    <autoredirect><![CDATA[I]]></autoredirect>
+    <allowprev><![CDATA[I]]></allowprev>
+    <printanswers><![CDATA[I]]></printanswers>
+    <ipaddr><![CDATA[I]]></ipaddr>
+    <ipanonymize><![CDATA[I]]></ipanonymize>
+    <refurl><![CDATA[I]]></refurl>
+    <showsurveypolicynotice><![CDATA[0]]></showsurveypolicynotice>
+    <publicstatistics><![CDATA[I]]></publicstatistics>
+    <publicgraphs><![CDATA[I]]></publicgraphs>
+    <listpublic><![CDATA[I]]></listpublic>
+    <htmlemail><![CDATA[I]]></htmlemail>
+    <sendconfirmation><![CDATA[I]]></sendconfirmation>
+    <tokenanswerspersistence><![CDATA[I]]></tokenanswerspersistence>
+    <assessments><![CDATA[I]]></assessments>
+    <usecaptcha><![CDATA[E]]></usecaptcha>
+    <usetokens><![CDATA[N]]></usetokens>
+    <bounce_email><![CDATA[inherit]]></bounce_email>
+    <emailresponseto><![CDATA[inherit]]></emailresponseto>
+    <emailnotificationto><![CDATA[inherit]]></emailnotificationto>
+    <tokenlength><![CDATA[-1]]></tokenlength>
+    <showxquestions><![CDATA[I]]></showxquestions>
+    <showgroupinfo><![CDATA[I]]></showgroupinfo>
+    <shownoanswer><![CDATA[I]]></shownoanswer>
+    <showqnumcode><![CDATA[I]]></showqnumcode>
+    <bounceprocessing><![CDATA[N]]></bounceprocessing>
+    <showwelcome><![CDATA[I]]></showwelcome>
+    <showprogress><![CDATA[I]]></showprogress>
+    <questionindex><![CDATA[-1]]></questionindex>
+    <navigationdelay><![CDATA[-1]]></navigationdelay>
+    <nokeyboard><![CDATA[I]]></nokeyboard>
+    <alloweditaftercompletion><![CDATA[I]]></alloweditaftercompletion>
+    <tokenencryptionoptions/>
+   </row>
+  </rows>
+ </surveys>
+ <surveys_languagesettings>
+  <fields>
+   <fieldname>surveyls_survey_id</fieldname>
+   <fieldname>surveyls_language</fieldname>
+   <fieldname>surveyls_title</fieldname>
+   <fieldname>surveyls_description</fieldname>
+   <fieldname>surveyls_welcometext</fieldname>
+   <fieldname>surveyls_endtext</fieldname>
+   <fieldname>surveyls_policy_notice</fieldname>
+   <fieldname>surveyls_policy_error</fieldname>
+   <fieldname>surveyls_policy_notice_label</fieldname>
+   <fieldname>surveyls_url</fieldname>
+   <fieldname>surveyls_urldescription</fieldname>
+   <fieldname>surveyls_email_invite_subj</fieldname>
+   <fieldname>surveyls_email_invite</fieldname>
+   <fieldname>surveyls_email_remind_subj</fieldname>
+   <fieldname>surveyls_email_remind</fieldname>
+   <fieldname>surveyls_email_register_subj</fieldname>
+   <fieldname>surveyls_email_register</fieldname>
+   <fieldname>surveyls_email_confirm_subj</fieldname>
+   <fieldname>surveyls_email_confirm</fieldname>
+   <fieldname>surveyls_dateformat</fieldname>
+   <fieldname>surveyls_attributecaptions</fieldname>
+   <fieldname>email_admin_notification_subj</fieldname>
+   <fieldname>email_admin_notification</fieldname>
+   <fieldname>email_admin_responses_subj</fieldname>
+   <fieldname>email_admin_responses</fieldname>
+   <fieldname>surveyls_numberformat</fieldname>
+   <fieldname>attachments</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <surveyls_survey_id><![CDATA[664113]]></surveyls_survey_id>
+    <surveyls_language><![CDATA[en]]></surveyls_language>
+    <surveyls_title><![CDATA[test]]></surveyls_title>
+    <surveyls_description/>
+    <surveyls_welcometext/>
+    <surveyls_endtext/>
+    <surveyls_policy_notice/>
+    <surveyls_policy_notice_label/>
+    <surveyls_url/>
+    <surveyls_urldescription/>
+    <surveyls_email_invite_subj><![CDATA[Invitation to participate in a survey]]></surveyls_email_invite_subj>
+    <surveyls_email_invite><![CDATA[Dear {FIRSTNAME},
+
+you have been invited to participate in a survey.
+
+The survey is titled:
+"{SURVEYNAME}"
+
+"{SURVEYDESCRIPTION}"
+
+To participate, please click on the link below.
+
+Sincerely,
+
+{ADMINNAME} ({ADMINEMAIL})
+
+----------------------------------------------
+Click here to do the survey:
+{SURVEYURL}
+
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:
+{OPTOUTURL}
+
+If you are blacklisted but want to participate in this survey and want to receive invitations please click the following link:
+{OPTINURL}]]></surveyls_email_invite>
+    <surveyls_email_remind_subj><![CDATA[Reminder to participate in a survey]]></surveyls_email_remind_subj>
+    <surveyls_email_remind><![CDATA[Dear {FIRSTNAME},
+
+Recently we invited you to participate in a survey.
+
+We note that you have not yet completed the survey, and wish to remind you that the survey is still available should you wish to take part.
+
+The survey is titled:
+"{SURVEYNAME}"
+
+"{SURVEYDESCRIPTION}"
+
+To participate, please click on the link below.
+
+Sincerely,
+
+{ADMINNAME} ({ADMINEMAIL})
+
+----------------------------------------------
+Click here to do the survey:
+{SURVEYURL}
+
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:
+{OPTOUTURL}]]></surveyls_email_remind>
+    <surveyls_email_register_subj><![CDATA[Survey registration confirmation]]></surveyls_email_register_subj>
+    <surveyls_email_register><![CDATA[Dear {FIRSTNAME},
+
+You, or someone using your email address, have registered to participate in an online survey titled {SURVEYNAME}.
+
+To complete this survey, click on the following URL:
+
+{SURVEYURL}
+
+If you have any questions about this survey, or if you did not register to participate and believe this email is in error, please contact {ADMINNAME} at {ADMINEMAIL}.]]></surveyls_email_register>
+    <surveyls_email_confirm_subj><![CDATA[Confirmation of your participation in our survey]]></surveyls_email_confirm_subj>
+    <surveyls_email_confirm><![CDATA[Dear {FIRSTNAME},
+
+this email is to confirm that you have completed the survey titled {SURVEYNAME} and your response has been saved. Thank you for participating.
+
+If you have any further questions about this email, please contact {ADMINNAME} on {ADMINEMAIL}.
+
+Sincerely,
+
+{ADMINNAME}]]></surveyls_email_confirm>
+    <surveyls_dateformat><![CDATA[9]]></surveyls_dateformat>
+    <email_admin_notification_subj><![CDATA[Response submission for survey {SURVEYNAME}]]></email_admin_notification_subj>
+    <email_admin_notification><![CDATA[Hello,
+
+A new response was submitted for your survey '{SURVEYNAME}'.
+
+Click the following link to see the individual response:
+{VIEWRESPONSEURL}
+
+Click the following link to edit the individual response:
+{EDITRESPONSEURL}
+
+View statistics by clicking here:
+{STATISTICSURL}]]></email_admin_notification>
+    <email_admin_responses_subj><![CDATA[Response submission for survey {SURVEYNAME} with results]]></email_admin_responses_subj>
+    <email_admin_responses><![CDATA[Hello,
+
+A new response was submitted for your survey '{SURVEYNAME}'.
+
+Click the following link to see the individual response:
+{VIEWRESPONSEURL}
+
+Click the following link to edit the individual response:
+{EDITRESPONSEURL}
+
+View statistics by clicking here:
+{STATISTICSURL}
+
+
+The following answers were given by the participant:
+{ANSWERTABLE}]]></email_admin_responses>
+    <surveyls_numberformat><![CDATA[0]]></surveyls_numberformat>
+   </row>
+  </rows>
+ </surveys_languagesettings>
+ <themes>
+  <theme>
+   <sid>664113</sid>
+   <template_name>extends_fruity_audio</template_name>
+   <config>
+    <options>inherit</options>
+   </config>
+  </theme>
+  <theme>
+   <sid>664113</sid>
+   <template_name>extends_fruity_maarten</template_name>
+   <config>
+    <options>inherit</options>
+   </config>
+  </theme>
+  <theme>
+   <sid>664113</sid>
+   <template_name>fruity</template_name>
+   <config>
+    <options>inherit</options>
+   </config>
+  </theme>
+ </themes>
+ <themes_inherited>
+  <theme>
+   <sid>664113</sid>
+   <template_name>extends_fruity_audio</template_name>
+   <config>
+    <options>
+     <container>on</container>
+     <zebrastriping>off</zebrastriping>
+     <stickymatrixheaders>off</stickymatrixheaders>
+     <greyoutselected>off</greyoutselected>
+     <hideprivacyinfo>off</hideprivacyinfo>
+     <crosshover>off</crosshover>
+     <showpopups>1</showpopups>
+     <notables>1</notables>
+     <showclearall>off</showclearall>
+     <questionhelptextposition>top</questionhelptextposition>
+     <fixnumauto>off</fixnumauto>
+     <questionborder>on</questionborder>
+     <questioncontainershadow>on</questioncontainershadow>
+     <bodybackgroundcolor>#fff7e6</bodybackgroundcolor>
+     <fontcolor>#444444</fontcolor>
+     <questionbackgroundcolor>#ffffff</questionbackgroundcolor>
+     <backgroundimage>off</backgroundimage>
+     <brandlogo>on</brandlogo>
+     <animatebody>off</animatebody>
+     <bodyanimationduration>500</bodyanimationduration>
+     <animatequestion>off</animatequestion>
+     <questionanimationduration>500</questionanimationduration>
+     <animatealert>off</animatealert>
+     <alertanimationduration>500</alertanimationduration>
+     <animatecheckbox>on</animatecheckbox>
+     <checkboxanimationduration>500</checkboxanimationduration>
+     <animateradio>on</animateradio>
+     <radioanimationduration>500</radioanimationduration>
+     <font>roboto</font>
+     <off>false</off>
+    </options>
+   </config>
+  </theme>
+  <theme>
+   <sid>664113</sid>
+   <template_name>extends_fruity_maarten</template_name>
+   <config>
+    <options>
+     <container>on</container>
+     <zebrastriping>off</zebrastriping>
+     <stickymatrixheaders>off</stickymatrixheaders>
+     <greyoutselected>off</greyoutselected>
+     <hideprivacyinfo>off</hideprivacyinfo>
+     <crosshover>off</crosshover>
+     <showpopups>1</showpopups>
+     <notables>1</notables>
+     <showclearall>off</showclearall>
+     <questionhelptextposition>top</questionhelptextposition>
+     <fixnumauto>off</fixnumauto>
+     <questionborder>on</questionborder>
+     <questioncontainershadow>on</questioncontainershadow>
+     <bodybackgroundcolor>#fff7e6</bodybackgroundcolor>
+     <fontcolor>#444444</fontcolor>
+     <questionbackgroundcolor>#ffffff</questionbackgroundcolor>
+     <backgroundimage>off</backgroundimage>
+     <brandlogo>on</brandlogo>
+     <animatebody>off</animatebody>
+     <bodyanimationduration>500</bodyanimationduration>
+     <animatequestion>off</animatequestion>
+     <questionanimationduration>500</questionanimationduration>
+     <animatealert>off</animatealert>
+     <alertanimationduration>500</alertanimationduration>
+     <animatecheckbox>on</animatecheckbox>
+     <checkboxanimationduration>500</checkboxanimationduration>
+     <animateradio>on</animateradio>
+     <radioanimationduration>500</radioanimationduration>
+     <font>roboto</font>
+     <off>false</off>
+    </options>
+   </config>
+  </theme>
+  <theme>
+   <sid>664113</sid>
+   <template_name>fruity</template_name>
+   <config>
+    <options>
+     <container>on</container>
+     <zebrastriping>off</zebrastriping>
+     <stickymatrixheaders>off</stickymatrixheaders>
+     <greyoutselected>off</greyoutselected>
+     <hideprivacyinfo>off</hideprivacyinfo>
+     <crosshover>off</crosshover>
+     <showpopups>1</showpopups>
+     <notables>1</notables>
+     <showclearall>off</showclearall>
+     <questionhelptextposition>top</questionhelptextposition>
+     <fixnumauto>off</fixnumauto>
+     <questionborder>on</questionborder>
+     <questioncontainershadow>on</questioncontainershadow>
+     <bodybackgroundcolor>#fff7e6</bodybackgroundcolor>
+     <fontcolor>#444444</fontcolor>
+     <questionbackgroundcolor>#ffffff</questionbackgroundcolor>
+     <backgroundimage>off</backgroundimage>
+     <brandlogo>on</brandlogo>
+     <animatebody>off</animatebody>
+     <bodyanimationduration>500</bodyanimationduration>
+     <animatequestion>off</animatequestion>
+     <questionanimationduration>500</questionanimationduration>
+     <animatealert>off</animatealert>
+     <alertanimationduration>500</alertanimationduration>
+     <animatecheckbox>on</animatecheckbox>
+     <checkboxanimationduration>500</checkboxanimationduration>
+     <animateradio>on</animateradio>
+     <radioanimationduration>500</radioanimationduration>
+     <font>roboto</font>
+     <off>false</off>
+    </options>
+   </config>
+  </theme>
+ </themes_inherited>
+</document>

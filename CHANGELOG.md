@@ -1,5 +1,8 @@
 # log & changelog
 
+- added LimeSurvey structure file, with audio question, for import in LimeSurvey
+- lifted variables to the top
+
 ## 21-4-2021
 
 - PHP7.4

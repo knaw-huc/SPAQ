@@ -4,6 +4,18 @@
 
 (function () {
 
+    const MAXRECORDINGTIME = 10000; // 10s;
+    let timeoutID;
+    // const endpoint = '../server/upload.php'; // FOR DEVELOPMENT SERVER
+    const endpoint = 'http://localhost/server/upload.php';
+    let counter = 0; // name audio files
+
+    let words = ['kat', 'muis', 'hond'];
+
+
+
+
+
     const recordButton = document.querySelector('.recordButton');
     const stopButton = document.querySelector('.stopButton');
     const soundClips = document.querySelector('.sound-clips');
@@ -28,15 +40,7 @@
     };
 
 
-    const MAXRECORDINGTIME = 10000; // 10s;
-    let timeoutID;
-    const endpoint = '../server/upload.php';
-    // const endpoint = 'http://localhost/server/upload.php';
-    let counter = 0; // name audio files
-
-    let words = ['kat', 'muis', 'hond'];
-
-
+    
 
 
 
