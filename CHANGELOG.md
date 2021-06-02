@@ -3,6 +3,7 @@
 
 ## 2-6-2021
 
+- added Flask server as alternative
 - solving cors trouble, options request (different domain) created ghost files
 - https://www.moesif.com/blog/technical/cors/Authoritative-Guide-to-CORS-Cross-Origin-Resource-Sharing-for-REST-APIs/
 
