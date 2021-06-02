@@ -1,5 +1,13 @@
 # log & changelog
 
+
+## 2-6-2021
+
+- solving cors trouble, options request (different domain) created ghost files
+- https://www.moesif.com/blog/technical/cors/Authoritative-Guide-to-CORS-Cross-Origin-Resource-Sharing-for-REST-APIs/
+
+## 19-5-2021
+
 - added LimeSurvey structure file, with audio question, for import in LimeSurvey
 - lifted variables to the top
 
