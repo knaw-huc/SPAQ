@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from flask_cors import CORS
 import json
+from datetime import datetime;
 
 app = Flask(__name__)
 CORS(app)
@@ -19,13 +20,18 @@ def upload():
     # fplog.write("hallo\n")
     
     blob = request.data
-    filename = request.headers.get('x-filename')
-    extension = request.headers.get('x-tension')
+    xfilename = request.headers.get('x-filename')
+    xtension = request.headers.get('x-tension')
+    ct = datetime.now()
+    currentTime = ct.strftime("-%Y-%m-%d-%H-%M-%S.%f")
+    fplog.write(currentTime + "\n")
 
-    if filename is not None and extension is not None:
+    if xfilename is not None and xtension is not None:
+        filename = 'reception/' + xfilename  + currentTime + '.' + xtension
+
         fplog.write(filename + "\n")
 
-        with open('reception/' + filename + extension, 'ab') as f:
+        with open(filename, 'ab') as f:
             f.write(blob)
         status = "OK"
         bashcmd = "fmpeg converted"
@@ -33,6 +39,8 @@ def upload():
         returnvalues = {"storestatus" : status, "mp4conv" : {"bashcmd" : bashcmd, "return" : returnvalue}}
         # dump() 
         return json.dumps(returnvalues)
+    else:
+        return 'geen fetch'    
 
 
 # is this necessary with Docker?
