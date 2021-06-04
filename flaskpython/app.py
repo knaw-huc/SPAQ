@@ -42,6 +42,12 @@ def upload():
     else:
         return 'geen fetch'    
 
+@app.route('/watch/')
+def watch():
+    return '<h1>still watching...</h1>'
+
+# app.add_url_rule('/watch/', '', watch)    # works also?
+# https://stackoverflow.com/questions/45607711/what-is-the-endpoint-in-flasks-add-url-rule
 
 # is this necessary with Docker?
 

@@ -1,5 +1,12 @@
 # log & changelog
 
+## 4-6-2021
+
+- more flexible for phrases instead of words, list of objects
+- id pushed to server instead of name
+- randomisation option
+- refactor code to new phrase structure
+
 ## 3-6-2021
 
 - start rebuilding php server in flask

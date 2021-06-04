@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     define('STORAGE', APP_DIR . 'storage/'); // for long term storage wav or flac
     define('LOGDIR', APP_DIR . 'logs/'); // for long term storage wav or flac
 
-    define('FFMPEG', '/usr/bin/ffmpeg'); // not necessary in docker-environmnet I think
+    define('FFMPEG', '/usr/bin/ffmpeg'); // not necessary in docker-environment I think
 
     $headers = array_change_key_case(getallheaders(), CASE_LOWER);
     // the fieldnames of added headers on the clientside become lowercase, keep everthing lowercase, best practice 
@@ -29,10 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // but the normal headers stay uppercase... ??
 
     $name = $headers['x-filename'];
+    if(isset($headers['x-responseid'])) {
+        $responseid = $headers['x-responseid'];
+    }
     $extension = $headers['x-tension']; // also from client
+    $clipid = $headers['x-clipid'];
     // $useragent = $headers['x-user-agent']; // also from client
 
-
+    
+    
 
     $data = file_get_contents('php://input');
     // write the data out to the file1
@@ -43,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $time = date("-Y-m-d-H-i-s");
 
-    $name = $name . $time;
+    $name = $clipid . $time;
 
     $fp = fopen(RECEPTION . "$name.$extension", "wb");
     fwrite($fp, $data);

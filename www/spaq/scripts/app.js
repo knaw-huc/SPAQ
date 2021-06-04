@@ -7,15 +7,23 @@
     const MAXRECORDINGTIME = 10000; // 10s;
     let timeoutID;
     // const endpoint = '../server/upload.php'; // FOR DEVELOPMENT SERVER
-    // const endpoint = 'http://localhost/server/upload.php';
+    const endpoint = 'http://localhost/server/upload.php';
     // const endpoint = 'http://localhost:8087/upload/'; // for Flask
+    const randomisation = true;
+
 
     let counter = 0; // name audio files
 
-    let words = ['kat', 'muis', 'hond'];
+    let phrases = [
+        {"id" : 34, "phrase" : "De kat is ziek"},
+        {"id" : 12, "phrase" : "de muis zit gevangen"},
+        {"id" : 1, "phrase" : "de hond blaft"},
+    ]; // get from database
+    let listlength = phrases.length;
 
-
-
+    if(randomisation === true){
+        phrases = [...phrases].sort( () => Math.random() - 0.5);
+    }    
 
 
     const recordButton = document.querySelector('.recordButton');
@@ -26,7 +34,6 @@
     const question = document.getElementById('question');
     const message = document.getElementById('message');
    
-    // let t;
 
     // disable stopButton button while not recording
 
@@ -42,7 +49,6 @@
     };
 
 
-    
 
 
 
@@ -89,7 +95,8 @@
 
             visualize(stream);
 
-            question.innerHTML = words[counter];
+            // question.innerHTML = words[counter];
+            question.innerHTML = phrases[counter].phrase;
 
             function startRecording() {
                 let clip = document.querySelector('div.clip');
@@ -198,9 +205,14 @@
                 // const soundClipContainer = createAudioPlayer(counter, audioURL);
 
                 // let clipName = 'Audio' + counter;
-                console.log('word after stop:', counter, words[counter]);
+                // console.log('word after stop:', counter, words[counter]);
 
-                let clipName = words[counter];
+                // let clipName = words[counter];
+                let clipName = phrases[counter].phrase;
+
+                // let clipID = counter + 1;
+                let clipID = phrases[counter].id + 1;
+
 
                 const soundClipContainer = document.createElement('div');
                 const clipLabel = document.createElement('p');
@@ -223,7 +235,9 @@
                 storeButton.className = 'store';
 
                 console.log('audioelement', audio);
-                clipLabel.textContent = words[counter];
+                // clipLabel.textContent = words[counter];
+                clipLabel.textContent = phrases[counter].phrase;
+
 
 
                 soundClipContainer.appendChild(audio);
@@ -307,6 +321,8 @@
                     console.log('extension', fileextension);
                     let myHeaders = new Headers();
                     myHeaders.append('Accept', 'application/json');
+                    myHeaders.append("X-clipID", clipID);
+
                     myHeaders.append("X-filename", clipName); // becomes lowercase in the request
                     myHeaders.append("X-tension", fileextension);
 
@@ -334,7 +350,7 @@
                                 storeButton.textContent = 'Store Succes!';
 
                                 console.log('store succes');
-                                if (counter === words.length - 1) {
+                                if (counter === listlength - 1) {
                                     console.log('enough is enough');
                                     // question.innerHTML = 'Thanx!';
                                     message.innerHTML = clipName + ' stored succesful!';
@@ -373,7 +389,9 @@
                                         message.style.opacity = '0';
                                         message.style.visibility = 'hidden';
                                     }, 1250);
-                                    question.innerHTML = words[counter];
+                                    // question.innerHTML = words[counter];
+                                    question.innerHTML = phrases[counter].phrase;
+
                                     // remove clip div with class clip
                                     // let evtTgt = e.target;
                                     // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
