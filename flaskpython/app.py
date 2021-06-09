@@ -2,10 +2,13 @@ from flask import Flask, request, render_template
 from flask_cors import CORS
 import json
 from datetime import datetime;
+from os import listdir
+from os.path import isfile, join
+
 
 app = Flask(__name__)
 CORS(app)
-
+app.static_folder = 'static'
 @app.route('/')
 def home():
     return 'Flask with dockertje!'
@@ -43,8 +46,25 @@ def upload():
         return 'geen fetch'    
 
 @app.route('/watch/')
-def watch():
-    return '<h1>still watching...</h1>'
+@app.route('/watch/<typewatch>/')
+def watch(typewatch = None):
+    if typewatch == "reception":
+        dir = "reception"
+        lijst = listDir(dir)
+
+        return render_template("index.html", lijst=lijst, dir=dir )
+
+        # return '<h1>inspecting...</h1>' + str(lijst)
+    else:        
+        return '<h1>still watching...</h1>'
+
+
+def listDir(mypath):
+    onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+    return onlyfiles
+
+
+
 
 # app.add_url_rule('/watch/', '', watch)    # works also?
 # https://stackoverflow.com/questions/45607711/what-is-the-endpoint-in-flasks-add-url-rule
@@ -52,6 +72,8 @@ def watch():
 # is this necessary with Docker?
 
 if __name__ == "__main__":
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.run(debug=True)
 
 

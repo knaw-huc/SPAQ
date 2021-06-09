@@ -1,5 +1,10 @@
 # log & changelog
 
+## 9-6-2021
+
+- flask: templates basic
+- static problem css?
+
 ## 4-6-2021
 
 - more flexible for phrases instead of words, list of objects

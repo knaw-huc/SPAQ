@@ -18,5 +18,8 @@ services:
       context: ./flaskpython
     ports:
       - 8087:5000
+    # environment: 
+      # ENV STATIC_URL /static
+      # ENV STATIC_PATH /var/www/app/static  
     volumes:
       - ./flaskpython:/usr/src/app
