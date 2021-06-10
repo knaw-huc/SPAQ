@@ -32,7 +32,7 @@ https://github.com/knaw-huc/SPAQ/wiki/files/HuC-DI-SD-CLP-WP3-SPAQ.pdf "techday 
 
 ## First run
 
-inra.sh creates two "working" directories not in git
+infra.sh creates two "working" directories not in git
 
     cd flaskpython
     ./infra.sh
@@ -54,9 +54,9 @@ server (view the submitted files)
     
 ## Utility script
 
-    cd /flaskpython/static
+    cd flaskpython/
     ./clean.sh
 
-removes all audio files  
+removes all audio files in static dir
 
 
