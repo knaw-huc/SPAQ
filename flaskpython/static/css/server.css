@@ -15,8 +15,8 @@ h1 {
 
 }
 body {
-    /*margin-left: 15px;*/
-    margin: auto;
+    margin-left: 15px;
+    /* margin: auto; */
     font-family: sans-serif;
     /*max-width: 850px;*/
 }

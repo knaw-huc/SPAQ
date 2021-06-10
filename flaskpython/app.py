@@ -8,7 +8,7 @@ from os.path import isfile, join
 
 app = Flask(__name__)
 CORS(app)
-app.static_folder = 'static'
+# app.static_folder = 'static'
 @app.route('/')
 def home():
     return 'Flask with dockertje!'
@@ -30,7 +30,7 @@ def upload():
     fplog.write(currentTime + "\n")
 
     if xfilename is not None and xtension is not None:
-        filename = 'reception/' + xfilename  + currentTime + '.' + xtension
+        filename = 'static/reception/' + xfilename  + currentTime + '.' + xtension
 
         fplog.write(filename + "\n")
 
@@ -49,7 +49,7 @@ def upload():
 @app.route('/watch/<typewatch>/')
 def watch(typewatch = None):
     if typewatch == "reception":
-        dir = "reception"
+        dir = "static/reception/"
         lijst = listDir(dir)
 
         return render_template("index.html", lijst=lijst, dir=dir )
@@ -72,8 +72,8 @@ def listDir(mypath):
 # is this necessary with Docker?
 
 if __name__ == "__main__":
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+    # app.config['TEMPLATES_AUTO_RELOAD'] = True
+    # app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.run(debug=True)
 
 

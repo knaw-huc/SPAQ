@@ -19,20 +19,17 @@ https://github.com/knaw-huc/SPAQ/wiki
 https://github.com/knaw-huc/SPAQ/wiki/files/HuC-DI-SD-CLP-WP3-SPAQ.pdf "techday presentation ")
 
 
+## Techniques
+
+- JavaScript: WebAudio
+- Flask / Python
+- Docker
+
 ## Prerequisites
 
 * Docker is up and running
 * a *nix based system
-* have run the infra.sh at least one time
 
-## infra.sh
-
-You have to run this once.
-
-```bash
-cd SPAQ/www/server
-./infra.sh #creates the directories with the right privileges
-```
 
 ## Quickstart
 
@@ -40,18 +37,19 @@ Startup:  ```docker-compose up -d ``` from root directory.
 
 Go to:
 
-client
+client:
 *    <http://localhost/spaq/>
+
 
 server (view the submitted files)
 
-* http://localhost/server/watch.php
+* http://localhost:8087/watch/reception/
 
     
 ## Utility script
 
-cd server
-./clean.sh
+    cd /flaskpython/static
+    ./clean.sh
 
 removes all audio files  
 

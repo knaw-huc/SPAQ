@@ -1,5 +1,10 @@
 # log & changelog
 
+## 10-6-2021
+
+- flask solved audio file serv problem
+- from now on, use flask/python as backend instead of apache/php
+
 ## 9-6-2021
 
 - flask: templates basic
