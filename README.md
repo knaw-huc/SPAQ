@@ -30,6 +30,12 @@ https://github.com/knaw-huc/SPAQ/wiki/files/HuC-DI-SD-CLP-WP3-SPAQ.pdf "techday 
 * Docker is up and running
 * a *nix based system
 
+## First run
+
+inra.sh creates two "working" directories not in git
+
+    cd flaskpython
+    ./infra.sh
 
 ## Quickstart
 
