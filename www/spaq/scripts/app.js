@@ -18,6 +18,7 @@
         {"id" : 34, "phrase" : "De kat is ziek"},
         {"id" : 12, "phrase" : "de muis zit gevangen"},
         {"id" : 1, "phrase" : "de hond blaft"},
+        
     ]; // get from database
     let listlength = phrases.length;
 

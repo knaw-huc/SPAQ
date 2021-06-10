@@ -1,9 +1,10 @@
 from flask import Flask, request, render_template
 from flask_cors import CORS
-import json
 from datetime import datetime;
 from os import listdir
 from os.path import isfile, join
+import json
+
 
 
 app = Flask(__name__)
@@ -11,6 +12,7 @@ CORS(app)
 # app.static_folder = 'static'
 @app.route('/')
 def home():
+    app.logger.info('Processing default request') 
     return 'Flask with dockertje!'
 
 @app.route('/receive/') # start slash and end slash essential
@@ -30,6 +32,8 @@ def upload():
     ct = datetime.now()
     currentTime = ct.strftime("-%Y-%m-%d-%H-%M-%S.%f")
     fplog.write(currentTime + "\n")
+    app.logger.info('in upload') 
+
 
     if xclipid is not None and xtension is not None:
         filename = 'static/reception/' + xclipid  + currentTime + '.' + xtension
@@ -64,6 +68,11 @@ def watch(typewatch = None):
 def listDir(mypath):
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     return onlyfiles
+
+@app.route('/createquestion/')
+def createquestion():
+    a = 3
+    return render_template("audioquestion.html", a=a)
 
 
 
