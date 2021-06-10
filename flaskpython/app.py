@@ -24,13 +24,15 @@ def upload():
     
     blob = request.data
     xfilename = request.headers.get('x-filename')
+        # $clipid = $headers['x-clipid'];
+    xclipid = request.headers.get('x-clipid')
     xtension = request.headers.get('x-tension')
     ct = datetime.now()
     currentTime = ct.strftime("-%Y-%m-%d-%H-%M-%S.%f")
     fplog.write(currentTime + "\n")
 
-    if xfilename is not None and xtension is not None:
-        filename = 'static/reception/' + xfilename  + currentTime + '.' + xtension
+    if xclipid is not None and xtension is not None:
+        filename = 'static/reception/' + xclipid  + currentTime + '.' + xtension
 
         fplog.write(filename + "\n")
 

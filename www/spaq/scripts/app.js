@@ -211,7 +211,7 @@
                 let clipName = phrases[counter].phrase;
 
                 // let clipID = counter + 1;
-                let clipID = phrases[counter].id + 1;
+                let clipID = phrases[counter].id;
 
 
                 const soundClipContainer = document.createElement('div');
