@@ -1,3 +1,4 @@
+from genericpath import isdir
 from flask import Flask, request, render_template
 from flask_cors import CORS
 from datetime import datetime;
@@ -67,24 +68,29 @@ def upload():
 @app.route('/watch/<typewatch>/<respid>/')
 def watch(typewatch = None, respid = None):
     if typewatch == "reception" and respid is not None and exists(receptiondir + respid):      
-            dir = "static/reception/" + respid
-            lijst = listDir(dir)
-            return render_template("index.html", lijst=lijst, dir=dir )
-    else:        
-        return '<h1>TODO list of responses still watching...</h1>'
+        dir = "static/reception/" + respid
+        lijst = listFiles(dir)
+        return render_template("index.html", lijst=lijst, dir=dir )
+    else:
+        # dir = receptiondir;
+        lijst = listDirs(receptiondir)
+
+        # return '<h1>TODO list of responses still watching...</h1>'
+        return render_template("listresponses.html", lijst=lijst, dir=receptiondir )
 
 
-def listDir(mypath):
+def listFiles(mypath):
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     return onlyfiles
+
+def listDirs(mypath):
+    onlydirs = [f for f in listdir(mypath) if isdir(join(mypath, f))]
+    return onlydirs    
 
 @app.route('/createquestion/')
 def createquestion():
     a = 3
     return render_template("audioquestion.html", a=a)
-
-
-
 
 # app.add_url_rule('/watch/', '', watch)    # works also?
 # https://stackoverflow.com/questions/45607711/what-is-the-endpoint-in-flasks-add-url-rule
