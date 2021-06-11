@@ -2,6 +2,9 @@
 
 ## 11-6-2021
 
+- harvest in js, .json TODO
+- serve .json with phrases
+- list of responses
 - responseid in client => dir in backend
 
 ## 10-6-2021

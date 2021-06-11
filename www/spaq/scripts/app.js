@@ -16,17 +16,49 @@
 
     let responseID = 2; // dynamic from unique, from LimeSurvey 
 
+
     let phrases = [
-        {"id" : 34, "phrase" : "De kat is ziek"},
-        {"id" : 12, "phrase" : "de muis zit gevangen"},
-        {"id" : 1, "phrase" : "de hond blaft"},
-        
-    ]; // get from database
+        { "id": 34, "phrase": "De kat is ziek" },
+        { "id": 12, "phrase": "de muis zit gevangen" },
+        { "id": 1, "phrase": "de hond blaft" },
+
+    ]; 
+    // get from api, doesn't work async shit, another plus for react 
+    // easier/cleaner with event ready on data arrival, componentdidmount ?
+    // https://reactjs.org/docs/faq-ajax.html
+
+    // fetch('http://localhost:8087/getphrases/')
+    //     .then(response => response.json())
+    //     .then(data => {console.log(data);phrases = data});
+
+    // fetch('http://localhost:8087/getphrases/')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log(data);
+    //         phrases = data
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     }
+    // );
+
+
+    // async function fetchPhrases() {
+    //     let response = await fetch('http://localhost:8087/getphrases/');
+    //     let data = await response.json();
+    //     console.log(data);
+    //     return data;
+    // }
+    // async caller() {
+    //     phrases = await this.fetchPhrases();
+    // }
+
+
     let listlength = phrases.length;
 
-    if(randomisation === true){
-        phrases = [...phrases].sort( () => Math.random() - 0.5);
-    }    
+    if (randomisation === true) {
+        phrases = [...phrases].sort(() => Math.random() - 0.5);
+    }
 
 
     const recordButton = document.querySelector('.recordButton');
@@ -36,7 +68,7 @@
     const mainSection = document.querySelector('.main-controls');
     const question = document.getElementById('question');
     const message = document.getElementById('message');
-   
+
 
     // disable stopButton button while not recording
 
@@ -82,7 +114,7 @@
 
             console.log('mimetype: ', mimetype);
             const fileextension = types[mimetype];
-          
+
 
             let chunks = [];
 
@@ -93,7 +125,7 @@
             };
 
             const mediaRecorder = new MediaRecorder(stream);
-            
+
             // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
 
             visualize(stream);

@@ -92,6 +92,14 @@ def createquestion():
     a = 3
     return render_template("audioquestion.html", a=a)
 
+
+@app.route('/getphrases/')
+def getphrases():
+    file = open('static/testjsons/quiz.json', 'r');
+    content = file.read()
+    return content, {'Content-Type': 'Application/json; charset=utf-8'}
+
+
 # app.add_url_rule('/watch/', '', watch)    # works also?
 # https://stackoverflow.com/questions/45607711/what-is-the-endpoint-in-flasks-add-url-rule
 
