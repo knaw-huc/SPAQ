@@ -63,17 +63,15 @@ def upload():
         return 'geen fetch'    
 
 @app.route('/watch/')
+@app.route('/watch/reception/')
 @app.route('/watch/<typewatch>/<respid>/')
 def watch(typewatch = None, respid = None):
-    if typewatch == "reception":
-        if respid is not None and exists(receptiondir + respid):
+    if typewatch == "reception" and respid is not None and exists(receptiondir + respid):      
             dir = "static/reception/" + respid
             lijst = listDir(dir)
             return render_template("index.html", lijst=lijst, dir=dir )
-        else:
-            return '<h1>watching...but it doesn\'t exist</h1>'
     else:        
-        return '<h1>still watching...</h1>'
+        return '<h1>TODO list of responses still watching...</h1>'
 
 
 def listDir(mypath):
