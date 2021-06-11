@@ -7,6 +7,9 @@ import json
 
 app = Flask(__name__)
 CORS(app)
+
+receptiondir = 'static/reception/'
+
 # app.static_folder = 'static'
 @app.route('/')
 def home():
@@ -21,7 +24,6 @@ def receive():
 def upload():
     fplog = open('log/diagnostic.txt' , "a") # niet zoals bij php aw
     # fplog.write("hallo\n")
-    receptiondir = 'static/reception/'
 
     blob = request.data
     xfilename = request.headers.get('x-filename') # necessary?
@@ -61,15 +63,15 @@ def upload():
         return 'geen fetch'    
 
 @app.route('/watch/')
-@app.route('/watch/<typewatch>/')
-def watch(typewatch = None):
+@app.route('/watch/<typewatch>/<respid>/')
+def watch(typewatch = None, respid = None):
     if typewatch == "reception":
-        dir = "static/reception/"
-        lijst = listDir(dir)
-
-        return render_template("index.html", lijst=lijst, dir=dir )
-
-        # return '<h1>inspecting...</h1>' + str(lijst)
+        if respid is not None and exists(receptiondir + respid):
+            dir = "static/reception/" + respid
+            lijst = listDir(dir)
+            return render_template("index.html", lijst=lijst, dir=dir )
+        else:
+            return '<h1>watching...but it doesn\'t exist</h1>'
     else:        
         return '<h1>still watching...</h1>'
 
