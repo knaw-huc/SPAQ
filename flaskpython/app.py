@@ -1,11 +1,9 @@
 from flask import Flask, request, render_template
 from flask_cors import CORS
 from datetime import datetime;
-from os import listdir
-from os.path import isfile, join
+from os import listdir, makedirs
+from os.path import isfile, join, exists
 import json
-
-
 
 app = Flask(__name__)
 CORS(app)
@@ -23,25 +21,36 @@ def receive():
 def upload():
     fplog = open('log/diagnostic.txt' , "a") # niet zoals bij php aw
     # fplog.write("hallo\n")
-    
+    receptiondir = 'static/reception/'
+
     blob = request.data
-    xfilename = request.headers.get('x-filename')
-        # $clipid = $headers['x-clipid'];
+    xfilename = request.headers.get('x-filename') # necessary?
     xclipid = request.headers.get('x-clipid')
-    xtension = request.headers.get('x-tension')
+    xtension = request.headers.get('x-tension') # .ogg, .mp4, .webm validation?
+    xresponseid = request.headers.get('x-responseid')
+
+    # credate folder with responseid
+    if exists(receptiondir + xresponseid):
+        app.logger.info('it does exist')
+    else:
+        app.logger.info('it does NOT exist')
+        makedirs(receptiondir + xresponseid)
+
+    responsefolder = receptiondir + xresponseid + "/"
+
     ct = datetime.now()
     currentTime = ct.strftime("-%Y-%m-%d-%H-%M-%S.%f")
     fplog.write(currentTime + "\n")
-    app.logger.info('in upload') 
-
 
     if xclipid is not None and xtension is not None:
-        filename = 'static/reception/' + xclipid  + currentTime + '.' + xtension
+        filename = responsefolder + xclipid  + currentTime + '.' + xtension
 
         fplog.write(filename + "\n")
 
         with open(filename, 'ab') as f:
             f.write(blob)
+
+        # TODO     
         status = "OK"
         bashcmd = "fmpeg converted"
         returnvalue = 0

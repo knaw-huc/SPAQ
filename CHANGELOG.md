@@ -1,5 +1,9 @@
 # log & changelog
 
+## 11-6-2021
+
+- responseid in client => dir in backend
+
 ## 10-6-2021
 
 - flask solved audio file serv problem

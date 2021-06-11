@@ -14,6 +14,8 @@
 
     let counter = 0; // name audio files
 
+    let responseID = 2; // dynamic from unique, from LimeSurvey 
+
     let phrases = [
         {"id" : 34, "phrase" : "De kat is ziek"},
         {"id" : 12, "phrase" : "de muis zit gevangen"},
@@ -323,6 +325,7 @@
                     let myHeaders = new Headers();
                     myHeaders.append('Accept', 'application/json');
                     myHeaders.append("X-clipID", clipID);
+                    myHeaders.append("X-responseID", responseID);
 
                     myHeaders.append("X-filename", clipName); // becomes lowercase in the request
                     myHeaders.append("X-tension", fileextension);
