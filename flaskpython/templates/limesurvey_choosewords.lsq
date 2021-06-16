@@ -321,7 +321,7 @@
 
     let counter = 0; // name audio files
 
-    let responseID = 2; // dynamic from unique, from LimeSurvey 
+    let responseID = {{ id }}; // dynamic from unique, from LimeSurvey 
 
 
     let phrases = [

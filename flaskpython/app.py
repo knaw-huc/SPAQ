@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, make_response
 from flask_cors import CORS
 from datetime import datetime;
 from os import listdir, makedirs
@@ -19,11 +19,21 @@ def home():
 
 @app.route('/subsmith/', methods = ['POST', 'GET']) # start slash and end slash essential
 def subsmith():
-    if request.method == 'POST':
+    id = None
+    if request.method == 'POST' and 'id' in request.form:
         id = request.form['id']
-    elif request.method == 'GET':
+    elif request.method == 'GET' and 'id' in request.args:
         id = request.args['id']
-    return 'form subsmithed, you can collect your .lsq with id: ' + id + 'file on '
+
+    if id is None:
+        return "nothing subsmithed"
+    else:            
+        # return 'form subsmithed, you can collect your .lsq with id: ' + id + 'file on '
+        r = make_response(render_template("limesurvey_choosewords.lsq", id=id))
+        r.headers.set('Content-Type', 'text/xml; charset=utf-8')
+        # return render_template("limesurvey_choosewords.lsq", id=id)
+        return r
+# {'Content-Type': 'Application/xml; charset=utf-8'}
 
 
 @app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible
