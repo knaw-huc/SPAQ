@@ -21,12 +21,21 @@ def home():
 @app.route('/subsmith/', methods = ['POST', 'GET']) # start slash and end slash essential
 def subsmith():
     id = None
-    dictOfWords = {}
+    dictOfWords = []
     if request.method == 'POST' and 'id' in request.form:
         id = request.form['id']
         words = request.form['words']
         wordslist = words.split(',')
-        dictOfWords = { i + 1 : wordslist[i] for i in range(0, len(wordslist) ) }
+
+        for idx, val in enumerate(wordslist):
+            print(idx)
+            phrase = {"id" : idx + 1, "phrase": val}
+            dictOfWords.insert(len(dictOfWords), phrase)
+            
+
+
+
+        # dictOfWords = { i + 1 : wordslist[i] for i in range(0, len(wordslist) ) }
         app.logger.info(dictOfWords) 
 
 

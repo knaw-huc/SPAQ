@@ -324,17 +324,9 @@
     let responseID = {{ id }}; // dynamic from unique, from LimeSurvey 
 
 
-    let phrases = [
-
-       {% for dict_item in dictOfWords %}
-          {% for key, value in dict_item.items %}
-              {"id": {{key}} , "{{value}}" },
-          {% endfor %}
-      {% endfor %}
-
+    let phrases = 
       {{dictOfWords|tojson}}
-
-    ];
+    ;
 
 
        // { "id": 34, "phrase": "De kat is ziek" },
