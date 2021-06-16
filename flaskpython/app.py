@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, make_response
+from flask.json import jsonify
 from flask_cors import CORS
 from datetime import datetime;
 from os import listdir, makedirs
@@ -20,17 +21,29 @@ def home():
 @app.route('/subsmith/', methods = ['POST', 'GET']) # start slash and end slash essential
 def subsmith():
     id = None
+    dictOfWords = {}
     if request.method == 'POST' and 'id' in request.form:
         id = request.form['id']
-    elif request.method == 'GET' and 'id' in request.args:
+        words = request.form['words']
+        wordslist = words.split(',')
+        dictOfWords = { i + 1 : wordslist[i] for i in range(0, len(wordslist) ) }
+        app.logger.info(dictOfWords) 
+
+
+
+        # return jsonify(dictOfWords)
+
+
+    elif request.method == 'GET' and 'id' in request.args: # for easy test
         id = request.args['id']
 
     if id is None:
         return "nothing subsmithed"
     else:            
         # return 'form subsmithed, you can collect your .lsq with id: ' + id + 'file on '
-        r = make_response(render_template("limesurvey_choosewords.lsq", id=id))
+        r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=dictOfWords))
         r.headers.set('Content-Type', 'text/xml; charset=utf-8')
+        r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
         # return render_template("limesurvey_choosewords.lsq", id=id)
         return r
 # {'Content-Type': 'Application/xml; charset=utf-8'}
