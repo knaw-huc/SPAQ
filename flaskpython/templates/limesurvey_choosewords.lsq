@@ -1,4 +1,313 @@
-// set up basic variables for app
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+ <LimeSurveyDocType>Question</LimeSurveyDocType>
+ <DBVersion>447</DBVersion>
+ <languages>
+  <language>en</language>
+ </languages>
+ <questions>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>parent_qid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>gid</fieldname>
+   <fieldname>type</fieldname>
+   <fieldname>title</fieldname>
+   <fieldname>preg</fieldname>
+   <fieldname>other</fieldname>
+   <fieldname>mandatory</fieldname>
+   <fieldname>encrypted</fieldname>
+   <fieldname>question_order</fieldname>
+   <fieldname>scale_id</fieldname>
+   <fieldname>same_default</fieldname>
+   <fieldname>relevance</fieldname>
+   <fieldname>modulename</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[834595]]></sid>
+    <gid><![CDATA[1]]></gid>
+    <type><![CDATA[X]]></type>
+    <title><![CDATA[G01Q02]]></title>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[N]]></mandatory>
+    <encrypted><![CDATA[N]]></encrypted>
+    <question_order><![CDATA[1]]></question_order>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+    <modulename/>
+   </row>
+  </rows>
+ </questions>
+ <question_l10ns>
+  <fields>
+   <fieldname>id</fieldname>
+   <fieldname>qid</fieldname>
+   <fieldname>question</fieldname>
+   <fieldname>help</fieldname>
+   <fieldname>script</fieldname>
+   <fieldname>language</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <id><![CDATA[2]]></id>
+    <qid><![CDATA[2]]></qid>
+    <question><![CDATA[<style type="text/css">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    font-size: 100%;
+    /* the default is 16px, according to this: https://www.sitepoint.com/understanding-and-using-rem-units-in-css/ */
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+  }
+
+  header {
+    margin-bottom: 40px;
+  }
+
+  .wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+  }
+
+  h1,
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0 0;
+  }
+
+
+
+
+  .main-controls {
+    margin-top: 4rem;
+    padding: 0.5rem 0;
+  }
+
+  canvas {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    margin-left: 1rem;
+  }
+
+  ul li {
+    font-size: 1rem;
+  }
+
+  #buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #buttons button {
+    font-size: 1rem;
+    padding: 1rem;
+    width: calc(50% - 0.25rem);
+  }
+
+  button {
+    font-size: 1rem;
+    /* background: #af02a7; */
+    background: #04a311;
+
+    text-align: center;
+    color: white;
+    border: none;
+    transition: all 0.2s;
+    padding: 0.5rem;
+  }
+
+  button:hover,
+  button:focus {
+    box-shadow: inset 0px 0px 0px 0px rgb(0, 0, 0);
+    background: #05d617;
+  }
+
+  button:active {
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(2px);
+  }
+
+
+  /* Make the clips use as much space as possible, and
+ * also show a scrollbar when there are too many clips to show
+ * in the available space */
+  .sound-clips {
+    flex: 1;
+    overflow: auto;
+  }
+
+  section,
+  article {
+    display: block;
+  }
+
+  .clip {
+    padding-bottom: 1rem;
+  }
+
+  audio {
+    width: 100%;
+    display: block;
+    margin: 1rem auto 0.5rem;
+  }
+
+  .clip p {
+    display: inline-block;
+    font-size: 1rem;
+  }
+
+  .clip button {
+    font-size: 1rem;
+    float: right;
+  }
+
+  button.delete {
+    background: #f00;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  button.download {
+    background: rgb(30, 163, 12);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  button.store {
+    background: rgb(168, 9, 142);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  /* Checkbox hack to control information box display */
+
+  label {
+    font-size: 3rem;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    z-index: 5;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  input[type=checkbox] {
+    position: absolute;
+    top: -100px;
+  }
+
+  aside {
+    position: fixed;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: 0.3s all ease-out;
+    background-color: #efefef;
+    padding: 1rem;
+  }
+
+
+  header h1 {
+    position: relative;
+    z-index: 6;
+  }
+
+  /* how did they do this declarative css animation trick?  */
+
+  /* end css trick */
+
+  aside p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  aside a {
+    color: #666;
+  }
+
+  /* Toggled State of information box */
+  input[type=checkbox]:checked~aside {
+    transform: translateX(0);
+  }
+
+  /* Cursor when clip name is clicked over */
+
+  .clip p {
+    cursor: pointer;
+  }
+
+  /* message */
+
+  #message {
+    color: dark-grey;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  #question {
+    color: dark-grey;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  /* Adjustments for wider screens */
+  @media all and (min-width: 800px) {
+
+    /* Don't take all the space as readability is lost when line length
+     goes past a certain size */
+    .wrapper {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+  }
+</style>
+<div class="wrapper">
+<h3>Spreekt u de volgende 3 woorden in:</h3>
+
+<section class="main-controls">
+<div id="question"> </div>
+<canvas class="visualizer" height="50" width="200"></canvas>
+
+<div id="buttons"><button class="recordButton">Record</button><button class="stopButton">Stop</button></div>
+
+<div id="message"> </div>
+</section>
+
+<section class="sound-clips"> </section>
+</div>
+<script>
+
+  console.log('hello');
+ // set up basic variables for app
 
 (function () {
 
@@ -553,3 +862,209 @@
 
 
 })();
+
+
+</script>]]></question>
+    <help/>
+    <script/>
+    <language><![CDATA[en]]></language>
+   </row>
+  </rows>
+ </question_l10ns>
+ <question_attributes>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>attribute</fieldname>
+   <fieldname>value</fieldname>
+   <fieldname>language</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[clear_default]]></attribute>
+    <value><![CDATA[N]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[cssclass]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[hidden]]></attribute>
+    <value><![CDATA[0]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[hide_tip]]></attribute>
+    <value><![CDATA[0]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[page_break]]></attribute>
+    <value><![CDATA[0]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[question_template]]></attribute>
+    <value><![CDATA[boilerplate]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[random_group]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[save_as_default]]></attribute>
+    <value><![CDATA[N]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[statistics_graphtype]]></attribute>
+    <value><![CDATA[0]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[statistics_showgraph]]></attribute>
+    <value><![CDATA[1]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_action]]></attribute>
+    <value><![CDATA[1]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_countdown_message]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_countdown_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_disable_next]]></attribute>
+    <value><![CDATA[0]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_disable_prev]]></attribute>
+    <value><![CDATA[0]]></value>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_message]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_message_delay]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_message_style]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_timer_style]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_display_time]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_message]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_2_style]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_display_time]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_message]]></attribute>
+    <value/>
+    <language/>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_message]]></attribute>
+    <value/>
+    <language><![CDATA[en]]></language>
+   </row>
+   <row>
+    <qid><![CDATA[2]]></qid>
+    <attribute><![CDATA[time_limit_warning_style]]></attribute>
+    <value/>
+    <language/>
+   </row>
+  </rows>
+ </question_attributes>
+</document>

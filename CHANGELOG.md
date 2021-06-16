@@ -1,5 +1,9 @@
 # log & changelog
 
+## 16-6-2021
+
+- create a .lsq file start
+
 ## 11-6-2021
 
 - harvest in js, .json TODO

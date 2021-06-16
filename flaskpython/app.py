@@ -1,9 +1,9 @@
-from genericpath import isdir
 from flask import Flask, request, render_template
 from flask_cors import CORS
 from datetime import datetime;
 from os import listdir, makedirs
 from os.path import isfile, join, exists
+from mputility import listFiles, listDirs
 import json
 
 app = Flask(__name__)
@@ -17,12 +17,17 @@ def home():
     app.logger.info('Processing default request') 
     return 'Flask with dockertje!'
 
-@app.route('/receive/') # start slash and end slash essential
-def receive():
-    return 'message received'
+@app.route('/subsmith/', methods = ['POST', 'GET']) # start slash and end slash essential
+def subsmith():
+    if request.method == 'POST':
+        id = request.form['id']
+    elif request.method == 'GET':
+        id = request.args['id']
+    return 'form subsmithed, you can collect your .lsq with id: ' + id + 'file on '
+
 
 @app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible
-def upload():
+def upload(): #uploaded soundblob from js client
     fplog = open('log/diagnostic.txt' , "a") # niet zoals bij php aw
     # fplog.write("hallo\n")
 
@@ -72,25 +77,15 @@ def watch(typewatch = None, respid = None):
         lijst = listFiles(dir)
         return render_template("index.html", lijst=lijst, dir=dir )
     else:
-        # dir = receptiondir;
         lijst = listDirs(receptiondir)
 
-        # return '<h1>TODO list of responses still watching...</h1>'
         return render_template("listresponses.html", lijst=lijst, dir=receptiondir )
 
-
-def listFiles(mypath):
-    onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-    return onlyfiles
-
-def listDirs(mypath):
-    onlydirs = [f for f in listdir(mypath) if isdir(join(mypath, f))]
-    return onlydirs    
+ 
 
 @app.route('/createquestion/')
 def createquestion():
-    a = 3
-    return render_template("audioquestion.html", a=a)
+    return render_template("audioquestion.html", a=1)
 
 
 @app.route('/getphrases/')
