@@ -32,15 +32,14 @@ def subsmith():
             phrase = {"id" : idx + 1, "phrase": val}
             dictOfWords.insert(len(dictOfWords), phrase)
             
+        app.logger.info(dictOfWords)
 
 
+        # jason = jsonify(dictOfWords)
+        jason = json.dumps(dictOfWords,indent=4)
+        # https://docs.python.org/3/library/json.html
 
-        # dictOfWords = { i + 1 : wordslist[i] for i in range(0, len(wordslist) ) }
-        app.logger.info(dictOfWords) 
-
-
-
-        # return jsonify(dictOfWords)
+        # return jason # for test
 
 
     elif request.method == 'GET' and 'id' in request.args: # for easy test
@@ -50,12 +49,11 @@ def subsmith():
         return "nothing subsmithed"
     else:            
         # return 'form subsmithed, you can collect your .lsq with id: ' + id + 'file on '
-        r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=dictOfWords))
+        r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=jason))
         r.headers.set('Content-Type', 'text/xml; charset=utf-8')
         r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
         # return render_template("limesurvey_choosewords.lsq", id=id)
         return r
-# {'Content-Type': 'Application/xml; charset=utf-8'}
 
 
 @app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible

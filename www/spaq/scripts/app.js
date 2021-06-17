@@ -15,12 +15,16 @@
     let responseID = 2; // dynamic from unique, from LimeSurvey 
 
 
-    let phrases = [
-        { "id": 34, "phrase": "De kat is ziek" },
-        { "id": 12, "phrase": "de muis zit gevangen" },
-        { "id": 1, "phrase": "de hond blaft" },
+    // let phrases = [
+    //     { "id": 34, "phrase": "De kat is ziek" },
+    //     { "id": 12, "phrase": "de muis zit gevangen" },
+    //     { "id": 1, "phrase": "de hond blaft" },
 
-    ]; 
+    // ]; 
+
+
+    let phrases = [{"id": 1, "phrase": "koud"}, {"id": 2, "phrase": "warm"}, {"id": 3, "phrase": "kil"}];
+
     // get from api, doesn't work async shit, another plus for react 
     // easier/cleaner with event ready on data arrival, componentdidmount ?
     // https://reactjs.org/docs/faq-ajax.html

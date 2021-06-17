@@ -1,5 +1,10 @@
 # log & changelog
 
+## 17-6-2021
+
+- import .lsq in LimeSurvey no succes, bug found, the 2json output from jinja2, is not compatible with LimeSurvey .lsq (WEIRD)
+- solution: create json from flask instead of jinja2, with the indent option
+
 ## 16-6-2021
 
 - create a .lsq file start
