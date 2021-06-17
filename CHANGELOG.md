@@ -2,6 +2,8 @@
 
 ## 17-6-2021
 
+- added test.txt
+- it works uploading a text file and converting it into a .lsq that works
 - upload text file to flask for wordbulks
 - import .lsq in LimeSurvey no succes, bug found, the 2json output from jinja2, is not compatible with LimeSurvey .lsq (WEIRD)
 - solution: create json from flask instead of jinja2, with the indent option

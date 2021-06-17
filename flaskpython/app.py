@@ -131,7 +131,7 @@ def getphrases():
     return content, {'Content-Type': 'Application/json; charset=utf-8'}
 
 
-@app.route('/uploadwordlist/') # people can submit wordlists
+@app.route('/uploadwordlist/') # users can submit wordlists
 def uploadwordlist():
     return render_template("uploadwordlist.html")
 
@@ -150,6 +150,36 @@ def processwordlist():
         flash(uploaded_file.filename + ' succesfull stored')
 
     return redirect(url_for('uploadwordlist'))
+
+@app.route('/handlewordlist/', methods=['POST'])
+def handlewordlist():
+    uploaded_file = request.files['file'].read()
+    uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary string, have to convert it
+    lines = uploaded_file.splitlines()
+    dictOfWords = []
+    app.logger.info(lines)
+    for idx, val in enumerate(lines):
+        # print(idx)
+        phrase = {"id" : idx + 1, "phrase": val}
+        dictOfWords.insert(len(dictOfWords), phrase)
+            
+
+    app.logger.info(dictOfWords)
+    jason = json.dumps(dictOfWords,indent=4)
+    id = 999 # example
+    r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=jason))
+    r.headers.set('Content-Type', 'text/xml; charset=utf-8')
+    r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
+    # return render_template("limesurvey_choosewords.lsq", id=id)
+    return r
+
+    # return "ok"
+
+@app.route('/submitwordlist/', methods=['GET'])
+def submitwordlist():
+    return render_template("processwordlist.html")
+
+
 
 
 # app.add_url_rule('/watch/', '', watch)    # works also?

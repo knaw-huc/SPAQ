@@ -59,4 +59,11 @@ server (view the submitted files)
 
 removes all audio files in static dir
 
+## create .lsq file with recording possibility
+
+- create wordlist in text editor, each phrase on a different line, example test.txt
+- submit this list to http://localhost:8087/submitwordlist/
+- download list
+- import in an local LimeSurvey instance when creating a new survey
+
 

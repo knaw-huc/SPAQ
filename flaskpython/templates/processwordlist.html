@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <title>File Upload</title>
+      </head>
+   <body>
+    <h1>File Upload</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+     
+      {% for message in messages %}
+        <h3 class="alert">{{ message }}</h3>
+      {% endfor %}
+      
+    {% endif %}
+  {% endwith %}
+
+      <form action="{{ url_for('handlewordlist') }}" method="POST" enctype="multipart/form-data">
+         <input type="file" name="file" />
+         <input type="submit" value="Submit" />
+      </form>   
+   </body>
+</html>
