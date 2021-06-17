@@ -2,7 +2,7 @@
 
 (function () {
 
-    const MAXRECORDINGTIME = 10000; // 10s;
+    const MAXRECORDINGTIME = 10000; // 10s; maybe warning
     let timeoutID;
     // const endpoint = '../server/upload.php'; // FOR DEVELOPMENT SERVER
     // const endpoint = 'http://localhost/server/upload.php';

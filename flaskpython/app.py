@@ -1,16 +1,22 @@
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template, make_response, flash, redirect
+from flask.helpers import url_for
 from flask.json import jsonify
 from flask_cors import CORS
 from datetime import datetime;
 from os import listdir, makedirs
 from os.path import isfile, join, exists
 from mputility import listFiles, listDirs
+from werkzeug.utils import secure_filename
 import json
 
 app = Flask(__name__)
 CORS(app)
 
 receptiondir = 'static/reception/'
+app.config['UPLOAD_FOLDER'] = './static/uploads/'
+# app.config['UPLOAD_FOLDER'] = 'testopvang/'
+app.secret_key = 'super secret key'
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 = 233MB, webm = 48MB
 
 # app.static_folder = 'static'
 @app.route('/')
@@ -125,12 +131,34 @@ def getphrases():
     return content, {'Content-Type': 'Application/json; charset=utf-8'}
 
 
+@app.route('/uploadwordlist/') # people can submit wordlists
+def uploadwordlist():
+    return render_template("uploadwordlist.html")
+
+@app.route('/processwordlist/',  methods = ['POST'])
+def processwordlist():
+    # app.logger.info(request.files) 
+  
+    uploaded_file = request.files['file']
+    
+
+    if uploaded_file.filename != '':
+        safename = app.config['UPLOAD_FOLDER'] + uploaded_file.filename
+        # safename = uploaded_file.filename
+
+        uploaded_file.save(safename)
+        flash(uploaded_file.filename + ' succesfull stored')
+
+    return redirect(url_for('uploadwordlist'))
+
+
 # app.add_url_rule('/watch/', '', watch)    # works also?
 # https://stackoverflow.com/questions/45607711/what-is-the-endpoint-in-flasks-add-url-rule
 
 # is this necessary with Docker?
 
 if __name__ == "__main__":
+    # app.config['UPLOAD_FOLDER'] = './static/uploads/'
     # app.config['TEMPLATES_AUTO_RELOAD'] = True
     # app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.run(debug=True)
