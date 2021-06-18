@@ -114,10 +114,7 @@ def watch(typewatch = None, respid = None):
         return render_template("index.html", lijst=lijst, dir=dir )
     else:
         lijst = listDirs(receptiondir)
-
         return render_template("listresponses.html", lijst=lijst, dir=receptiondir )
-
- 
 
 @app.route('/createquestion/')
 def createquestion():
@@ -178,8 +175,6 @@ def handlewordlist():
 @app.route('/submitwordlist/', methods=['GET'])
 def submitwordlist():
     return render_template("processwordlist.html")
-
-
 
 
 # app.add_url_rule('/watch/', '', watch)    # works also?

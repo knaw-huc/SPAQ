@@ -1,5 +1,12 @@
 # log & changelog
 
+## 18-6-2021
+
+- solved preview problem in LimeSurvey with imported .lsq 
+- tested, standalone, preview and activated survey. It works. 
+- tested windows returns submitted wordlist file
+- todo finetuning
+
 ## 17-6-2021
 
 - added test.txt

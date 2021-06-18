@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
     <head>
-        <title>File Upload</title>
+        <title>Submit wordlist</title>
       </head>
    <body>
-    <h1>File Upload</h1>
+    <h1>Submit wordlist</h1>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
      
@@ -14,7 +14,7 @@
       
     {% endif %}
   {% endwith %}
-
+asdf
       <form action="{{ url_for('processwordlist') }}" method="POST" enctype="multipart/form-data">
          <input type="file" name="file" />
          <input type="submit" value="Submit" />

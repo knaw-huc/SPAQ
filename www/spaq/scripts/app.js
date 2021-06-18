@@ -10,52 +10,20 @@
     const randomisation = true;
 
 
-    let counter = 0; // name audio files
+    let counter = 0; // part of the name of the audio files
 
-    let responseID = 2; // dynamic from unique, from LimeSurvey 
+    // let responseID = 2; // dynamic from unique, from LimeSurvey 
 
+    // Solves the preview/execute problem in LimeSurvey with LS variables, standalone version gets folder {SAVEDID} in reception
 
-    // let phrases = [
-    //     { "id": 34, "phrase": "De kat is ziek" },
-    //     { "id": 12, "phrase": "de muis zit gevangen" },
-    //     { "id": 1, "phrase": "de hond blaft" },
+    let responseID = '{SAVEDID}' ; 
+    if(! responseID || responseID !== '{SAVEDID}') { 
+          responseID = 9999;
+  }
 
-    // ]; 
+    let phrases = [{ "id": 1, "phrase": "koud" }, { "id": 2, "phrase": "warm" }, { "id": 3, "phrase": "kil" }];
 
-
-    let phrases = [{"id": 1, "phrase": "koud"}, {"id": 2, "phrase": "warm"}, {"id": 3, "phrase": "kil"}];
-
-    // get from api, doesn't work async shit, another plus for react 
-    // easier/cleaner with event ready on data arrival, componentdidmount ?
-    // https://reactjs.org/docs/faq-ajax.html
-
-    // fetch('http://localhost:8087/getphrases/')
-    //     .then(response => response.json())
-    //     .then(data => {console.log(data);phrases = data});
-
-    // fetch('http://localhost:8087/getphrases/')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data);
-    //         phrases = data
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //     }
-    // );
-
-
-    // async function fetchPhrases() {
-    //     let response = await fetch('http://localhost:8087/getphrases/');
-    //     let data = await response.json();
-    //     console.log(data);
-    //     return data;
-    // }
-    // async caller() {
-    //     phrases = await this.fetchPhrases();
-    // }
-
-
+    
     let listlength = phrases.length;
 
     if (randomisation === true) {
@@ -84,9 +52,6 @@
         audio: true,
         video: false
     };
-
-
-
 
 
     //main block for doing the audio recording

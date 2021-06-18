@@ -47,9 +47,9 @@ client:
 *    <http://localhost/spaq/>
 
 
-server (view the submitted files)
+server (view the submitted files standalone)
 
-* http://localhost:8087/watch/reception/
+* http://localhost:8087/watch/reception/9999/
 
     
 ## Utility script
@@ -66,4 +66,15 @@ removes all audio files in static dir
 - download list
 - import in an local LimeSurvey instance when creating a new survey
 
+## collected audiorecordings
+
+They end up in flaskpython/reception/
+
+### Naming of folders
+
+- Standalone: reception/{SAVEDID}/
+- LimeSurvey / preview: reception/9999/
+- LimeSurvey / activated : reception/<responseid>
+
+The <responseid> is a actualized {SAVEID} of a running Limesurvey
 

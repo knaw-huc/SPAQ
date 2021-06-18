@@ -321,15 +321,14 @@
 
     let counter = 0; // name audio files
 
-    let responseID = {{ id }}; // dynamic from unique, from LimeSurvey 
+    // Solves the preview/execute problem in LimeSurvey with LS variables
 
+    let responseID = '{SAVEDID}' ; 
+    if(! responseID || responseID !== '{SAVEDID}') { 
+          responseID = 9999;
+  }
 
     let phrases = {{ dictOfWords }};
-
-
-    
-
-
     let listlength = phrases.length;
 
     if (randomisation === true) {
