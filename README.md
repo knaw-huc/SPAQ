@@ -46,10 +46,19 @@ Go to:
 client:
 *    <http://localhost/spaq/>
 
+Or just open the spaq/index.html. You don't need the server.
+
 
 server (view the submitted files standalone)
 
 * http://localhost:8087/watch/reception/9999/
+
+limesurvey:
+
+* http://localhost:8085/admin/
+
+login with credentials in docker-compose file
+
 
     
 ## Utility script
@@ -76,5 +85,5 @@ They end up in flaskpython/reception/
 - LimeSurvey / preview: reception/9999/
 - LimeSurvey / activated : reception/<responseid>
 
-The <responseid> is a actualized {SAVEID} of a running Limesurvey
+The <responseid> is an actualized {SAVEID} of a running Limesurvey
 

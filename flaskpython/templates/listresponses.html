@@ -20,7 +20,7 @@
             
         {% if item != ".DS_Store" %} 
             <td>
-                <a href="{{ url_for(request.endpoint) }}/{{ item }}  ">{{ item }}</a>
+                <a href="{{ url_for(request.endpoint) }}{{ item }}  ">{{ item }}</a>
             </td>  
         {% endif %}  
         </tr>

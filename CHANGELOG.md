@@ -1,5 +1,9 @@
 # log & changelog
 
+## 22-6-2021
+
+- integrated an instance of limesurvey into spaq stack for easy testing
+
 ## 18-6-2021
 
 - solved preview problem in LimeSurvey with imported .lsq 

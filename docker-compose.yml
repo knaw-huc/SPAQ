@@ -1,17 +1,23 @@
 version: '2'
 services: 
-  php-apache:
-    build:
-      context: .
+
+  limesurvey:
+    image: acspri/limesurvey
     ports:
-      - 80:80
-    volumes: 
-      - ./www:/var/www/html
+      - 8085:80
     environment:
-      TITLE: "SPAQ LOCAL "
-      SUBTITLE: "SPAQ storage  "
-      THUIS: "http://localhost/spaq/"
-      TZ: "Europe/Amsterdam"
+      LIMESURVEY_DB_PASSWORD: example
+      LIMESURVEY_ADMIN_USER: admin
+      LIMESURVEY_ADMIN_PASSWORD: password
+      LIMESURVEY_ADMIN_NAME: Lime Administrator
+      LIMESURVEY_ADMIN_EMAIL: lime@lime.lime
+
+  mysql:
+    image: mariadb
+    volumes: 
+      - transdb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
 
   myflaskwebservice:
     build:
@@ -23,3 +29,19 @@ services:
       # ENV STATIC_PATH /var/www/app/static  
     volumes:
       - ./flaskpython:/usr/src/app
+
+  php-apache:
+    build:
+      context: .
+    ports:
+      - 80:80
+    volumes: 
+      - ./www:/var/www/html
+    environment:
+      TITLE: "SPAQ LOCAL "
+      SUBTITLE: "SPAQ storage  "
+      THUIS: "http://localhost/spaq/"
+      TZ: "Europe/Amsterdam"      
+
+volumes:
+  transdb:       
