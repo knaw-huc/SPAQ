@@ -59,7 +59,9 @@ limesurvey:
 
 login with credentials in docker-compose file
 
+* http://localhost:8087/submitwordlist/
 
+submit a text file for the creation of an lsq file
     
 ## Utility script
 

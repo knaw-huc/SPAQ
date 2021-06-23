@@ -2,7 +2,7 @@ version: '2'
 services: 
 
   limesurvey:
-    image: acspri/limesurvey
+    image: acspri/limesurvey:5.0.5
     ports:
       - 8085:80
     environment:
@@ -13,11 +13,13 @@ services:
       LIMESURVEY_ADMIN_EMAIL: lime@lime.lime
 
   mysql:
-    image: mariadb
+    image: mariadb:10.5
     volumes: 
-      - transdb:/var/lib/mysql
+      - mysqldb:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
+
+
 
   myflaskwebservice:
     build:
@@ -44,4 +46,4 @@ services:
       TZ: "Europe/Amsterdam"      
 
 volumes:
-  transdb:       
+  mysqldb:       
