@@ -77,6 +77,15 @@ removes all audio files in static dir
 - download list
 - import in an local LimeSurvey instance when creating a new survey
 
+## Watcher python script
+```
+cd /flaskpython
+python3 watcher.py
+
+# it watches the reception folder, TODO run it from docker, convert the file
+
+```
+
 ## collected audiorecordings
 
 They end up in flaskpython/reception/
@@ -88,4 +97,28 @@ They end up in flaskpython/reception/
 - LimeSurvey / activated : reception/<responseid>
 
 The <responseid> is an actualized {SAVEID} of a running Limesurvey
+
+
+
+## LINKS
+
+### LimeSurvey
+
+- https://community.limesurvey.org/
+- https://hub.docker.com/r/acspri/limesurvey
+- https://github.com/adamzammit/limesurvey-docker
+
+### WebRecording
+
+- https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API
+- https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
+
+
+### Flask / Python
+
+- https://flask.palletsprojects.com/en/2.0.x/
+- http://thepythoncorner.com/dev/how-to-create-a-watchdog-in-python-to-look-for-filesystem-changes/
+- https://pypi.org/project/watchdog/
+
+
 

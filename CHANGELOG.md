@@ -2,6 +2,7 @@
 
 ## 23-6-2021
 
+- added first version of watchdog script. python daemon 
 - new version LimeSurvey 5.0.5 and  tested it, also  with .lsq generation: OK
 - fixed the 5.0.5 version in docker-compose files
 - fixed mariadb at 10.5
