@@ -1,5 +1,13 @@
 # log & changelog
 
+## 24-6-2021
+
+- added ffmpeg conversion to watcher
+- updated Python image to 3.9
+- added ffmpeg to Python image
+- extending and refactoring watcher
+
+
 ## 23-6-2021
 
 - added first version of watchdog script. python daemon 

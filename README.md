@@ -82,8 +82,15 @@ removes all audio files in static dir
 cd /flaskpython
 python3 watcher.py
 
-# it watches the reception folder, TODO run it from docker, convert the file
+# it watches the reception folder and converts added files to the conversion folder
 
+```
+
+or from the docker's POV:
+
+```
+docker exec -it <dockerflashid> bash
+./watcher.py
 ```
 
 ## collected audiorecordings

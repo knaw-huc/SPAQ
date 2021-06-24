@@ -17,9 +17,11 @@
     // Solves the preview/execute problem in LimeSurvey with LS variables, standalone version gets folder {SAVEDID} in reception
 
     let responseID = '{SAVEDID}' ; 
+    
     if(! responseID || responseID !== '{SAVEDID}') { 
           responseID = 9999;
   }
+  
 
     let phrases = [{ "id": 1, "phrase": "koud" }, { "id": 2, "phrase": "warm" }, { "id": 3, "phrase": "kil" }];
 

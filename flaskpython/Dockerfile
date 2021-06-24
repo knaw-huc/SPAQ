@@ -1,4 +1,5 @@
-FROM python:3.8-slim-buster
+FROM python:3.9-slim-buster
+# https://pythonspeed.com/articles/base-image-python-docker-images/
 WORKDIR /usr/src/app
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
@@ -6,5 +7,6 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=development 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y ffmpeg
 # COPY . .
 CMD ["flask", "run"]

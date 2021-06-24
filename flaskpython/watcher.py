@@ -3,11 +3,26 @@
 import time
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
-
+import subprocess
+import os
 
 def on_created(event):
     print(f"{event.src_path} created")
-    # test for audio file , if yest ready for conversion with ffmpeg to the inspection folder!
+    if os.path.exists(event.src_path):
+        print("yes, ready for conversion")
+        reception = event.src_path
+        basename = os.path.basename(event.src_path)
+        # conversion = os.path.dirname(event.src_path) + '/conv_' + basename
+        conversion = conversion_path + '/' + basename + '.mp4'
+
+        cmd = "/usr/bin/ffmpeg -i " +  reception + " " + conversion 
+        # print(cmd)
+        # subprocess.run(["ls", "-l"])
+        # subprocess.run(cmd)
+        os.system(cmd)
+
+    else:
+        print("no")        
 
 def on_deleted(event):
     print(f"{event.src_path} was deleted")
@@ -30,11 +45,14 @@ if __name__ == "__main__":
     my_event_handler.on_deleted = on_deleted
     my_event_handler.on_modified = on_modified
     my_event_handler.on_moved = on_moved
+    
+    '''Constants in Python? '''
+    reception_path = os.path.abspath("./static/reception/")
+    conversion_path = os.path.abspath("./static/conversion/")
 
-    path = "./static/reception/"
     go_recursively = True
     my_observer = Observer()
-    my_observer.schedule(my_event_handler, path, recursive=go_recursively)
+    my_observer.schedule(my_event_handler, reception_path, recursive=go_recursively)
 
     my_observer.start()
     try:
