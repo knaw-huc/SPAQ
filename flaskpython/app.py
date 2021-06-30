@@ -24,44 +24,6 @@ def home():
     app.logger.info('Processing default request') 
     return 'Flask with dockertje!'
 
-@app.route('/subsmith/', methods = ['POST', 'GET']) # start slash and end slash essential
-def subsmith():
-    id = None
-    dictOfWords = []
-    if request.method == 'POST' and 'id' in request.form:
-        id = request.form['id']
-        words = request.form['words']
-        wordslist = words.split(',')
-
-        for idx, val in enumerate(wordslist):
-            print(idx)
-            phrase = {"id" : idx + 1, "phrase": val}
-            dictOfWords.insert(len(dictOfWords), phrase)
-            
-        app.logger.info(dictOfWords)
-
-
-        # jason = jsonify(dictOfWords)
-        jason = json.dumps(dictOfWords,indent=4)
-        # https://docs.python.org/3/library/json.html
-
-        # return jason # for test
-
-
-    elif request.method == 'GET' and 'id' in request.args: # for easy test
-        id = request.args['id']
-
-    if id is None:
-        return "nothing subsmithed"
-    else:            
-        # return 'form subsmithed, you can collect your .lsq with id: ' + id + 'file on '
-        r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=jason))
-        r.headers.set('Content-Type', 'text/xml; charset=utf-8')
-        r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
-        # return render_template("limesurvey_choosewords.lsq", id=id)
-        return r
-
-
 @app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible
 def upload(): #uploaded soundblob from js client
     fplog = open('log/diagnostic.txt' , "a") # niet zoals bij php aw
@@ -88,18 +50,16 @@ def upload(): #uploaded soundblob from js client
 
     if xclipid is not None and xtension is not None:
         filename = responsefolder + xclipid  + currentTime + '.' + xtension
-
         fplog.write(filename + "\n")
-
         with open(filename, 'ab') as f:
             f.write(blob)
 
-        # TODO     
-        status = "OK"
-        bashcmd = "fmpeg converted"
-        returnvalue = 0
-        returnvalues = {"storestatus" : status, "mp4conv" : {"bashcmd" : bashcmd, "return" : returnvalue}}
-        # dump() 
+        if exists(filename):
+            status = "OK"
+        else:
+            status = "NOT OK"            
+        
+        returnvalues = {"storestatus" : status} 
         return json.dumps(returnvalues)
     else:
         return 'geen fetch'    
@@ -116,71 +76,29 @@ def watch(typewatch = None, respid = None):
         lijst = listDirs(receptiondir)
         return render_template("listresponses.html", lijst=lijst, dir=receptiondir )
 
-@app.route('/createquestion/')
-def createquestion():
-    return render_template("audioquestion.html", a=1)
-
-
-@app.route('/getphrases/')
-def getphrases():
-    file = open('static/testjsons/quiz.json', 'r');
-    content = file.read()
-    return content, {'Content-Type': 'Application/json; charset=utf-8'}
-
-
-@app.route('/uploadwordlist/') # users can submit wordlists
-def uploadwordlist():
-    return render_template("uploadwordlist.html")
-
-@app.route('/processwordlist/',  methods = ['POST'])
+@app.route('/processwordlist/', methods=['POST'])
 def processwordlist():
-    # app.logger.info(request.files) 
-  
-    uploaded_file = request.files['file']
-    
-
-    if uploaded_file.filename != '':
-        safename = app.config['UPLOAD_FOLDER'] + uploaded_file.filename
-        # safename = uploaded_file.filename
-
-        uploaded_file.save(safename)
-        flash(uploaded_file.filename + ' succesfull stored')
-
-    return redirect(url_for('uploadwordlist'))
-
-@app.route('/handlewordlist/', methods=['POST'])
-def handlewordlist():
     uploaded_file = request.files['file'].read()
     uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary string, have to convert it
     lines = uploaded_file.splitlines()
     dictOfWords = []
     app.logger.info(lines)
     for idx, val in enumerate(lines):
-        # print(idx)
         phrase = {"id" : idx + 1, "phrase": val}
         dictOfWords.insert(len(dictOfWords), phrase)
             
-
     app.logger.info(dictOfWords)
     jason = json.dumps(dictOfWords,indent=4)
     id = 999 # example
     r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=jason))
     r.headers.set('Content-Type', 'text/xml; charset=utf-8')
     r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
-    # return render_template("limesurvey_choosewords.lsq", id=id)
     return r
 
-    # return "ok"
 
-@app.route('/submitwordlist/', methods=['GET'])
+@app.route('/submitwordlist/', methods=['GET']) # VIEW upload form
 def submitwordlist():
-    return render_template("processwordlist.html")
-
-
-# app.add_url_rule('/watch/', '', watch)    # works also?
-# https://stackoverflow.com/questions/45607711/what-is-the-endpoint-in-flasks-add-url-rule
-
-# is this necessary with Docker?
+    return render_template("uploadwordlist.html")
 
 if __name__ == "__main__":
     # app.config['UPLOAD_FOLDER'] = './static/uploads/'

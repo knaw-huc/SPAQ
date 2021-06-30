@@ -19,6 +19,7 @@ def on_created(event):
         # print(cmd)
         # subprocess.run(["ls", "-l"])
         # subprocess.run(cmd)
+        # not the best solution: https://stackabuse.com/executing-shell-commands-with-python TODO better and safer
         os.system(cmd)
 
     else:

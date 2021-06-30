@@ -1,5 +1,9 @@
 # log & changelog
 
+## 30-6-2021
+
+- cleanup
+
 ## 24-6-2021
 
 - added ffmpeg conversion to watcher

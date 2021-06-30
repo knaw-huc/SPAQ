@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
     <head>
-        <title>Submit wordlist</title>
+        <title>Submit Wordlist</title>
       </head>
    <body>
-    <h1>Submit wordlist</h1>
+    <h1>Submit Wordlist</h1>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
      
@@ -14,10 +14,12 @@
       
     {% endif %}
   {% endwith %}
-asdf
+
       <form action="{{ url_for('processwordlist') }}" method="POST" enctype="multipart/form-data">
          <input type="file" name="file" />
          <input type="submit" value="Submit" />
       </form>   
+
+      <p>After submitting, you'll receive an .lsq file that you can import in LimeSurvey</p>
    </body>
 </html>

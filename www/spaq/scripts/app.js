@@ -387,7 +387,7 @@
 
 
                                 } else {
-                                    counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
+                                    counter++; // now I realy understand why React can be convenient, it becomes spaghetti prety quick  :-)
                                     message.innerHTML = clipName + ' stored succesful!';
                                     setTimeout(function () {
                                         message.style.transition = '.5s';
