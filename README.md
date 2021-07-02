@@ -41,27 +41,22 @@ infra.sh creates two "working" directories not in git
 
 Startup:  ```docker-compose up -d ``` from root directory.
 
-Go to:
-
-client:
+1] Go to client to record some audio. (Or open the spaq/index.html, you don't need the PHP server):
 *    <http://localhost/spaq/>
 
-Or just open the spaq/index.html. You don't need the server.
 
+2] server (view the submitted files standalone)
 
-server (view the submitted files standalone)
+* http://localhost:8087/watch/reception/
 
-* http://localhost:8087/watch/reception/9999/
-
-limesurvey:
+3] limesurvey (login with credentials in docker-compose file):
 
 * http://localhost:8085/admin/
 
-login with credentials in docker-compose file
+4] submit a text file for the creation of an lsq file
 
 * http://localhost:8087/submitwordlist/
 
-submit a text file for the creation of an lsq file
     
 ## Utility script
 
