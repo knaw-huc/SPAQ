@@ -6,7 +6,7 @@
     let timeoutID;
     // const endpoint = '../server/upload.php'; // FOR DEVELOPMENT SERVER
     // const endpoint = 'http://localhost/server/upload.php';
-    const endpoint = 'http://localhost:8087/upload/'; // for Flask
+    const endpoint = 'http://localhost:8087/upload/'; // for Flask LOCAL
     const randomisation = true;
 
 
