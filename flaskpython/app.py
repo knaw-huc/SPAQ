@@ -8,9 +8,16 @@ from os.path import isfile, join, exists
 from mputility import listFiles, listDirs
 from werkzeug.utils import secure_filename
 import json
+import logging
 
 app = Flask(__name__)
 CORS(app)
+
+
+# gunicorn_logger = logging.getLogger('gunicorn.error')
+# app.logger.handlers = gunicorn_logger.handlers
+
+
 
 receptiondir = 'static/reception/'
 app.config['UPLOAD_FOLDER'] = './static/uploads/'
@@ -18,10 +25,19 @@ app.config['UPLOAD_FOLDER'] = './static/uploads/'
 app.secret_key = 'super secret key'
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 = 233MB, webm = 48MB
 
+
+
+@app.before_request
+def log_request():
+    logline = request.method + " " + request.full_path
+    app.logger.info(logline)
+    return None
+
+
+
 # app.static_folder = 'static'
 @app.route('/')
 def home():
-    app.logger.info('Processing default request') 
     return 'Flask with dockertje!'
 
 @app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible
@@ -105,5 +121,10 @@ if __name__ == "__main__":
     # app.config['TEMPLATES_AUTO_RELOAD'] = True
     # app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.run(debug=True)
+# else:
+    # gunicorn_logger = logging.getLogger('gunicorn.error')
+    # app.logger.handlers = gunicorn_logger.handlers
+    # app.logger.setLevel(gunicorn_logger.level)
+
 
 
