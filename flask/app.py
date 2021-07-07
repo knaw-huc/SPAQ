@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, make_response, flash, redirect
-from flask_httpauth import HTTPBasicAuth
+# from flask_httpauth import HTTPBasicAuth
 from flask.helpers import url_for
 from flask.json import jsonify
 from flask_cors import CORS

@@ -32,9 +32,8 @@ https://github.com/knaw-huc/SPAQ/wiki/files/HuC-DI-SD-CLP-WP3-SPAQ.pdf "techday 
 
 ## First run
 
-infra.sh creates two "working" directories not in git
+infra.sh creates a couple of "working" directories not in git
 
-    cd flaskpython
     ./infra.sh
 
 ## Quickstart

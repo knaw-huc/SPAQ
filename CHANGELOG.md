@@ -1,5 +1,10 @@
 # log & changelog
 
+## 7-7-2021
+
+- started decoupling watcher and flask to separate microservices
+
+
 ## 30-6-2021
 
 - cleanup
