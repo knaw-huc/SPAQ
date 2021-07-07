@@ -3,7 +3,7 @@
 ## 7-7-2021
 
 - started decoupling watcher and flask to separate microservices
-
+- ffmpeg relative osx  homebrew version on a different place then ubuntu docker for testing
 
 ## 30-6-2021
 

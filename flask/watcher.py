@@ -15,7 +15,7 @@ def on_created(event):
         # conversion = os.path.dirname(event.src_path) + '/conv_' + basename
         conversion = conversion_path + '/' + basename + '.mp4'
 
-        cmd = "/usr/bin/ffmpeg -i " +  reception + " " + conversion 
+        cmd = "ffmpeg -i " +  reception + " " + conversion 
         # print(cmd)
         # subprocess.run(["ls", "-l"])
         # subprocess.run(cmd)
