@@ -1,5 +1,9 @@
 # log & changelog
 
+## 20-7-2021
+
+- separate watchdog for audio conversion
+
 ## 7-7-2021
 
 - started decoupling watcher and flask to separate microservices

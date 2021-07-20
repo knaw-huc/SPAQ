@@ -33,21 +33,20 @@ services:
         # ENV STATIC_PATH /var/www/app/static  
         volumes:
             - ./flask:/usr/src/app
-            # - ./recept:/usr/src/app/static/reception
+            - ./storage:/usr/src/app/static/store
 
-    # in progress
-    # watchdog:
-    #     build:
-    #         context: ./watchdog
-    #         dockerfile: Dockerfile
+    # conversion of audiofiles
+    watchdog:
+        build:
+            context: ./watchdog
+            dockerfile: Dockerfile
         
-    #     ports:
-    #         - 8888:5000
+        ports:
+            - 8888:5000
 
-    #     volumes:
-    #         - ./watchdog:/usr/src/app
-    #         - ./recept:/usr/src/app/static/reception
-    #         - ./convert:/usr/src/app/static/conversion            
+        volumes:
+            - ./watchdog:/usr/src/app
+            - ./storage:/usr/src/app/static/store
 
     php-apache:
         build:

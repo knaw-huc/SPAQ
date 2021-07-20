@@ -54,8 +54,8 @@ if __name__ == "__main__":
     my_event_handler.on_moved = on_moved
     
     '''Constants in Python? '''
-    reception_path = os.path.abspath("./static/reception/")
-    conversion_path = os.path.abspath("./static/conversion/")
+    reception_path = os.path.abspath("./static/store/reception/")
+    conversion_path = os.path.abspath("./static/store/conversion/")
 
     go_recursively = True
     my_observer = Observer()

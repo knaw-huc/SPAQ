@@ -20,7 +20,7 @@ CORS(app)
 
 
 
-receptiondir = 'static/reception/'
+receptiondir = 'static/store/reception/'
 app.config['UPLOAD_FOLDER'] = './static/uploads/'
 # app.config['UPLOAD_FOLDER'] = 'testopvang/'
 app.secret_key = 'super secret key'
@@ -86,7 +86,7 @@ def upload(): #uploaded soundblob from js client
 @app.route('/watch/<typewatch>/<respid>/')
 def watch(typewatch = None, respid = None):
     if typewatch == "reception" and respid is not None and exists(receptiondir + respid):      
-        dir = "static/reception/" + respid
+        dir = "static/store/reception/" + respid
         lijst = listFiles(dir)
         return render_template("index.html", lijst=lijst, dir=dir )
     else:

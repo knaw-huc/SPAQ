@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y ffmpeg
 
 COPY requirements.txt requirements.txt
-# COPY watcher.py watcher.py
+COPY watcher.py watcher.py
 
 RUN pip install -r requirements.txt
 # RUN python watcher.py
