@@ -3,9 +3,9 @@
 cw=${PWD##*/} 
 
 
-for directory in convert recept flask/static/reception flask/static/conversion flask/log;  do
+for directory in storage/conversion storage/reception storage/uploads flask/static/reception flask/static/conversion flask/static/uploads flask/log watchdog/storage/reception watchdog/storage/conversion watchdog/storage/uploads ;  do
     if [ ! -d $directory ]; then
-        mkdir $directory
+        mkdir -p $directory
         echo "Created $directory it didn't exist"
     fi
 done
