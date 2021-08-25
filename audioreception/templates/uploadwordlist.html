@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Submit Wordlist</title>
+      </head>
+   <body>
+    <h1>Submit Wordlist</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+     
+      {% for message in messages %}
+        <h3 class="alert">{{ message }}</h3>
+      {% endfor %}
+      
+    {% endif %}
+  {% endwith %}
+
+<p>Use a real texteditor (no Word) for your wordlist. Something like: Visual Studio, Sublime or Brackets code</p>
+
+      <form action="{{ url_for('processwordlist') }}" method="POST" enctype="multipart/form-data">
+         <input type="file" name="file" />
+         <input type="submit" value="Submit" />
+      </form>   
+
+      <p>After submitting, you'll receive an .lsq file that you can import in LimeSurvey</p>
+      <p>Format of the submitted textfile, each line has to have a phrase or word that you want to have recorded</p>
+
+      <p>Example:</p>
+      <pre>
+        koud
+        warm
+        kil
+      </pre>
+   </body>
+</html>
