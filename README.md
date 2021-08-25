@@ -77,32 +77,20 @@ In folder named after Survey ID
 
 removes all audio files in storage dir
 
+
+
 ## create .lsq file with recording possibility
 
-- create wordlist in text editor, each phrase on a different line, example test.txt
-- submit this list to http://localhost:8087/submitwordlist/
+- create wordlist in text editor, each phrase on a different line, example zinnen.txt in root folder
+- submit this list to http://localhost:8089/submitwordlist/
 - download list
 - import in an local LimeSurvey instance when creating a new survey
 
-## Watcher python script
-```
-cd /flaskpython
-python3 watcher.py
-
-# it watches the reception folder and converts added files to the conversion folder
-
-```
-
-or from the docker's POV:
-
-```
-docker exec -it <dockerflashid> bash
-./watcher.py
-```
 
 ## collected audiorecordings
 
-They end up in flaskpython/reception/
+They end up in storage/reception/
+storage is a bind folder for two services
 
 ### Naming of folders
 
