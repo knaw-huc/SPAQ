@@ -13,7 +13,7 @@ services:
             LIMESURVEY_ADMIN_EMAIL: lime@lime.lime
         volumes:
             - ./limesurvey/plugins:/var/www/html/plugins
-            - ./limesurvey//upload:/var/www/html/upload
+            - ./limesurvey/upload:/var/www/html/upload
             - ./limesurvey/config:/var/www/html/application/config
 
 
@@ -46,6 +46,7 @@ services:
             - ./audioconverter:/usr/src/app
             - ./storage:/usr/src/app/static/storage
 
+    # flask python application
     questiontemplatemaker:
         build:
             context: ./questiontemplatemaker
