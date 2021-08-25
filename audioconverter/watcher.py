@@ -15,12 +15,26 @@ def on_created(event):
         print("yes, ready for conversion")
         reception = event.src_path
         basename = os.path.basename(event.src_path)
-        print(basename, 'huh')
+        dname = os.path.dirname(event.src_path)
+        dbasename = os.path.basename(dname)
+
+        print('basename', basename)
+        print('dname', dname)
+        dirpath = conversion_path + '/' + dbasename + '/'
+        if not os.path.exists(dirpath):
+            try:
+                os.mkdir(dirpath)
+            except OSError:
+                print ("Creation of the directory %s failed" % dirpath)
+
+
         # conversion = os.path.dirname(event.src_path) + '/conv_' + basename
-        conversion = conversion_path + '/' + basename + '.mp4'
-        cmd = "/usr/bin/ffmpeg -i " +  reception + " " + conversion 
+        conversion = conversion_path + '/' + dbasename + '/' + basename + '.mp4'
+        print('conv:', conversion)
+
+        cmd = "/usr/bin/ffmpeg -hide_banner -loglevel error -i " +  reception + "  " + conversion 
         # logging.info('m', cmd)
-        # print(cmd)
+        print(cmd, 'commando pingelen')
         # subprocess.run(["ls", "-l"])
         # subprocess.run(cmd)
         # not the best solution: https://stackabuse.com/executing-shell-commands-with-python TODO better and safer
