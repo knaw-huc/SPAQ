@@ -22,8 +22,9 @@ https://github.com/knaw-huc/SPAQ/wiki/files/HuC-DI-SD-CLP-WP3-SPAQ.pdf "techday 
 ## Techniques
 
 - JavaScript: WebAudio
-- Flask / Python
+- Flask / Python, for several micorservices
 - Docker
+- PHP / MariaDB for LimeSurvey
 
 ## Prerequisites
 
@@ -40,29 +41,41 @@ infra.sh creates a couple of "working" directories not in git
 
 Startup:  ```docker-compose up -d ``` from root directory.
 
-1] Go to client to record some audio. (Or open the spaq/index.html, you don't need the PHP server):
-*    <http://localhost/spaq/>
+### Test if audio reception is working
+
+1] Go to spaq-client to record some audio. 
+*    open spaq-client/index.html    
 
 
 2] server (view the submitted files standalone)
 
 * http://localhost:8087/watch/reception/
 
-3] limesurvey (login with credentials in docker-compose file):
+### Create question file for LimeSurvey
 
-* http://localhost:8085/admin/
+1] limesurvey (login with credentials in docker-compose file):
 
-4] submit a text file for the creation of an lsq file
+* http://localhost:8082/admin/
 
-* http://localhost:8087/submitwordlist/
+2] submit a text file for the creation of an lsq file
+
+* http://localhost:8089/submitwordlist/
+
+3] import lsq file in LimeSurvey
+
+4] view submitted audio files 
+
+* http://localhost:8087/watch/reception/
+
+In folder named after Survey ID
 
     
 ## Utility script
 
-    cd flaskpython/
+    
     ./clean.sh
 
-removes all audio files in static dir
+removes all audio files in storage dir
 
 ## create .lsq file with recording possibility
 

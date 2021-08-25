@@ -1,5 +1,19 @@
 # log & changelog
 
+## 25-8-2021
+
+### refactor day
+
+- renaming, more function then technique (technique in comments)
+- separate microservice for making a .lsq template from the flaskserver
+- bug fix shared volume for two microservices
+- removed php server for the client, not necessary
+- adapted readmes
+- tested from scratch 
+
+New LimeSurvey version, dangerous bugs in the previous one. 
+Also import of question templates possible... Investigate
+
 ## 20-7-2021
 
 - separate watchdog for audio conversion

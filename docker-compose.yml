@@ -2,15 +2,20 @@ version: '2'
 services: 
 
     limesurvey:
-        image: acspri/limesurvey:5.0.5
+        image: acspri/limesurvey:5.1.4
         ports:
-            - 8085:80
+            - 8082:80
         environment:
             LIMESURVEY_DB_PASSWORD: example
             LIMESURVEY_ADMIN_USER: admin
             LIMESURVEY_ADMIN_PASSWORD: password
             LIMESURVEY_ADMIN_NAME: Lime Administrator
             LIMESURVEY_ADMIN_EMAIL: lime@lime.lime
+        volumes:
+            - ./limesurvey/plugins:/var/www/html/plugins
+            - ./limesurvey//upload:/var/www/html/upload
+            - ./limesurvey/config:/var/www/html/application/config
+
 
     mysql:
         image: mariadb:10.5
@@ -19,47 +24,36 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: example
 
-
-
-    flaskie:
+    # flask python application            
+    audioreception:
         build:
-            context: ./flask
+            context: ./audioreception
             dockerfile: Dockerfile.dev
-        # dockerfile: Dockerfile.test
         ports:
             - 8087:5000
-        # environment: 
-        # ENV STATIC_URL /static
-        # ENV STATIC_PATH /var/www/app/static  
         volumes:
-            - ./flask:/usr/src/app
-            - ./storage:/usr/src/app/static/store
+            - ./audioreception:/usr/src/app
+            - ./storage:/usr/src/app/static/storage
 
-    # conversion of audiofiles
-    watchdog:
+    # python watchdog script: conversion of audiofiles
+    audioconverter:
         build:
-            context: ./watchdog
-            dockerfile: Dockerfile
-        
+            context: ./audioconverter
+            dockerfile: Dockerfile      
         ports:
             - 8888:5000
-
         volumes:
-            - ./watchdog:/usr/src/app
-            - ./storage:/usr/src/app/static/store
+            - ./audioconverter:/usr/src/app
+            - ./storage:/usr/src/app/static/storage
 
-    php-apache:
+    questiontemplatemaker:
         build:
-            context: .
+            context: ./questiontemplatemaker
+            dockerfile: Dockerfile.dev
         ports:
-            - 80:80
-        volumes: 
-            - ./www:/var/www/html
-        environment:
-            TITLE: "SPAQ LOCAL "
-            SUBTITLE: "SPAQ storage  "
-            THUIS: "http://localhost/spaq/"
-            TZ: "Europe/Amsterdam"      
+            - 8089:5000
+        volumes:
+            - ./questiontemplatemaker:/usr/src/app
 
 volumes:
-  mysqldb:       
+    mysqldb:       

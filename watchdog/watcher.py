@@ -15,9 +15,9 @@ def on_created(event):
         print("yes, ready for conversion")
         reception = event.src_path
         basename = os.path.basename(event.src_path)
+        print(basename, 'huh')
         # conversion = os.path.dirname(event.src_path) + '/conv_' + basename
         conversion = conversion_path + '/' + basename + '.mp4'
-
         cmd = "/usr/bin/ffmpeg -i " +  reception + " " + conversion 
         # logging.info('m', cmd)
         # print(cmd)
