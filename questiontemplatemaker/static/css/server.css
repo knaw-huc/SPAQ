@@ -62,5 +62,6 @@ a:link, a:visited {
 
 label {
     display: block;
-    padding: 8px;;
+    padding: 8px;
+    font-weight: bold;
 }

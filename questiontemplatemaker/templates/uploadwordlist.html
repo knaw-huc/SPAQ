@@ -24,16 +24,20 @@
 <p>Use a texteditor (no Word) for your wordlist. Something like: Visual Studio, Sublime or Brackets</p>
 
       <form action="{{ url_for('processwordlist') }}" method="POST" enctype="multipart/form-data">
-        <label for="browser">Choose your browser from the list:</label>
-        <label for="language">Base Language for the Survey:</label>
+        <label for="language">Base Language</label>
 
         <select name="language" id="language">
             <option value="nl">Dutch</option>
             <option value="nl-informal">Dutch informal</option>
             <option value="en">English</option>
         </select>
+        
+        <label for="random">Randomisation</label>
+          <input type="radio" value="true" name="random">yes</input>
+          <input type="radio" value="false" name="random">no</input>
+      
 
-        <label for="file">File:</label>
+        <label for="file">Select file</label>
     
          <input type="file" name="file" />
          <label for="submit"></label>

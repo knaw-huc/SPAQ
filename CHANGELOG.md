@@ -2,6 +2,7 @@
 
 ## 27-8-2021
 
+- added randomisation choice with list of phrases
 - for LS 5.1 the base language of the survey is required, added that to the form as option
 - solved not working stack by comparing last working version
 - restored php server for SPAQ client, this solved the cors problems

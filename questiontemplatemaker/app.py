@@ -35,17 +35,27 @@ def processwordlist():
     lines = uploaded_file.splitlines()
     dictOfWords = []
     # app.logger.info(lines)
-    app.logger.info(request.form['language'])
-    language = request.form['language']
-    if language not in ['nl', 'en', 'nl-informal']:
-        language = 'en'
+    app.logger.info(request.form)
+
     for idx, val in enumerate(lines):
         phrase = {"id" : idx + 1, "phrase": val}
         dictOfWords.insert(len(dictOfWords), phrase)
             
     app.logger.info(dictOfWords)
     jason = json.dumps(dictOfWords,indent=4)
-    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, dictOfWords=jason))
+
+
+    language = request.form['language']
+    if language not in ['nl', 'en', 'nl-informal']:
+        language = 'en'
+
+    random =  request.form['random']
+    if random not in ['true', 'false']:
+        random = 'True'
+  
+
+
+    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, random=random, dictOfWords=jason))
     r.headers.set('Content-Type', 'text/xml; charset=utf-8')
     r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
     return r
