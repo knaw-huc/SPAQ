@@ -1,5 +1,17 @@
 # log & changelog
 
+## 27-8-2021
+
+- solved not working stack by comparing last working version
+- restored php server for SPAQ client, this solved the cors problems
+
+## 26-8-2021
+
+- added filepatterns for .ogg and .webm to the watcher, audioconvertor
+- more cleanup chores, removed ffmpeg from dockerfiles, optimized infra.sh
+- started with freezing versions for flask. used pip freeze in the container
+- troubleshooting cors problems, no result, frustrating
+
 ## 25-8-2021
 
 ### refactor day

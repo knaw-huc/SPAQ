@@ -43,8 +43,9 @@ Startup:  ```docker-compose up -d ``` from root directory.
 
 ### Test if audio reception is working
 
-1] Go to spaq-client to record some audio. 
-*    open spaq-client/index.html    
+1] Go to client to record some audio.
+
+* http://localhost/spaq/ 
 
 
 2] server (view the submitted files standalone)

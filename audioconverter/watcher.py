@@ -20,10 +20,14 @@ def on_created(event):
 
         print('basename', basename)
         print('dname', dname)
+        print('dbasename', dbasename)
+
         dirpath = conversion_path + '/' + dbasename + '/'
         if not os.path.exists(dirpath):
             try:
                 os.mkdir(dirpath)
+                print ("Created the directory %s !" % dirpath)
+
             except OSError:
                 print ("Creation of the directory %s failed" % dirpath)
 
@@ -32,7 +36,7 @@ def on_created(event):
         conversion = conversion_path + '/' + dbasename + '/' + basename + '.mp4'
         print('conv:', conversion)
 
-        cmd = "/usr/bin/ffmpeg -hide_banner -loglevel error -i " +  reception + "  " + conversion 
+        cmd = "/usr/bin/ffmpeg -y -hide_banner -loglevel error -i " +  reception + "  " + conversion 
         # logging.info('m', cmd)
         print(cmd, 'commando pingelen')
         # subprocess.run(["ls", "-l"])
@@ -56,16 +60,16 @@ def on_moved(event):
 
 
 if __name__ == "__main__":
-    patterns = ["*"]
+    patterns = ["*.ogg", "*.webm"]
     ignore_patterns = None #
     ignore_directories = False
     case_sensitive = True
     my_event_handler = PatternMatchingEventHandler(patterns, ignore_patterns, ignore_directories, case_sensitive)
 
     my_event_handler.on_created = on_created
-    my_event_handler.on_deleted = on_deleted
-    my_event_handler.on_modified = on_modified
-    my_event_handler.on_moved = on_moved
+    # my_event_handler.on_deleted = on_deleted
+    # my_event_handler.on_modified = on_modified
+    # my_event_handler.on_moved = on_moved
     
     '''Constants in Python? '''
     reception_path = os.path.abspath("./static/storage/reception/")

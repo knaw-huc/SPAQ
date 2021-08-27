@@ -24,7 +24,7 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: example
 
-    # flask python application            
+    # flask python application, storage endpoint
     audioreception:
         build:
             context: ./audioreception
@@ -55,6 +55,20 @@ services:
             - 8089:5000
         volumes:
             - ./questiontemplatemaker:/usr/src/app
+    
+    # spaq client
+    php-apache:
+        build:
+            context: .
+        ports:
+            - 80:80
+        volumes: 
+            - ./www:/var/www/html
+        environment:
+            TITLE: "SPAQ LOCAL "
+            SUBTITLE: "SPAQ storage  "
+            THUIS: "http://localhost/spaq/"
+            TZ: "Europe/Amsterdam"               
 
 volumes:
     mysqldb:       

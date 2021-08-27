@@ -1,7 +1,5 @@
 ''' Audio Reception '''
 
-
-
 from flask import Flask, request, render_template, make_response, flash, redirect
 # from flask_httpauth import HTTPBasicAuth
 from flask.helpers import url_for
@@ -48,7 +46,7 @@ def home():
 @app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible
 def upload(): #uploaded soundblob from js client
     fplog = open('log/diagnostic.txt' , "a") # niet zoals bij php aw
-    # fplog.write("hallo\n")
+    fplog.write("hallo\n")
 
     blob = request.data
     xfilename = request.headers.get('x-filename') # necessary?
@@ -58,7 +56,7 @@ def upload(): #uploaded soundblob from js client
 
     # credate folder with responseid
     if exists(receptiondir + xresponseid):
-        app.logger.info('it does exist')
+        app.logger.info('it does exist', receptiondir)
     else:
         app.logger.info('it does NOT exist')
         makedirs(receptiondir + xresponseid)
@@ -100,7 +98,6 @@ def watch(typewatch = None, respid = None):
 
 
 if __name__ == "__main__":
-
     app.run(debug=True)
 # else:
     # gunicorn_logger = logging.getLogger('gunicorn.error')
