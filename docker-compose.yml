@@ -3,6 +3,7 @@ services:
 
     limesurvey:
         image: acspri/limesurvey:5.1.4
+        # image: acspri/limesurvey:3.27.13-lts
         ports:
             - 8082:80
         environment:

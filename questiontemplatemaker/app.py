@@ -34,15 +34,18 @@ def processwordlist():
     uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary string, have to convert it
     lines = uploaded_file.splitlines()
     dictOfWords = []
-    app.logger.info(lines)
+    # app.logger.info(lines)
+    app.logger.info(request.form['language'])
+    language = request.form['language']
+    if language not in ['nl', 'en', 'nl-informal']:
+        language = 'en'
     for idx, val in enumerate(lines):
         phrase = {"id" : idx + 1, "phrase": val}
         dictOfWords.insert(len(dictOfWords), phrase)
             
     app.logger.info(dictOfWords)
     jason = json.dumps(dictOfWords,indent=4)
-    id = 999 # example
-    r = make_response(render_template("limesurvey_choosewords.lsq", id=id, dictOfWords=jason))
+    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, dictOfWords=jason))
     r.headers.set('Content-Type', 'text/xml; charset=utf-8')
     r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
     return r

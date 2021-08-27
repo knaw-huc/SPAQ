@@ -2,6 +2,12 @@
 <html>
     <head>
         <title>Submit Wordlist</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='server.css') }}"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/server.css') }}">
+        <!-- <link rel="stylesheet" href="static/server.css"> -->
       </head>
    <body>
     <h1>Submit Wordlist</h1>
@@ -15,10 +21,23 @@
     {% endif %}
   {% endwith %}
 
-<p>Use a real texteditor (no Word) for your wordlist. Something like: Visual Studio, Sublime or Brackets code</p>
+<p>Use a texteditor (no Word) for your wordlist. Something like: Visual Studio, Sublime or Brackets</p>
 
       <form action="{{ url_for('processwordlist') }}" method="POST" enctype="multipart/form-data">
+        <label for="browser">Choose your browser from the list:</label>
+        <label for="language">Base Language for the Survey:</label>
+
+        <select name="language" id="language">
+            <option value="nl">Dutch</option>
+            <option value="nl-informal">Dutch informal</option>
+            <option value="en">English</option>
+        </select>
+
+        <label for="file">File:</label>
+    
          <input type="file" name="file" />
+         <label for="submit"></label>
+
          <input type="submit" value="Submit" />
       </form>   
 
