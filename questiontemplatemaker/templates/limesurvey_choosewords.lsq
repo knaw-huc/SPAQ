@@ -323,6 +323,9 @@
 
     // Solves the preview/execute problem in LimeSurvey with LS variables
 
+    let surveyID = '{SID}';
+
+
     let responseID = '{SAVEDID}' ; 
     if(! responseID || responseID !== '{SAVEDID}') { 
           responseID = 9999;

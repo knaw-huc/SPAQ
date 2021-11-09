@@ -9,7 +9,7 @@ inspect*
 *.sql
 *.csv
 compile
-cache
+.cache
 tmp/*
 venv/
 vendor/

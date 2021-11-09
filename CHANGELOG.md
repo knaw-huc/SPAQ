@@ -1,5 +1,29 @@
 # log & changelog
 
+## 9-11-2021
+
+- adaptation of the README
+- IMPORTANT LS 5 is probably near: https://forums.limesurvey.org/forum/installation-a-update-issues/125837-hi,-which-edition-should-i-install-lts-3-x-or-5-x%EF%BC%9F#221612
+- new version 5.1.18 
+
+
+TODO
+- surveyID folder must be created, for the reception of audio, sometimes different versions of the 'same' survey
+- during recording test for Send Button, it must not be visible during recording
+- put it on the development server
+- let a researcher test it
+- add links / connections between limesurvey and microservices, in templates (in upload)
+- hardening Flask Services, Gunicorn
+- more tweakabilty with Environmental Variables on several microservices
+
+## 5-11-2021
+
+- getting acquainted again with this stack again, got it working localy
+
+## 3-9-2021
+
+- failed attempt to get the docker-compose working on our development server
+
 ## 27-8-2021
 
 - added randomisation choice with list of phrases

@@ -1,9 +1,10 @@
-version: '2'
+version: '3'
 services: 
 
     limesurvey:
-        image: acspri/limesurvey:5.1.4
-        # image: acspri/limesurvey:3.27.13-lts
+        image: acspri/limesurvey:5.1.18
+        # image: acspri/limesurvey:3.27.24-lts
+        # https://community.limesurvey.org/releases/
         ports:
             - 8082:80
         environment:
@@ -62,7 +63,7 @@ services:
         build:
             context: .
         ports:
-            - 80:80
+            - 8090:80
         volumes: 
             - ./www:/var/www/html
         environment:
