@@ -5,6 +5,8 @@
 - adaptation of the README
 - IMPORTANT LS 5 is probably near: https://forums.limesurvey.org/forum/installation-a-update-issues/125837-hi,-which-edition-should-i-install-lts-3-x-or-5-x%EF%BC%9F#221612
 - new version 5.1.18 
+- getting back into Flask
+- survey ID folder creation TODO rewrite Flask code, get into it again
 
 
 TODO

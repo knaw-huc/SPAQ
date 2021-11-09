@@ -16,11 +16,17 @@
 
     // Solves the preview/execute problem in LimeSurvey with LS variables, standalone version gets folder {SAVEDID} in reception
 
+    let surveyID = '{SID}' ;
+    if(! surveyID || surveyID !== '{SID}') { 
+        surveyID = 'testing';
+  }
+
+
     let responseID = '{SAVEDID}' ; 
     
     if(! responseID || responseID !== '{SAVEDID}') { 
           responseID = 9999;
-  }
+    }
   
 
     let phrases = [{ "id": 1, "phrase": "koud" }, { "id": 2, "phrase": "warm" }, { "id": 3, "phrase": "kil" }];
@@ -326,6 +332,8 @@
                     let myHeaders = new Headers();
                     myHeaders.append('Accept', 'application/json');
                     myHeaders.append("X-clipID", clipID);
+                    myHeaders.append("X-surveyID", surveyID);
+
                     myHeaders.append("X-responseID", responseID);
 
                     myHeaders.append("X-filename", clipName); // becomes lowercase in the request
