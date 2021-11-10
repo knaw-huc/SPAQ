@@ -1,5 +1,11 @@
 # log & changelog
 
+
+## 10-11-2021
+
+- wwatch reception, working again
+- separate template files TODO abstract and streamline
+
 ## 9-11-2021
 
 - adaptation of the README

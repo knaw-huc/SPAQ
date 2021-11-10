@@ -88,49 +88,47 @@ def upload(): #uploaded soundblob from js client
 
 # TODO rewrite it for the new structure
 @app.route('/watch/')
+def hoi():
+    return 'Please go to the reception  /watch/reception'
+
 @app.route('/watch/reception/')
+def showSurveys():
+    lijst = listDirs("static/storage/reception/")
+    return render_template("surveys.html", lijst=lijst, dir="static/storage/reception/", title="Surveys")
+
+
 @app.route('/watch/reception/<surveyid>/')
-@app.route('/watch/reception/<surveyid>/<responseid>/')
-
-# @app.route('/watch/<typewatch>/<surveyid>/')
-def watch(surveyid = None, responseid = None):
+def showResponses(surveyid = None):
     # app.logger.info('surveyid ' + surveyid + "/")
-
-    if (responseid is not None and surveyid is not None and exists("static/storage/reception/" + surveyid + "/" + responseid + "/")):
-        app.logger.info('j', responseid)
-        lijst = listDirs("static/storage/reception/" + surveyid + "/" + responseid + "/")
-
-        
-        return render_template("listresponses.html", lijst=lijst, dir="static/storage/reception/" + surveyid + "/" + responseid + "/")
-
-    elif (surveyid is not None and exists("static/storage/reception/" + surveyid + "/") ):
-        app.logger.info('j', surveyid)
+    if (surveyid is not None and exists("static/storage/reception/" + surveyid + "/") ):
+        # app.logger.info('j', surveyid)
         lijst = listDirs("static/storage/reception/" + surveyid + "/")
-        return render_template("listresponses.html", lijst=lijst, dir="static/storage/reception/" + surveyid + "/" )
-        return 'hey: ' + surveyid + ", ".join(lijst)
+        return render_template("responses.html", lijst=lijst, surveyid=surveyid, title="Responses" )
     else:
-        lijst = listDirs("static/storage/reception/")
-        return render_template("listresponses.html", lijst=lijst, dir="static/storage/reception/")
+        return 'nothing to see'
 
-        return 'Nothing'    
 
-    # if exists(static/storage/reception/ + "/" + surveyid + "/"):    
-    #     app.logger.info('j')
-    #     dir = "static/storage/reception/" + surveyid
-    #     lijst = listFiles(dir)
-    #     print(lijst)
-    #     return render_template("index.html", lijst=lijst, dir=dir )
-    # else:
-    #     app.logger.info('n')
+@app.route('/watch/reception/<surveyid>/<responseid>/')
+def showSoundFiles(surveyid = None, responseid = None):
+    # app.logger.info('surveyid ' + surveyid + "/")
+    if (responseid is not None and surveyid is not None and exists("static/storage/reception/" + surveyid + "/" + responseid + "/")):
+        app.logger.info('ja', responseid, surveyid)
+        lijststring = "static/storage/reception/" + surveyid + "/" + responseid + "/"
+        app.logger.info('lijststring: ', lijststring)
 
-    #     lijst = listDirs(receptiondir)
-    #     app.logger.info(lijst)
+        lijst = listFiles(lijststring)
 
-    #     return render_template("listresponses.html", lijst=lijst, dir=receptiondir )
+        l = ' '.join(lijst)
+        app.logger.info("l:", l)
+        # return 'nothing to see' + l
+
+        return render_template("soundfiles.html", surveyid=surveyid, responseid=responseid, lijst=lijst)
+    else:       
+        return 'go home'    
 
 @app.route('/test/')
-def test():
-    return 'hoi'
+def hello():
+    return 'hi!'
 
 if __name__ == "__main__":
     app.run(debug=True)
