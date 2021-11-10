@@ -13,19 +13,39 @@
 <body>
     <h1>Reception {{ title }} </h1>
     
-    <table>
-        <tr><th>{{ title }}</th></tr>
     {% for item in lijst %}  
-        <tr>
-            
         {% if item != ".DS_Store" %} 
-            <td>
-                <a href="{{ url_for(request.endpoint, surveyid=surveyid, responseid=responseid) }}{{ item }}">{{ item }}</a>
-           
-            </td>  
+            <div>
+                <span class="filename">{{ item }}</span>
+                    <audio controls src="/{{ dir }}/{{ item }}">
+                        Your browser does not support the
+                        <code>audio</code> element.
+                    </audio> 
+<!-- 
+                    <audio controls src="{{ url_for('static',filename='reception/' + '{{ item }}') }}">
+                        Your browser does not support the
+                        <code>audio</code> element.
+                    </audio>                      -->
+            </div>  
         {% endif %}  
-        </tr>
     {% endfor %}
-    </table>
+
+    {#
+        <table>
+            <tr><th>{{ title }}</th></tr>
+        {% for item in lijst %}  
+            <tr>
+                
+            {% if item != ".DS_Store" %} 
+                <td>
+                    <a href="{{ url_for(request.endpoint, surveyid=surveyid, responseid=responseid) }}{{ item }}">{{ item }}</a>
+               
+                </td>  
+            {% endif %}  
+            </tr>
+        {% endfor %}
+        </table>
+     #}
+
 </body>
 </html>

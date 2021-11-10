@@ -325,6 +325,9 @@
 
     let surveyID = '{SID}';
 
+    if(! surveyID || surveyID !== '{SID}') { 
+        surveyID = 'testing';
+    }
 
     let responseID = '{SAVEDID}' ; 
     if(! responseID || responseID !== '{SAVEDID}') { 
@@ -632,7 +635,10 @@
                     let myHeaders = new Headers();
                     myHeaders.append('Accept', 'application/json');
                     myHeaders.append("X-clipID", clipID);
+                    myHeaders.append("X-surveyID", surveyID);
+
                     myHeaders.append("X-responseID", responseID);
+
 
                     myHeaders.append("X-filename", clipName); // becomes lowercase in the request
                     myHeaders.append("X-tension", fileextension);

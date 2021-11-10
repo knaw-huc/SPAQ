@@ -117,12 +117,12 @@ def showSoundFiles(surveyid = None, responseid = None):
         app.logger.info('lijststring: ', lijststring)
 
         lijst = listFiles(lijststring)
-
+        dir = lijststring
         l = ' '.join(lijst)
         app.logger.info("l:", l)
         # return 'nothing to see' + l
 
-        return render_template("soundfiles.html", surveyid=surveyid, responseid=responseid, lijst=lijst)
+        return render_template("soundfiles.html", surveyid=surveyid, responseid=responseid, lijst=lijst, dir=lijststring)
     else:       
         return 'go home'    
 

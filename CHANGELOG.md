@@ -3,6 +3,8 @@
 
 ## 10-11-2021
 
+- tested it with preview LS and activated survey
+- One LimeSurvey instance can have several Surveys, with slightly different use-cases. To accomodate that, hierarchy is now in place.
 - wwatch reception, working again
 - separate template files TODO abstract and streamline
 

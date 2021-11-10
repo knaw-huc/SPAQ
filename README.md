@@ -74,7 +74,7 @@ Result: automatic download of an .lsq file suitable for import in LimeSurvey
 
 * http://localhost:8087/watch/reception/
 
-See the naming of folders down
+Naming convention of the folders. Down.
 
     
 ## Utility script
@@ -100,12 +100,15 @@ storage is a bind folder for two services
 
 ### Naming of folders
 
-- Standalone: reception/{SAVEDID}/
-- LimeSurvey / preview: reception/9999/
-- LimeSurvey / activated : reception/<responseid>
+- Standalone: reception/{SID}/{SAVEDID}/
+- LimeSurvey / preview: reception/testing/9999/
+- LimeSurvey / activated : reception/<surveyid>/<responseid>
 
-The <responseid> is an actualized {SAVEID} of a running Limesurvey
+The <responseid> is an actualized {SAVEID} of a running Limesurvey.
+The <surveyid> is an actualized {SID} of a running Limesurvey.
 
+One LimeSurvey instance can have several Surveys, with slightly different use-cases.
+To accomodate that, hierarchy is now in place.
 
 
 ## LINKS
