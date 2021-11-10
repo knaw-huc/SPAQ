@@ -3,8 +3,8 @@
 
 ## 10-11-2021
 
-- gunicorn experiments
-- app.logger.info, experiments 
+- gunicorn experiments, gunicorn instead of flask for development! Start with reload and acceslog flags
+- app.logger.info, experiments, succeeded
 - new limesurvey 5.2.0 https://community.limesurvey.org/release/211110/
 - the LimeSurvey roadmap: https://manual.limesurvey.org/LimeSurvey_roadmap
 - tested it with preview LS and activated survey
@@ -21,14 +21,7 @@
 - survey ID folder creation TODO rewrite Flask code, get into it again
 
 
-TODO
-- surveyID folder must be created, for the reception of audio, sometimes different versions of the 'same' survey
-- during recording test for Send Button, it must not be visible during recording
-- put it on the development server
-- let a researcher test it
-- add links / connections between limesurvey and microservices, in templates (in upload)
-- hardening Flask Services, Gunicorn
-- more tweakabilty with Environmental Variables on several microservices
+
 
 ## 5-11-2021
 

@@ -33,7 +33,7 @@ app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 
 @app.before_request
 def log_request():
     logline = request.method + " " + request.full_path
-    app.logger.info(logline)
+    # app.logger.info(logline)
     return None
 
 
@@ -101,7 +101,7 @@ def showSurveys():
 def showResponses(surveyid = None):
     # app.logger.info('surveyid ' + surveyid + "/")
     if (surveyid is not None and exists(receptiondir + surveyid + "/") ):
-        app.logger.info('j %s', surveyid)
+        app.logger.info('showResponses %s', surveyid)
         lijst = listDirs(receptiondir + surveyid + "/")
         return render_template("responses.html", lijst=lijst, surveyid=surveyid, title="Responses" )
     else:
@@ -111,10 +111,9 @@ def showResponses(surveyid = None):
 def showSoundFiles(surveyid = None, responseid = None):
     # app.logger.info('surveyid ' + surveyid + "/")
     if (responseid is not None and surveyid is not None and exists(receptiondir + surveyid + "/" + responseid + "/")):
-        app.logger.info('yep %s %s', responseid, surveyid)
+        app.logger.info('showSoundFiles %s %s', responseid, surveyid)
         
         lijststring = receptiondir + str(surveyid) + "/" + str(responseid) + "/"
-        app.logger.info('lijststring: %s', lijststring)
         lijst = listFiles(lijststring)
 
         return render_template("soundfiles.html", surveyid=surveyid, responseid=responseid, lijst=lijst, dir=lijststring)
@@ -127,10 +126,12 @@ def hello():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    # app.logger.info("not main")
+
 # else:
-    # gunicorn_logger = logging.getLogger('gunicorn.error')
-    # app.logger.handlers = gunicorn_logger.handlers
-    # app.logger.setLevel(gunicorn_logger.level)
+#     gunicorn_logger = logging.getLogger('gunicorn.error')
+#     app.logger.handlers = gunicorn_logger.handlers
+#     app.logger.setLevel(gunicorn_logger.level)
 
 
 
