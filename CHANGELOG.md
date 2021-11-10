@@ -3,6 +3,10 @@
 
 ## 10-11-2021
 
+- gunicorn experiments
+- app.logger.info, experiments 
+- new limesurvey 5.2.0 https://community.limesurvey.org/release/211110/
+- the LimeSurvey roadmap: https://manual.limesurvey.org/LimeSurvey_roadmap
 - tested it with preview LS and activated survey
 - One LimeSurvey instance can have several Surveys, with slightly different use-cases. To accomodate that, hierarchy is now in place.
 - wwatch reception, working again
