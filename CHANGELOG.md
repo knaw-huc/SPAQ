@@ -1,6 +1,11 @@
 # log & changelog
 
 
+## 11-11-2021
+
+- back to php7.3, 7.4 does not work on portainer (does not exist?)
+- working on portainer
+
 ## 10-11-2021
 
 - gunicorn experiments, gunicorn instead of flask for development! Start with reload and acceslog flags

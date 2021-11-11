@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:7.3-apache
 COPY php-apache/config/php.ini  /usr/local/etc/php/php.ini
 RUN apt-get update && apt-get install -y libc-client-dev libfreetype6-dev libmcrypt-dev libpng-dev libjpeg-dev libldap2-dev zlib1g-dev libkrb5-dev libtidy-dev libzip-dev libsodium-dev libpq-dev && rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
