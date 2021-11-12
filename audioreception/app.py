@@ -50,7 +50,8 @@ def log_request():
 def home(): 
     return "Hello, %s!" % auth.current_user()
 
-@app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible
+@app.route('/upload/', methods = ['POST', 'GET', 'OPTIONS']) # POST is not in the default. added GET for tests, OPTIONS is always possible
+# @cross_origin()
 def upload(): #uploaded soundblob from js client
     fplog = open('log/diagnostic.txt' , "a") # niet zoals bij php aw
     fplog.write("hallo\n")
@@ -88,7 +89,10 @@ def upload(): #uploaded soundblob from js client
             status = "NOT OK"            
         
         returnvalues = {"storestatus" : status} 
-        return json.dumps(returnvalues)
+        response = json.dumps(returnvalues)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+
+        return response
     else:
         return 'geen fetch'    
 

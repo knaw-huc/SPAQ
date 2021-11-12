@@ -7,6 +7,8 @@
     // const endpoint = '../server/upload.php'; // FOR DEVELOPMENT SERVER
     // const endpoint = 'http://localhost/server/upload.php';
     const endpoint = 'http://localhost:8087/upload/'; // for Flask LOCAL
+//    const endpoint = 'https://audioreception.sd.di.huc.knaw.nl/watch/upload/' // FLASK URL
+
     const randomisation = true;
 
 
