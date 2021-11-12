@@ -6,6 +6,10 @@ ENV FLASK_RUN_HOST=0.0.0.0
 #Server will reload itself on file changes if in dev mode
 ENV FLASK_ENV=development 
 
+# default for  authentication
+ENV USER=test
+ENV PASSWORD=test
+
 COPY requirements.txt requirements.txt
 # COPY watcher.py watcher.py
 
@@ -14,6 +18,6 @@ RUN pip install -r requirements.txt
 # COPY . .
 # CMD ["flask", "run"]
 
-# CMD ["gunicorn", "-b", "0.0.0.0:5000", "-w", "4", "app:app" ]
 
 CMD ["gunicorn", "--reload", "--access-logfile", "-", "-b", "0.0.0.0:5000", "-w", "4", "app:app" ]
+

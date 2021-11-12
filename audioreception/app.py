@@ -1,12 +1,12 @@
 ''' Audio Reception '''
 
 from flask import Flask, request, render_template, make_response, flash, redirect
-# from flask_httpauth import HTTPBasicAuth
+from flask_httpauth import HTTPBasicAuth
 from flask.helpers import url_for
 from flask.json import jsonify
 from flask_cors import CORS
 from datetime import datetime;
-from os import listdir, makedirs
+from os import listdir, makedirs, environ
 from os.path import isfile, join, exists
 from mputility import listFiles, listDirs
 from werkzeug.utils import secure_filename
@@ -16,11 +16,17 @@ import logging
 app = Flask(__name__)
 CORS(app)
 
+auth = HTTPBasicAuth()
 
-# gunicorn_logger = logging.getLogger('gunicorn.error')
-# app.logger.handlers = gunicorn_logger.handlers
+# just a dictionary
+users = { 
+    environ['USER']: environ['PASSWORD'],  
+}
 
-
+@auth.verify_password
+def verify_password(username, password):
+    if username in users and password == users[username]:
+        return username
 
 receptiondir = 'static/storage/reception/'
 app.config['UPLOAD_FOLDER'] = './static/uploads/'
@@ -40,8 +46,9 @@ def log_request():
 
 # app.static_folder = 'static'
 @app.route('/')
-def home():
-    return 'Flask with dockertje!'
+@auth.login_required
+def home(): 
+    return "Hello, %s!" % auth.current_user()
 
 @app.route('/upload/', methods = ['POST', 'GET']) # POST is not in the default. added GET for tests, OPTIONS is always possible
 def upload(): #uploaded soundblob from js client
@@ -92,13 +99,17 @@ def upload(): #uploaded soundblob from js client
 
 @app.route('/watch/')
 @app.route('/watch/reception/')
+@auth.login_required
 def showSurveys():
+
     lijst = listDirs(receptiondir)
     app.logger.warning('my name is %s', 'maarten')
     return render_template("surveys.html", lijst=lijst, dir="static/storage/reception/", title="Surveys")
 
 @app.route('/watch/reception/<surveyid>/')
+@auth.login_required
 def showResponses(surveyid = None):
+
     # app.logger.info('surveyid ' + surveyid + "/")
     if (surveyid is not None and exists(receptiondir + surveyid + "/") ):
         app.logger.info('showResponses %s', surveyid)
@@ -108,6 +119,7 @@ def showResponses(surveyid = None):
         return 'nothing to see'
 
 @app.route('/watch/reception/<surveyid>/<responseid>/')
+@auth.login_required
 def showSoundFiles(surveyid = None, responseid = None):
     # app.logger.info('surveyid ' + surveyid + "/")
     if (responseid is not None and surveyid is not None and exists(receptiondir + surveyid + "/" + responseid + "/")):

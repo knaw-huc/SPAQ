@@ -1,5 +1,9 @@
 # log & changelog
 
+## 12-11-2021
+
+- basic authentication in Flask, for now only in the audioreception service
+- credentials via env variables, change them in the docker-compose to your taste
 
 ## 11-11-2021
 

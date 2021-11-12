@@ -33,6 +33,10 @@ services:
             dockerfile: Dockerfile.dev
         ports:
             - 8087:5000
+        environment:
+            USER: test
+            PASSWORD: test
+
         volumes:
             - ./audioreception:/usr/src/app
             - ./storage:/usr/src/app/static/storage

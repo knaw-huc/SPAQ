@@ -1,24 +1,7 @@
 # docker exec -it e09 bash
 # pip freeze 
 
-# templatequestion
 
-click==8.0.1
-Flask==2.0.1
-Flask-Cors==3.0.10
-Flask-HTTPBasicAuth==1.0.1
-gunicorn==20.1.0
-itsdangerous==2.0.1
-Jinja2==3.0.1
-MarkupSafe==2.0.1
-six==1.16.0
-watchdog==2.1.3
-Werkzeug==2.0.1
-
-
-# audioconverter
-
-watchdog==2.1.5
 
 
 # audioreception
