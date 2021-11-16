@@ -39,7 +39,7 @@ app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 
 @app.before_request
 def log_request():
     logline = request.method + " " + request.full_path
-    # app.logger.info(logline)
+    app.logger.info(logline)
     return None
 
 
@@ -51,12 +51,13 @@ def home():
     return "Hello, %s!" % auth.current_user()
 
 @app.route('/upload/', methods = ['POST', 'GET', 'OPTIONS']) # POST is not in the default. added GET for tests, OPTIONS is always possible
-# @cross_origin()
 def upload(): #uploaded soundblob from js client
+    # return 'hoi'
     fplog = open('log/diagnostic.txt' , "a") # niet zoals bij php aw
     fplog.write("hallo\n")
 
     blob = request.data
+ 
     xfilename = request.headers.get('x-filename') # necessary?
     xclipid = request.headers.get('x-clipid')
     xtension = request.headers.get('x-tension') # .ogg, .mp4, .webm validation?
@@ -64,20 +65,23 @@ def upload(): #uploaded soundblob from js client
 
     xresponseid = request.headers.get('x-responseid')
 
-    # credate folder with surveyid / responseid
-    if exists(receptiondir + xsurveyid + "/" + xresponseid):
-        app.logger.info('it does exist', receptiondir)
-    else:
-        app.logger.info('it does NOT exist')
-        makedirs(receptiondir + xsurveyid + "/" + xresponseid)
+    if xclipid is None or xtension is None or xsurveyid is None or xresponseid is None: # also blob?
+        return "geen fetch"
+    else:           
+        # return 'Nothing'
 
-    responsefolder = receptiondir + xsurveyid + "/" + xresponseid + "/"
+        # credate folder with surveyid / responseid
+        if exists(receptiondir + xsurveyid + "/" + xresponseid):
+            app.logger.info('it does exist', receptiondir)
+        else:
+            app.logger.info('it does NOT exist')
+            makedirs(receptiondir + xsurveyid + "/" + xresponseid)
 
-    ct = datetime.now()
-    currentTime = ct.strftime("-%Y-%m-%d-%H-%M-%S.%f")
-    fplog.write(currentTime + "\n")
+        responsefolder = receptiondir + xsurveyid + "/" + xresponseid + "/"
+        ct = datetime.now()
+        currentTime = ct.strftime("-%Y-%m-%d-%H-%M-%S.%f")
+        fplog.write(currentTime + "\n")
 
-    if xclipid is not None and xtension is not None:
         filename = responsefolder + xclipid  + currentTime + '.' + xtension
         fplog.write(filename + "\n")
         with open(filename, 'ab') as f:
@@ -90,11 +94,8 @@ def upload(): #uploaded soundblob from js client
         
         returnvalues = {"storestatus" : status} 
         response = json.dumps(returnvalues)
-        response.headers.add("Access-Control-Allow-Origin", "*")
-
         return response
-    else:
-        return 'geen fetch'    
+         
 
 
 # @app.route('/watch/')

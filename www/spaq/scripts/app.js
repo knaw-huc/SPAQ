@@ -4,10 +4,18 @@
 
     const MAXRECORDINGTIME = 10000; // 10s; maybe warning
     let timeoutID;
-    // const endpoint = '../server/upload.php'; // FOR DEVELOPMENT SERVER
-    // const endpoint = 'http://localhost/server/upload.php';
-    const endpoint = 'http://localhost:8087/upload/'; // for Flask LOCAL
-//    const endpoint = 'https://audioreception.sd.di.huc.knaw.nl/watch/upload/' // FLASK URL
+  
+    let hosturl = location.hostname; 
+    let endpoint = 'http://' + hosturl + ':8087/upload/'; 
+    if (hosturl !== 'localhost') {
+        endpoint = 'https://' + hosturl + '/upload/'; 
+    } 
+
+    // endpoint = "audioreception";
+
+    console.log('hosturl: ', hosturl);
+    console.log('endpoint: ', endpoint);
+
 
     const randomisation = true;
 

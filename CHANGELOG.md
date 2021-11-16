@@ -1,5 +1,11 @@
 # log & changelog
 
+## 13-11-2021
+
+- solved cors problems
+- more tests on the upload function in flask
+- php build failed => older version adapted the gd module
+
 ## 12-11-2021
 
 - basic authentication in Flask, for now only in the audioreception service
