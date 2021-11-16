@@ -5,6 +5,8 @@
 - solved cors problems
 - more tests on the upload function in flask
 - php build failed => older version adapted the gd module
+- deployment substitution endpoint
+
 
 ## 12-11-2021
 

@@ -4,11 +4,12 @@
 
     const MAXRECORDINGTIME = 10000; // 10s; maybe warning
     let timeoutID;
-  
     let hosturl = location.hostname; 
     let endpoint = 'http://' + hosturl + ':8087/upload/'; 
+    // endpoint = 'http://' + servicename + ':8087/upload/'; 
     if (hosturl !== 'localhost') {
-        endpoint = 'https://' + hosturl + '/upload/'; 
+        endpoint = 'DEVENDPOINT'; // change during deployment (script or something else, env can't read by javascript)
+                
     } 
 
     // endpoint = "audioreception";
