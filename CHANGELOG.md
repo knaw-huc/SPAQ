@@ -1,5 +1,12 @@
 # log & changelog
 
+
+## 14-11-2021
+
+- build the images as standalone
+- small optimisations
+- env of endpoint in questiontemplatemaker
+
 ## 13-11-2021
 
 - solved cors problems

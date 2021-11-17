@@ -19,8 +19,6 @@ app.secret_key = 'super secret key'
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 = 233MB, webm = 48MB
 
 
-
-
 # app.static_folder = 'static'
 @app.route('/')
 def home():
@@ -31,7 +29,7 @@ def home():
 @app.route('/processwordlist/', methods=['POST'])
 def processwordlist():
     uploaded_file = request.files['file'].read()
-    uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary string, have to convert it
+    uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary file, have to convert it
     lines = uploaded_file.splitlines()
     dictOfWords = []
     # app.logger.info(lines)
@@ -63,6 +61,7 @@ def processwordlist():
 
 @app.route('/submitwordlist/', methods=['GET']) # VIEW upload form
 def submitwordlist():
+    # return "hoi"
     return render_template("uploadwordlist.html")
 
 if __name__ == "__main__":

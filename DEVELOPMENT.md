@@ -19,8 +19,6 @@ with docker-compose
     docker-comnpose up -d
 
 
-
-
 ## realtime logging with docker
 
     docker-compose logs -f audioreception
@@ -43,3 +41,19 @@ The accesslog of Gunicorn to standard output:
 
     CMD ["gunicorn", "--reload", "--access-logfile", "-", "-b", "0.0.0.0:5000", "-w", "4", "app:app" ]
 
+
+## RUN STANDALONE QUESTION TEMPLATE MAKER
+
+### Build
+
+    docker-compose build questiontemplatemaker
+
+### Run
+
+    docker run --rm -p80:5000 spaqpublic_questiontemplatemaker:latest
+
+### Run for development
+
+    docker run --rm -p80:5000 -v $(pwd)/questiontemplatemaker:/usr/src/app spaqpublic_questiontemplatemaker:latest
+
+Check on: http://localhost/submitwordlist/

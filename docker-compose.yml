@@ -59,6 +59,8 @@ services:
             dockerfile: Dockerfile.dev
         ports:
             - 8089:5000
+        # environment:
+        #     AUDIOENDPOINT: "http://localhost:8087/upload/"
         volumes:
             - ./questiontemplatemaker:/usr/src/app
     

@@ -1,0 +1,7 @@
+.DS_Store
+dataxml*
+# log
+.dockerignore
+__pycache__
+__init__.py
+Dockerfile*
