@@ -2,8 +2,9 @@ version: '3'
 services: 
 
     limesurvey:
-        image: acspri/limesurvey:5.1.18
+        image: acspri/limesurvey:5.2.2
         # image: acspri/limesurvey:3.27.24-lts
+        # https://hub.docker.com/r/acspri/limesurvey/tags
         # https://community.limesurvey.org/releases/
         ports:
             - 8082:80
@@ -59,24 +60,12 @@ services:
             dockerfile: Dockerfile.dev
         ports:
             - 8089:5000
-        # environment:
-        #     AUDIOENDPOINT: "http://localhost:8087/upload/"
+        environment:
+            AUDIOENDPOINT: "http://localhost:8087/upload/"
         volumes:
             - ./questiontemplatemaker:/usr/src/app
     
-    # spaq client
-    php-apache:
-        build:
-            context: .
-        ports:
-            - 8090:80
-        volumes: 
-            - ./www:/var/www/html
-        environment:
-            TITLE: "SPAQ LOCAL "
-            SUBTITLE: "SPAQ storage  "
-            THUIS: "http://localhost/spaq/"
-            TZ: "Europe/Amsterdam"
+  
 
 volumes:
     mysqldb:

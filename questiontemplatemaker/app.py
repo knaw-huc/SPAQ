@@ -4,6 +4,8 @@ from flask import Flask, request, render_template, make_response, flash, redirec
 # from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
 import json
+from os import environ
+
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +21,8 @@ app.secret_key = 'super secret key'
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 # max: 1MB, 10s ogg = 125MB, mp4 = 233MB, webm = 48MB
 
 
+
+
 # app.static_folder = 'static'
 @app.route('/')
 def home():
@@ -28,6 +32,11 @@ def home():
 
 @app.route('/processwordlist/', methods=['POST'])
 def processwordlist():
+    if "AUDIOENDPOINT" in environ:
+        endpoint = environ['AUDIOENDPOINT']
+    else:
+        endpoint = 'UNDEFINED' # probably something else or fail 
+
     uploaded_file = request.files['file'].read()
     uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary file, have to convert it
     lines = uploaded_file.splitlines()
@@ -53,7 +62,7 @@ def processwordlist():
   
 
 
-    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, random=random, dictOfWords=jason))
+    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, random=random, dictOfWords=jason, endpoint=endpoint))
     r.headers.set('Content-Type', 'text/xml; charset=utf-8')
     r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
     return r

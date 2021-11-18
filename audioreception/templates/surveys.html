@@ -22,6 +22,9 @@
             <td>
                 <a href="{{ url_for(request.endpoint) }}{{ item }}  ">{{ item }}</a>
             </td>  
+            <td>
+                <a href="{{ url_for(request.endpoint) }}download/{{ item }}">DOWNLOAD FILES</a>
+            </td>  
         {% endif %}  
         </tr>
     {% endfor %}

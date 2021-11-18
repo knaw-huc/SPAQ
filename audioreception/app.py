@@ -5,7 +5,7 @@ from flask_httpauth import HTTPBasicAuth
 from flask.helpers import url_for
 from flask.json import jsonify
 from flask_cors import CORS
-from datetime import datetime;
+from datetime import datetime
 from os import listdir, makedirs, environ
 from os.path import isfile, join, exists
 from mputility import listFiles, listDirs
@@ -136,6 +136,11 @@ def showSoundFiles(surveyid = None, responseid = None):
         return render_template("soundfiles.html", surveyid=surveyid, responseid=responseid, lijst=lijst, dir=lijststring)
     else:       
         return 'go home'    
+
+@app.route('/watch/reception/download/<surveyid>/')
+def download(surveyid):
+    return 'NOT YET! ' + surveyid
+
 
 @app.route('/test/')
 def hello():

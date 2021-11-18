@@ -1,5 +1,11 @@
 # log & changelog
 
+## 15-11-2021
+
+- removed php server for the spaqclient from the stack
+- more feedback in the audio reception service
+- simplified .lsq creation, env of endpoint to flask templatemaker
+- cleanups
 
 ## 14-11-2021
 
@@ -44,8 +50,6 @@
 - new version 5.1.18 
 - getting back into Flask
 - survey ID folder creation TODO rewrite Flask code, get into it again
-
-
 
 
 ## 5-11-2021
