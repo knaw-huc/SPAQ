@@ -3,7 +3,7 @@
  <LimeSurveyDocType>Question</LimeSurveyDocType>
  <DBVersion>447</DBVersion>
  <languages>
-  <language>{{ language }}</language>
+  <language>{{ question.language }}</language>
  </languages>
  <questions>
   <fields>
@@ -291,7 +291,7 @@
   }
 </style>
 <div class="wrapper">
-<h3>Spreekt u de volgende 3 woorden in:</h3>
+<h3>{{ question.questiontext|e }}</h3>
 
 <section class="main-controls">
 <div id="question"> </div>
@@ -311,15 +311,15 @@
 
 (function () {
 
-    const MAXRECORDINGTIME = {{ maxrecordingtime }}; // in ms 10000 = 10s;
+    const MAXRECORDINGTIME = {{ question.maxrecordingtime }}; // in ms 10000 = 10s;
     let timeoutID;
     let hosturl = location.hostname; 
-    const endpoint = '{{ endpoint }}'; 
+    const endpoint = '{{ question.endpoint }}'; 
 
     console.log('hosturl: ', hosturl);
     console.log('endpoint: ', endpoint);
 
-    const randomisation = {{ random }};
+    const randomisation = {{ question.random }};
     let counter = 0; // name audio files
 
     // Solves the preview/execute problem in LimeSurvey with LS variables
@@ -335,7 +335,7 @@
           responseID = 'previewid';
   }
 
-    let phrases = {{ dictOfWords }};
+    let phrases = {{ question.dictOfWords }};
     let listlength = phrases.length;
 
     if (randomisation === true) {
@@ -842,7 +842,7 @@
 </script>]]></question>
     <help/>
     <script/>
-    <language><![CDATA[{{ language }}]]></language>
+    <language><![CDATA[{{ question.language }}]]></language>
    </row>
   </rows>
  </question_l10ns>

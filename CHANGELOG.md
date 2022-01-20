@@ -3,8 +3,16 @@
 ## 20-1-2022
 
 - started implementing researcher request for the template maker
-- request: determine the max record time for a phrase in the userinterface, default 10 seconds
-- added: limit to 1 minute
+- refactored variables to template, now via dictionary)
+- escaped variable in template, more to do
+
+### request: determine the max record time for a phrase in the userinterface, default 10 seconds
+done: addes also a safety limit to 1 minute
+
+### request: 'woorden of zinnen (default: woorden)"
+done: but more flexible, formulate your own sentence with default sentence (like LimeSurvey)
+
+
 
 ## 15-11-2021
 

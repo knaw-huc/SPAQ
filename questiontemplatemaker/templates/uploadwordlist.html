@@ -8,6 +8,7 @@
         <!-- <link rel="stylesheet" href="{{ url_for('static', filename='server.css') }}"> -->
         <!-- <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css"> -->
         <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+        <!-- https://purecss.io/forms -->
         <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/server.css') }}"> -->
         <!-- <link rel="stylesheet" href="static/server.css"> -->
       </head>
@@ -29,7 +30,7 @@
 
         <fieldset>
           <div class="pure-control-group">  
-        <label for="language">Base Language</label>
+        <label for="language">Base Language of survey</label>
 
         <select name="language" id="language">
             <option value="nl">Dutch</option>
@@ -40,26 +41,31 @@
 
         <div class="pure-control-group">  
 
+          <label for="questiontext" class="pure-text" >Question </label>
+          <input type="text" value="Spreekt u de de volgende woorden in:" name="questiontext" size="60"></input>
+
+        <div class="pure-control-group">  
+
         <label for="random" class="pure-radio" >Randomisation</label>
           <input type="radio" value="true" name="random">yes</input>
           <input type="radio" value="false" name="random" checked>no</input>
       
           </div>
 
-          <div class="pure-control-group">  
-
-        <label for="file">Select file</label>
     
-         <input type="file" name="file" />
-
-         </div>
 
          <div class="pure-control-group">  
 
             <label for="timelimit" class="pure-text" >Time Limit </label>
             <input type="text" value="10" name="timelimit" size="2"></input> seconds (maximum 60 seconds)
         </div>
+        <div class="pure-control-group">  
 
+          <label for="file">Select file with words</label>
+      
+           <input type="file" name="file" />
+  
+           </div>
          <div class="pure-control-group">  
 
          <label for="submit"></label>

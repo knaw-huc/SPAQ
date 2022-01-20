@@ -66,7 +66,22 @@ def processwordlist():
         timelimit = 10
     maxrecordingtime = 1000 * timelimit # in miliseconds when using get as method to request.form you can cast the type https://stackoverflow.com/questions/12551526/cast-flask-form-value-to-int
 
-    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, random=random, dictOfWords=jason, endpoint=endpoint, maxrecordingtime=maxrecordingtime))
+    questiontext = request.form['questiontext'] # todo safety or in template
+    if questiontext == '' or len(questiontext) > 100:
+        questiontext = 'Hier klopt iets niet'
+
+    question = {
+        "language": language,
+        "random": random,
+        "endpoint": endpoint,
+        "maxrecordingtime": maxrecordingtime,
+        "questiontext": questiontext,
+        "dictOfWords" : jason
+    }
+
+    
+    r = make_response(render_template("limesurvey_choosewords.lsq", question=question))
+
     r.headers.set('Content-Type', 'text/xml; charset=utf-8')
     r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
     return r
