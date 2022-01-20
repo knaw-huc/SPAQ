@@ -60,9 +60,13 @@ def processwordlist():
     if random not in ['true', 'false']:
         random = 'True'
   
+    timelimit = request.form.get('timelimit', type=int) # get does not refer to the method of the form
+    app.logger.info('timelimit: ' + request.form['timelimit'])
+    if timelimit is None or timelimit > 60:
+        timelimit = 10
+    maxrecordingtime = 1000 * timelimit # in miliseconds when using get as method to request.form you can cast the type https://stackoverflow.com/questions/12551526/cast-flask-form-value-to-int
 
-
-    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, random=random, dictOfWords=jason, endpoint=endpoint))
+    r = make_response(render_template("limesurvey_choosewords.lsq", language=language, random=random, dictOfWords=jason, endpoint=endpoint, maxrecordingtime=maxrecordingtime))
     r.headers.set('Content-Type', 'text/xml; charset=utf-8')
     r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
     return r

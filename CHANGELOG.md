@@ -1,5 +1,11 @@
 # log & changelog
 
+## 20-1-2022
+
+- started implementing researcher request for the template maker
+- request: determine the max record time for a phrase in the userinterface, default 10 seconds
+- added: limit to 1 minute
+
 ## 15-11-2021
 
 - removed php server for the spaqclient from the stack

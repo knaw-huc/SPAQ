@@ -311,7 +311,7 @@
 
 (function () {
 
-    const MAXRECORDINGTIME = 10000; // 10s;
+    const MAXRECORDINGTIME = {{ maxrecordingtime }}; // in ms 10000 = 10s;
     let timeoutID;
     let hosturl = location.hostname; 
     const endpoint = '{{ endpoint }}'; 
