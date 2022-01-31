@@ -24,11 +24,22 @@
     {% endif %}
   {% endwith %}
 
-<p>Use a texteditor (no Word) for your wordlist. Something like: Visual Studio, Sublime or Brackets</p>
+<p>Use a texteditor (no Word) for your wordlist. Something like: Visual Studio Code, BBEdit, Sublime or Brackets</p>
 
       <form class="pure-form pure-form-aligned" action="{{ url_for('processwordlist') }}" method="POST" enctype="multipart/form-data">
 
         <fieldset>
+          <div class="pure-control-group">  
+            <label for="mode">Output</label>
+    
+            <select name="mode" id="mode">
+                <option value="limesurvey">LimeSurvey</option>
+                <option value="html">HTML</option>
+                <option value="test">test</option>
+  
+            </select>
+          </div>
+
           <div class="pure-control-group">  
         <label for="language">Base Language of survey</label>
 

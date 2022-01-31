@@ -1,5 +1,20 @@
 # log & changelog
 
+## 31-1-2022
+
+### request: dutch translations in template
+done
+
+### new feature: also standalone html generation
+done (the basics), option in the questiontemplatemaker (html)
+
+- Also convenient for testing, you don't need a limesurvey for it.
+- Also convenient when you want this type of question handle by a own / different backend
+
+
+- bug solve: to many escapes on the phrases json, needed the safe parameter in the jinja template
+- seperate templates for .lsq and .html
+
 ## 20-1-2022
 
 - started implementing researcher request for the template maker
@@ -9,10 +24,11 @@
 ### request: determine the max record time for a phrase in the userinterface, default 10 seconds
 done: addes also a safety limit to 1 minute
 
-### request: 'woorden of zinnen (default: woorden)"
-done: but more flexible, formulate your own sentence with default sentence (like LimeSurvey)
+### request: 'words or phrases (default: words)"
+done: but more flexible (like LimeSurvey), formulate your own sentence with default sentence about words 
 
-
+### request: 'words or phrases countdown'
+done: 
 
 ## 15-11-2021
 

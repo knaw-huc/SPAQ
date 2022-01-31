@@ -6,7 +6,6 @@ from flask_cors import CORS
 import json
 from os import environ
 
-
 app = Flask(__name__)
 CORS(app)
 
@@ -41,20 +40,54 @@ def processwordlist():
     uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary file, have to convert it
     lines = uploaded_file.splitlines()
     dictOfWords = []
-    # app.logger.info(lines)
+    app.logger.info('lines: ', lines)
     app.logger.info(request.form)
 
     for idx, val in enumerate(lines):
         phrase = {"id" : idx + 1, "phrase": val}
         dictOfWords.insert(len(dictOfWords), phrase)
             
-    app.logger.info(dictOfWords)
+    app.logger.info("dict of words: ", dictOfWords)
     jason = json.dumps(dictOfWords,indent=4)
 
 
+
+    translation_nl = {
+        "record": "Opnemen",
+        "stop": "Stoppen",
+        "delete": "Verwijderen",
+        "stored_succes": "is bewaard!",
+        "thanx": " Bedankt voor het meedoen!"
+    }    
+
+    translation_en= {
+       "record": "Record",
+        "stop": "Stop",
+        "delete": "Delete",
+        "stored_succes": "stored succesful!",
+        "thanx": "Thank you!"
+    }
+
+    # translation = translation_en
+    
+    language = 'nl'
     language = request.form['language']
     if language not in ['nl', 'en', 'nl-informal']:
         language = 'en'
+
+    if(language == 'en'):
+        translation = translation_en
+    else:
+        translation = translation_nl    
+    
+
+    
+#         Stop à Stoppen
+# Store à Bewaren
+# Delete à Verwijderen
+# (schuur) stored succesful! à (schuur) is bewaard!
+# Thank you! à Bedankt voor het meedoen!
+    
 
     random =  request.form['random']
     if random not in ['true', 'false']:
@@ -76,11 +109,33 @@ def processwordlist():
         "endpoint": endpoint,
         "maxrecordingtime": maxrecordingtime,
         "questiontext": questiontext,
-        "dictOfWords" : jason
+        "dictOfWords" : jason,
+        "translation" : translation
     }
 
-    
-    r = make_response(render_template("limesurvey_choosewords.lsq", question=question))
+    mode = request.form['mode'] # todo safety or in template
+
+    app.logger.info('mode: ' + request.form['mode'])
+
+    if mode == 'limesurvey':
+        template = render_template("limesurvey_choosewords.lsq", question=question)
+        r = make_response(template)
+        r.headers.set('Content-Type', 'text/xml; charset=utf-8')
+        r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')
+        return r
+    else:
+        template = render_template("test.html", question=question)
+        r = make_response(template)
+        r.headers.set('Content-Type', 'text/html; charset=utf-8')
+        r.headers.set('Content-Disposition', 'attachment; filename="test.html"')
+        return r
+  
+
+    # r.headers.set('Content-Type', 'text/xml; charset=utf-8')
+    # return r
+
+
+
 
     r.headers.set('Content-Type', 'text/xml; charset=utf-8')
     r.headers.set('Content-Disposition', 'attachment; filename="limesurveyquestion.lsq"')

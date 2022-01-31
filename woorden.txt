@@ -1,0 +1,4 @@
+geel
+groen
+paars
+zwart
