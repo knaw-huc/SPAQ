@@ -55,6 +55,7 @@ def processwordlist():
     translation_nl = {
         "record": "Opnemen",
         "stop": "Stoppen",
+        "store": "Bewaar",
         "delete": "Verwijderen",
         "stored_succes": "is bewaard!",
         "thanx": " Bedankt voor het meedoen!"
@@ -63,6 +64,7 @@ def processwordlist():
     translation_en= {
        "record": "Record",
         "stop": "Stop",
+        "store": "Store",
         "delete": "Delete",
         "stored_succes": "stored succesful!",
         "thanx": "Thank you!"

@@ -1,5 +1,11 @@
 # log & changelog
 
+
+## 9-2-2022
+
+- interface bug: there was no translation for store
+
+
 ## 31-1-2022
 
 ### request: dutch translations in template
@@ -14,6 +20,11 @@ done (the basics), option in the questiontemplatemaker (html)
 
 - bug solve: to many escapes on the phrases json, needed the safe parameter in the jinja template
 - seperate templates for .lsq and .html
+- tested the results
+- 
+TODO: 
+- bug in css with dutch translation (disapearing submit button)
+- generalize solution for language, language files in json probably
 
 ## 20-1-2022
 
