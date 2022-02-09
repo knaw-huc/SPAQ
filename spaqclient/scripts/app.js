@@ -76,7 +76,7 @@
             // Determine mimetype
 
             const types = {
-                "audio/ogg": "ogg", // FireFox, although is suppports also webm
+                "audio/ogg": "ogg", // FireFox, although it suppports also webm
                 "audio/webm": "webm", // Chrome
                 "audio/mp4": "mp4", // Safari
 

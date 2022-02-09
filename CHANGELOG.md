@@ -4,6 +4,7 @@
 ## 9-2-2022
 
 - interface bug: there was no translation for store
+- counter / total phrases left visual feedback
 
 
 ## 31-1-2022
