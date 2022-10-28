@@ -1,6 +1,10 @@
 # log & changelog
 
 
+## 28-10-2022
+
+- on request, make the concluding text after the last test phrase, configurable, sometimes no message is necessary
+
 ## 9-2-2022
 
 - interface bug: there was no translation for store

@@ -57,8 +57,7 @@ def processwordlist():
         "stop": "Stoppen",
         "store": "Bewaar",
         "delete": "Verwijderen",
-        "stored_succes": "is bewaard!",
-        "thanx": " Bedankt voor het meedoen!"
+        "stored_succes": "is bewaard!"
     }    
 
     translation_en= {
@@ -66,8 +65,7 @@ def processwordlist():
         "stop": "Stop",
         "store": "Store",
         "delete": "Delete",
-        "stored_succes": "stored succesful!",
-        "thanx": "Thank you!"
+        "stored_succes": "stored succesful!"
     }
 
     # translation = translation_en
@@ -105,12 +103,17 @@ def processwordlist():
     if questiontext == '' or len(questiontext) > 100:
         questiontext = 'Hier klopt iets niet'
 
+    endtext = request.form['endtext'] # todo safety or in template
+    if endtext == '':
+        endtext = ' '
+
     question = {
         "language": language,
         "random": random,
         "endpoint": endpoint,
         "maxrecordingtime": maxrecordingtime,
         "questiontext": questiontext,
+        "endtext": endtext,
         "dictOfWords" : jason,
         "translation" : translation
     }
@@ -147,6 +150,8 @@ def processwordlist():
 @app.route('/submitwordlist/', methods=['GET']) # VIEW upload form
 def submitwordlist():
     # return "hoi"
+    # app.logger.info('test')
+
     return render_template("uploadwordlist.html")
 
 if __name__ == "__main__":
