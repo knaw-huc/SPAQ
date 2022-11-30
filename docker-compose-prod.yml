@@ -1,0 +1,67 @@
+version: '3'
+services: 
+
+    limesurvey:
+        image: acspri/limesurvey:5.2.2
+        # image: acspri/limesurvey:3.27.24-lts
+        # https://hub.docker.com/r/acspri/limesurvey/tags
+        # https://community.limesurvey.org/releases/
+        ports:
+            - 8082:80
+        environment:
+            LIMESURVEY_DB_PASSWORD: example
+            LIMESURVEY_ADMIN_USER: admin
+            LIMESURVEY_ADMIN_PASSWORD: password
+            LIMESURVEY_ADMIN_NAME: Lime Administrator
+            LIMESURVEY_ADMIN_EMAIL: lime@lime.lime
+        volumes:
+            - ./limesurvey/plugins:/var/www/html/plugins
+            - ./limesurvey/upload:/var/www/html/upload
+            - ./limesurvey/config:/var/www/html/application/config
+
+
+    mysql:
+        image: mariadb:10.5
+        volumes: 
+            - mysqldb:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: example
+
+    # flask python application, storage endpoint
+    audioreception:
+        image: spaq_audio:1.0
+        
+        # use this for building
+        # build:
+        #     context: ./audioreception
+        #     dockerfile: Dockerfile.product
+        ports:
+            - 8087:5000
+        environment:
+            USER: test
+            PASSWORD: test
+
+        volumes:
+            # - ./audioreception:/usr/src/app
+            - ./storage:/usr/src/app/static/storage
+
+
+
+    # flask python application
+
+    questiontemplatemaker:
+        image: spaq_template:1.0
+        # build:
+        #     context: ./questiontemplatemaker
+        #     dockerfile: Dockerfile.product
+        ports:
+            - 8089:5000
+        environment:
+            AUDIOENDPOINT: "http://localhost:8087/upload/"
+        # volumes:
+        #     - ./questiontemplatemaker:/usr/src/app
+    
+  
+
+volumes:
+    mysqldb:

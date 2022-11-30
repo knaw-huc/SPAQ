@@ -3,7 +3,6 @@ limesurvey*
 *.mp4
 *.mp3
 log
-docker-compose-dev.yml
 storage*
 inspect*
 *.sql

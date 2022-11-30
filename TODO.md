@@ -1,5 +1,7 @@
 TODO
 
+- wrap gunicorn in nginx, see diplo-service for example
+
 - surveyID folder must be created, for the reception of audio, sometimes different versions of the 'same' survey DONE
 - during recording test for Send Button, it must not be visible during recording
 - put it on the development server DONE

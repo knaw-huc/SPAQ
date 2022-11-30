@@ -57,3 +57,46 @@ The accesslog of Gunicorn to standard output:
     docker run --rm -p80:5000 -v $(pwd)/questiontemplatemaker:/usr/src/app spaqpublic_questiontemplatemaker:latest
 
 Check on: http://localhost/submitwordlist/
+
+
+## GOING TO PRODUCTION / DEVELOPMENT
+
+- don't share code folders, put code IN the image
+- share volumes for resources created by the application
+- make separate docker-compose and dockerfiles
+- build and tag the images
+- (push them to repository)
+- link to the image from the docker-compose file
+- 
+
+### Example
+
+    docker-compose -f docker-compose-prod.yml  build audioreception
+    docker image ls
+    REPOSITORY                                      TAG       IMAGE ID       CREATED         SIZE
+    spaqpublic_audioreception                       latest    8cce276b6580   6 minutes ago   430MB
+    docker tag 8cc spaq_audio:1.0
+
+In docker-compose:
+
+    audioreception:
+        image: spaq_audio:1.0
+        ports:
+            - 8087:5000
+        environment:
+            USER: test
+            PASSWORD: test
+        volumes:
+            - ./storage:/usr/src/app/static/storage
+
+Test:
+
+    docker-compose -f docker-compose-prod.yml up -d audioreception
+
+## PRODUCTION
+
+- protect usernames and password, not in git
+- convert docker-compose-prod.yml to Kubernetes files with kompose
+
+
+
