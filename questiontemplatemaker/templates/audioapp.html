@@ -616,21 +616,21 @@
                                 if (counter === listlength - 1) {
                                     console.log('enough is enough');
                                     // question.innerHTML = 'Thanx!';
-                                    message.innerHTML = clipName + ' {{ question.endtext | e }}';
+                                    message.innerHTML = '"' + clipName + '" ' +  '{{ question.translation.stored_succes }}' + ' <p>{{ question.endtext | e }}</p>';
                                     setTimeout(function () {
-                                        message.style.transition = '.5s';
-                                        message.style.opacity = '0';
-                                        message.style.visibility = 'hidden';
+                                        // message.style.transition = '.5s';
+                                        // message.style.opacity = '0';
+                                        // message.style.visibility = 'hidden';
                                     }, 1250);
                                     question.innerHTML = '';
 
                                     setTimeout(function () {
-                                        message.innerHTML = '{{ question.translation.thanx }}';
+                                        // message.innerHTML = '{{ question.translation.thanx }}';
 
-                                        message.style.transition = '0.5s';
-                                        message.style.opacity = '1';
-                                        message.style.visibility = 'visible';
-                                    }, 2000);
+                                        // message.style.transition = '0.5s';
+                                        // message.style.opacity = '1';
+                                        // message.style.visibility = 'visible';
+                                    }, 4000);
 
                                     // remove everything
                                     // let evtTgt = e.target;
@@ -646,7 +646,7 @@
 
                                 } else {
                                     counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
-                                    message.innerHTML = clipName + ' {{ question.translation.stored_succes }}';
+                                    message.innerHTML = '"' + clipName + '" ' +  ' {{ question.translation.stored_succes }}';
                                     setTimeout(function () {
                                         message.style.transition = '.5s';
                                         message.style.opacity = '0';

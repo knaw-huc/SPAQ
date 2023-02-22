@@ -31,12 +31,12 @@ services:
 
     # flask python application, storage endpoint
     audioreception:
-        image: spaq_audio:1.1
+        image: spaq_audio:1.2
         
         # use this for building
-        build:
-            context: ./audioreception
-            dockerfile: Dockerfile.product
+        # build:
+        #     context: ./audioreception
+        #     dockerfile: Dockerfile.product
         ports:
             - 8087:5000
         environment:

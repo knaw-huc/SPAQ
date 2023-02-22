@@ -2,7 +2,13 @@
 
 ## 22-02-2023
 
+- aanhalingstekens rondom het gevraagde woord of frase in de bevestiging. Terugmelden.
+
+On request:
+- longer 
+- change in default wordings end message series of question
 - download sound-files possible, zipped
+
 - more context around the demo/fake passwords
 
 ## 28-10-2022
@@ -21,6 +27,7 @@
 done
 
 ### new feature: also standalone html generation
+
 done (the basics), option in the questiontemplatemaker (html)
 
 - Also convenient for testing, you don't need a limesurvey for it.
