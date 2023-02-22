@@ -139,12 +139,33 @@ def showSoundFiles(surveyid = None, responseid = None):
 
 @app.route('/watch/reception/download/<surveyid>/')
 def download(surveyid):
-    return 'NOT YET! ' + surveyid
+
+    # zip this directory and download
+    import time
+    from io import BytesIO
+    import zipfile
+    import os
+    from flask import send_file
+
+    # https://stackoverflow.com/questions/53880816/how-do-i-zip-an-entire-folder-with-subfolders-and-serve-it-through-flask-witho
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    fileName = str(surveyid) + '_' + "sound_{}.zip".format(timestr)
+    memory_file = BytesIO()
+    file_path = receptiondir + str(surveyid)+ '/'    
+
+    with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(file_path):
+                    for file in files:
+                            zipf.write(os.path.join(root, file))
+    memory_file.seek(0)
+    return send_file(memory_file,
+                    attachment_filename=fileName,
+                    as_attachment=True)
 
 
 @app.route('/test/')
 def hello():
-    return 'hi!'
+    return 'hi JP!'
 
 if __name__ == "__main__":
     app.run(debug=True)

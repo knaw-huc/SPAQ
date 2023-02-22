@@ -1,5 +1,9 @@
 # log & changelog
 
+## 22-02-2023
+
+- download sound-files possible, zipped
+- more context around the demo/fake passwords
 
 ## 28-10-2022
 

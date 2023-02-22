@@ -26,20 +26,23 @@ services:
             - mysqldb:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: example
+        # change to something safe in production    
+
 
     # flask python application, storage endpoint
     audioreception:
-        image: spaq_audio:1.0
+        image: spaq_audio:1.1
         
         # use this for building
-        # build:
-        #     context: ./audioreception
-        #     dockerfile: Dockerfile.product
+        build:
+            context: ./audioreception
+            dockerfile: Dockerfile.product
         ports:
             - 8087:5000
         environment:
             USER: test
             PASSWORD: test
+        # fake password, change to something safe in production    
 
         volumes:
             # - ./audioreception:/usr/src/app

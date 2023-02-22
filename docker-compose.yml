@@ -26,6 +26,7 @@ services:
             - mysqldb:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: example
+        # demo passwords, change to something safe in production                
 
     # flask python application, storage endpoint
     audioreception:
@@ -37,6 +38,8 @@ services:
         environment:
             USER: test
             PASSWORD: test
+        # demo passwords, change to something safe in production    
+
 
         volumes:
             - ./audioreception:/usr/src/app
