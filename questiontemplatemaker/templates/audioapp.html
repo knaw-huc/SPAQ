@@ -256,6 +256,43 @@
 
 (function () {
 
+    let buttonSubmit; 
+    let resume_li;
+    let interupt = {{ question.interupt }}; // true means: make it possible to interupt the recording process by pressing on resume later or next
+
+    
+    if(interupt === false) { // not allowed to interupt, hide LimeSurvey specific buttons
+      hideInteruptors(buttonSubmit, resume_li);
+    }
+    
+    
+    function hideInteruptors(buttonSubmit, resume_li) {
+       
+          document.addEventListener('DOMContentLoaded', function() {
+              // must below window.basicThemeScripts.init(), is something from LimeSurvey,  or use a loaded evenlistener;
+              // next button
+              buttonSubmit = document.getElementById('ls-button-submit');
+              buttonSubmit.style.visibility='hidden';    
+              // 'resume' head
+              resume_li = document.querySelector('.ls-no-js-hidden');
+              resume_li.style.visibility='hidden';
+            }, false);  
+       
+    }
+
+    function showInteruptors(buttonSubmit, resume_li){ // at the end of the recording session
+       
+            buttonSubmit = document.getElementById('ls-button-submit');
+            buttonSubmit.style.visibility='visible';    
+            resume_li = document.querySelector('.ls-no-js-hidden');
+            resume_li.style.visibility='visible';
+          
+    }
+
+
+
+
+
     const MAXRECORDINGTIME = {{ question.maxrecordingtime }}; // in ms 10000 = 10s;
     let timeoutID;
     let hosturl = location.hostname; 
@@ -642,7 +679,9 @@
 
                                     let elem = document.getElementById("buttons"); // stop and record button
                                     elem.parentNode.removeChild(elem);
-
+                                    if(interupt === false) { // not allowed to interupts
+                                      showInteruptors(buttonSubmit, resume_li); // now allowed to interupt
+                                    }
 
                                 } else {
                                     counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)

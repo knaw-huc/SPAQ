@@ -80,7 +80,6 @@ def processwordlist():
     else:
         translation = translation_nl    
     
-
     
 #         Stop à Stoppen
 # Store à Bewaren
@@ -88,11 +87,16 @@ def processwordlist():
 # (schuur) stored succesful! à (schuur) is bewaard!
 # Thank you! à Bedankt voor het meedoen!
     
-
     random =  request.form['random']
     if random not in ['true', 'false']:
         random = 'True'
   
+    interupt =  request.form['interupt']
+    if interupt not in ['true', 'false']:
+        interupt = 'True'
+
+    app.logger.info("interupt ", interupt)
+
     timelimit = request.form.get('timelimit', type=int) # get does not refer to the method of the form
     app.logger.info('timelimit: ' + request.form['timelimit'])
     if timelimit is None or timelimit > 60:
@@ -100,15 +104,18 @@ def processwordlist():
     maxrecordingtime = 1000 * timelimit # in miliseconds when using get as method to request.form you can cast the type https://stackoverflow.com/questions/12551526/cast-flask-form-value-to-int
 
     questiontext = request.form['questiontext'] # todo safety or in template
-    if questiontext == '' or len(questiontext) > 100:
+    if questiontext == '' or len(questiontext) > 150:
         questiontext = 'Hier klopt iets niet'
 
     endtext = request.form['endtext'] # todo safety or in template
     if endtext == '':
         endtext = ' '
 
+    # these parameters end up from the webform, in the ninja template audioapp.html
+
     question = {
         "language": language,
+        "interupt": interupt,
         "random": random,
         "endpoint": endpoint,
         "maxrecordingtime": maxrecordingtime,

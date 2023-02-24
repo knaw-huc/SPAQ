@@ -53,10 +53,10 @@ services:
     # flask python application
 
     questiontemplatemaker:
-        image: spaq_template:1.0
-        # build:
-        #     context: ./questiontemplatemaker
-        #     dockerfile: Dockerfile.product
+        image: spaq_template:1.1
+        build:
+            context: ./questiontemplatemaker
+            dockerfile: Dockerfile.product
         ports:
             - 8089:5000
         environment:

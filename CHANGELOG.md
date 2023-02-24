@@ -1,8 +1,20 @@
 # log & changelog
 
+
+## 23-02-2023
+
+LimeSurvey specific question about next button and resume button. Hide them optional during recording
+Default is in this stadium. Allow interuption. 
+
+- interuption boolean in HTML/Ninja submission template
+- handling in Python app.py
+- added functions in JavaScript audioapplhtml
+- tested the principles in analyses/SimpleTest.html
+- implemented it
+
 ## 22-02-2023
 
-- aanhalingstekens rondom het gevraagde woord of frase in de bevestiging. Terugmelden.
+- quotes around word or phrase
 
 On request:
 - longer 
