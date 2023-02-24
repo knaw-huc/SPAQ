@@ -91,11 +91,11 @@ def processwordlist():
     if random not in ['true', 'false']:
         random = 'True'
   
-    interupt =  request.form['interupt']
-    if interupt not in ['true', 'false']:
-        interupt = 'True'
+    interrupt =  request.form['interrupt']
+    if interrupt not in ['true', 'false']:
+        interrupt = 'True'
 
-    app.logger.info("interupt ", interupt)
+    app.logger.info("interrupt ", interrupt)
 
     timelimit = request.form.get('timelimit', type=int) # get does not refer to the method of the form
     app.logger.info('timelimit: ' + request.form['timelimit'])
@@ -115,7 +115,7 @@ def processwordlist():
 
     question = {
         "language": language,
-        "interupt": interupt,
+        "interrupt": interrupt,
         "random": random,
         "endpoint": endpoint,
         "maxrecordingtime": maxrecordingtime,

@@ -258,15 +258,15 @@
 
     let buttonSubmit; 
     let resume_li;
-    let interupt = {{ question.interupt }}; // true means: make it possible to interupt the recording process by pressing on resume later or next
+    let interrupt = {{ question.interrupt }}; // true means: make it possible to interrupt the recording process by pressing on resume later or next
 
     
-    if(interupt === false) { // not allowed to interupt, hide LimeSurvey specific buttons
-      hideInteruptors(buttonSubmit, resume_li);
+    if(interrupt === false) { // not allowed to interrupt, hide LimeSurvey specific buttons
+      hideInterruptors(buttonSubmit, resume_li);
     }
     
     
-    function hideInteruptors(buttonSubmit, resume_li) {
+    function hideInterruptors(buttonSubmit, resume_li) {
        
           document.addEventListener('DOMContentLoaded', function() {
               // must below window.basicThemeScripts.init(), is something from LimeSurvey,  or use a loaded evenlistener;
@@ -280,7 +280,7 @@
        
     }
 
-    function showInteruptors(buttonSubmit, resume_li){ // at the end of the recording session
+    function showInterruptors(buttonSubmit, resume_li){ // at the end of the recording session
        
             buttonSubmit = document.getElementById('ls-button-submit');
             buttonSubmit.style.visibility='visible';    
@@ -679,8 +679,8 @@
 
                                     let elem = document.getElementById("buttons"); // stop and record button
                                     elem.parentNode.removeChild(elem);
-                                    if(interupt === false) { // not allowed to interupts
-                                      showInteruptors(buttonSubmit, resume_li); // now allowed to interupt
+                                    if(interrupt === false) { // not allowed to interrupts
+                                      showInterruptors(buttonSubmit, resume_li); // now allowed to interrupt
                                     }
 
                                 } else {
