@@ -98,7 +98,7 @@ storage is a bind folder for two services
 ### Naming of folders
 
 - Standalone: reception/{SID}/{SAVEDID}/
-- LimeSurvey / preview: reception/testing/9999/
+- LimeSurvey / preview: reception/<surveyid>/previewid/
 - LimeSurvey / activated : reception/<surveyid>/<responseid>
 
 The <responseid> is an actualized {SAVEID} of a running Limesurvey.
