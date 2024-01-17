@@ -12,7 +12,7 @@ NOT PRODUCTION READY
 ## Background 
 
 See the wiki pages on:
-https://github.com/knaw-huc/SPAQ/wiki
+<https://github.com/knaw-huc/SPAQ/wiki>
 
 
 [Powerpoint presentation Clariah TechDay March, 25th 2021](
@@ -28,8 +28,8 @@ https://github.com/knaw-huc/SPAQ/wiki/files/HuC-DI-SD-CLP-WP3-SPAQ.pdf "techday 
 
 ## Prerequisites
 
-* Docker is up and running
-* a *nix based system
+- Docker is up and running
+- a *nix based system
 
 ## First run
 
@@ -39,7 +39,7 @@ infra.sh creates a couple of "working" directories not in git
 
 ## Quickstart
 
-Startup:  ```docker-compose up -d ``` from root directory.
+Startup:  ```docker-compose up -d``` from root directory.
 
 ### Test if audio reception is working
 
@@ -47,7 +47,7 @@ Startup:  ```docker-compose up -d ``` from root directory.
 
 2] server (view the submitted files standalone)
 
-* http://localhost:8087/watch/reception/
+- <http://localhost:8087/watch/reception/>
 
 ### Workflow of one type of audio question (wordlists)
 
@@ -57,11 +57,11 @@ import that question into a limesurvey question.
 
 1] visit limesurvey (login with admin / password)
 
-* http://localhost:8082/admin/
+- <http://localhost:8082/admin/>
 
 2] submit a text file, with words, for the creation of an lsq file
 
-* http://localhost:8089/submitwordlist/
+- <http://localhost:8089/submitwordlist/>
 
 Result: automatic download of an .lsq file suitable for import in LimeSurvey
 
@@ -69,14 +69,12 @@ Result: automatic download of an .lsq file suitable for import in LimeSurvey
     
 4] view submitted audio files 
 
-* http://localhost:8087/watch/reception/
+- <http://localhost:8087/watch/reception/>
 
 Naming convention of the folders. Down.
-
-    
+ 
 ## Utility script
 
-    
     ./clean.sh
 
 removes all audio files in storage dir
@@ -85,7 +83,7 @@ removes all audio files in storage dir
 ## create .lsq file with recording possibility
 
 - create wordlist in text editor, each phrase on a different line, example zinnen.txt in root folder
-- submit this list to http://localhost:8089/submitwordlist/
+- submit this list to <http://localhost:8089/submitwordlist/>
 - download list
 - import in an local LimeSurvey instance when creating a new survey
 
