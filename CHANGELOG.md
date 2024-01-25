@@ -1,6 +1,13 @@
 # log & changelog
 
 
+## 24-01-2024
+
+- experiment with latest version of LimeSurvey
+- test: SPAQ with version 6.4.2 does not work, also test with standalone
+- image: acspri/limesurvey:5.6.51 does work it's now 5.2.2 also on K8s, had to give full permissions to bind mount
+
+
 ## 23-02-2023
 
 - interupt => interrupt
