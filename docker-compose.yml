@@ -19,23 +19,7 @@ services:
             - ./limesurvey/upload:/var/www/html/upload
             - ./limesurvey/config:/var/www/html/application/config
 
-    # limesurvey:
-    #     image: acspri/limesurvey:6.4.2
-    #     # image: acspri/limesurvey:3.27.24-lts
-    #     # https://hub.docker.com/r/acspri/limesurvey/tags
-    #     # https://community.limesurvey.org/releases/
-    #     ports:
-    #         - 8083:80
-    #     environment:
-    #         LIMESURVEY_DB_PASSWORD: example
-    #         LIMESURVEY_ADMIN_USER: admin
-    #         LIMESURVEY_ADMIN_PASSWORD: password
-    #         LIMESURVEY_ADMIN_NAME: Lime Administrator
-    #         LIMESURVEY_ADMIN_EMAIL: lime@lime.lime
-    #     volumes:
-    #         - ./limesurvey6/plugins:/var/www/html/plugins
-    #         - ./limesurvey6/upload:/var/www/html/upload
-    #         - ./limesurvey6/config:/var/www/html/application/config
+
 
     mysql:
         image: mariadb:10.5
