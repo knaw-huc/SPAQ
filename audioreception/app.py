@@ -92,7 +92,7 @@ def upload(): #uploaded soundblob from js client
         else:
             status = "NOT OK"            
         
-        returnvalues = {"storestatus" : status} 
+        returnvalues = {"storestatus" : status, "filename": xclipid  + currentTime + '.' + xtension} 
         response = json.dumps(returnvalues)
         return response
          

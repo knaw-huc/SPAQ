@@ -1,5 +1,11 @@
 # log & changelog
 
+## 31-01-2024
+
+- inform the client with filename from the backend
+- TODO: local storage in the client, for back forth navigation
+- created a shed for html / js tests
+- sepearated css from the templates in questiontemplatemaker
 
 ## 24-01-2024
 
