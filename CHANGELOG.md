@@ -2,6 +2,7 @@
 
 ## 31-01-2024
 
+- local storage in shed file
 - inform the client with filename from the backend
 - TODO: local storage in the client, for back forth navigation
 - created a shed for html / js tests

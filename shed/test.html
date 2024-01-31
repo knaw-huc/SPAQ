@@ -338,15 +338,20 @@
     let phrases = [
     {
         "id": 1,
-        "phrase": "clariah"
+        "phrase": "clariah",
+        "respons": ""
     },
     {
         "id": 2,
-        "phrase": "knaw"
+        "phrase": "knaw",
+        "respons": ""
+
     },
     {
         "id": 3,
-        "phrase": "huc"
+        "phrase": "huc",
+        "respons": ""
+
     }
 ];
     let listlength = phrases.length;
@@ -664,7 +669,6 @@
                                 // console.log('response status: ' + response.status);
                                 console.log('response na ok ', response);
                               
-
                                 // visual feedback
                                 // file stored remove store button
 
@@ -680,8 +684,15 @@
                             let json = JSON.parse(data);
                             if (json.storestatus === 'OK') {
                                 storeButton.textContent = 'Store Succes!';
+                                localStorage.setItem('OKdata' + clipID, JSON.stringify(json)); // 'complex datastructures must be stringified'
+                                // localStorage.setItem('OKdata' + clipID, json);
 
                                 console.log('store succes');
+                                console.log('stored data', localStorage.getItem('OKdata' + clipID)); // looks good in the browser but not directly approachable
+                                let testvar = JSON.parse(localStorage.getItem('OKdata' + clipID));
+                                let ttt= testvar.filename;
+                                console.log('ttt', ttt, typeof(ttt));
+
                                 if (counter === listlength - 1) {
                                     console.log('enough is enough');
                                     // question.innerHTML = 'Thanx!';
