@@ -130,7 +130,7 @@
       document.querySelectorAll('.wrapper').forEach(function(el) {
         el.style.display = 'none';
       });
-      finished.innerHTML = "Deze vraag is reeds beantwoord"; // TODO make it variable in the template maker on basis of the language choice
+      finished.innerHTML = "{{ question.finishedtext}}"; // TODO make it variable in the template maker on basis of the language choice
 
       // wrapper clearen
 
@@ -138,471 +138,472 @@
     }
 
     //main block for doing the audio recording
+    if(! questiondone){
 
-    navigator.mediaDevices.getUserMedia(constraints)
-        .then(function (stream) {
+        navigator.mediaDevices.getUserMedia(constraints) // forces a question: access to microphone, not when you have given full permissions to browser
+            .then(function (stream) {
 
-            // Determine mimetype
+                // Determine mimetype
 
-            const types = {
-                "audio/ogg": "ogg", // FireFox, although is suppports also webm
-                "audio/webm": "webm", // Chrome
-                "audio/mp4": "mp4", // Safari
+                const types = {
+                    "audio/ogg": "ogg", // FireFox, although is suppports also webm
+                    "audio/webm": "webm", // Chrome
+                    "audio/mp4": "mp4", // Safari
 
-            };
-
-
-
-            let mimetype = "audio/webm";
-            for (let i of Object.keys(types)) {
-                console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
-                if (MediaRecorder.isTypeSupported(i)) {
-                    mimetype = i;
-                    break;
-                }
-            }
-
-            console.log('mimetype: ', mimetype);
-            const fileextension = types[mimetype];
+                };
 
 
-            let chunks = [];
 
-            // change for development of production host
-
-            const options = {
-                mimeType: mimetype
-            };
-
-            const mediaRecorder = new MediaRecorder(stream);
-
-            // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
-
-            visualize(stream);
-
-            // question.innerHTML = words[counter];
-            question.innerHTML = phrases[counter].phrase;
-
-            function startRecording() {
-                let clip = document.querySelector('div.clip');
-                if (clip !== null) {
-                    clip.parentNode.removeChild(clip);
-                }
-                message.innerHTML = '';
-                mediaRecorder.start();
-                timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
-                console.log('state', mediaRecorder.state);
-                // console.log('mimetype', mediaRecorder.mimeType);
-                console.log('timeoutID', timeoutID);
-
-                console.log("recorder started");
-                recordButton.style.background = "red";
-                stopButton.disabled = false;
-                recordButton.disabled = true;
-            }
-
-            recordButton.addEventListener("click", function (e) {
-                e.preventDefault();
-
-                console.log(e);
-                startRecording(e);
-            });
-
-            document.addEventListener("keydown", function (e) {
-                // console.log(e);
-                if (e.key === 'r') {
-                    startRecording(e);
-                } else if (e.key === 's') {
-                    stopRecording();
-                } else if (e.key === 'p') {
-                    https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/paused
-                    if (document.getElementById('myrecording').paused) {
-                        document.getElementById('myrecording').play();
-                    } else {
-                        document.getElementById('myrecording').pause();
+                let mimetype = "audio/webm";
+                for (let i of Object.keys(types)) {
+                    console.log(i + " supported? " + (MediaRecorder.isTypeSupported(i) ? "Yes" : "No"));
+                    if (MediaRecorder.isTypeSupported(i)) {
+                        mimetype = i;
+                        break;
                     }
-
-                } else if (e.key === 'a') {
-                    console.log('archive from the top', e.key);
-                } else {
-                    // console.log(e.key);
                 }
 
-
-            });
-
-            function stopRecording() {
-                if (mediaRecorder.state === "recording") {
-                    mediaRecorder.stop();
-                    console.log(mediaRecorder.state); // inactive
-                    console.log("recorder stopped");
-                    recordButton.style.background = "";
-                    recordButton.style.color = "";
-
-                    stopButton.disabled = true;
-                    recordButton.disabled = false;
-                    console.log('timeoutID after stopButton', timeoutID);
-                    // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+                console.log('mimetype: ', mimetype);
+                const fileextension = types[mimetype];
 
 
+                let chunks = [];
+
+                // change for development of production host
+
+                const options = {
+                    mimeType: mimetype
+                };
+
+                const mediaRecorder = new MediaRecorder(stream);
+
+                // https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
+
+                visualize(stream);
+
+                // question.innerHTML = words[counter];
+                question.innerHTML = phrases[counter].phrase;
+
+                function startRecording() {
+                    let clip = document.querySelector('div.clip');
+                    if (clip !== null) {
+                        clip.parentNode.removeChild(clip);
+                    }
+                    message.innerHTML = '';
+                    mediaRecorder.start();
+                    timeoutID = setTimeout(stopRecording, MAXRECORDINGTIME);
+                    console.log('state', mediaRecorder.state);
+                    // console.log('mimetype', mediaRecorder.mimeType);
+                    console.log('timeoutID', timeoutID);
+
+                    console.log("recorder started");
+                    recordButton.style.background = "red";
+                    stopButton.disabled = false;
+                    recordButton.disabled = true;
                 }
-                // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 
-            }
-
-            stopButton.addEventListener('click', function (e) {
-                e.preventDefault();
-                clearTimeout(timeoutID); // cancel the timeout before the timeout...
-                // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
-                // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
-
-                stopRecording();
-            });
-
-            mediaRecorder.onstop = function (e) {
-                // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
-
-                console.log("data available after MediaRecorder.stopButton() called.");
-
-                // this does not make it a file from a certain type...
-                let mimestring = '';
-                if (mimetype === "audio/mp4") {
-                    mimestring = mimetype;
-                } else {
-                    mimestring = `${mimetype}; codecs=opus`;
-                }
-                const blob = new Blob(chunks, { 'type': mimestring });
-                // chuncks is array filled during the recording stage, '.ondataavailable' event handler
-                chunks = [];
-                const audioURL = window.URL.createObjectURL(blob);
-                console.log('audiourl: ', audioURL);
-                console.log("blob", blob);
-
-                // VISUAL representation
-                // if(counter === 5) {
-                //     console.log('enough is enough');
-                //     question.innerHTML = 'Bedankt!';
-
-                // } else {
-                //     // console.log('word:', counter, words[counter + 1]);
-
-                // }
-                // const soundClipContainer = createAudioPlayer(counter, audioURL);
-
-                // let clipName = 'Audio' + counter;
-                // console.log('word after stop:', counter, words[counter]);
-
-                // let clipName = words[counter];
-                let clipName = phrases[counter].phrase;
-
-                // let clipID = counter + 1;
-                let clipID = phrases[counter].id;
-
-
-                const soundClipContainer = document.createElement('div');
-                const clipLabel = document.createElement('p');
-                const audio = document.createElement('audio');
-                const deleteButton = document.createElement('button');
-                // const downloadButton = document.createElement('button');
-                // const downloadLink = document.createElement('a');
-                const storeButton = document.createElement('button');
-
-                soundClipContainer.classList.add('clip');
-                audio.setAttribute('controls', '');
-                audio.setAttribute("id", "myrecording");
-                deleteButton.textContent = '{{ question.translation.delete }}';
-                deleteButton.className = 'delete';
-
-                // downloadButton.textContent = 'Download';
-                // downloadButton.className = 'download';
-
-                storeButton.textContent = '{{ question.translation.store }}';
-                storeButton.className = 'store';
-
-                console.log('audioelement', audio);
-                // clipLabel.textContent = words[counter];
-                clipLabel.textContent = phrases[counter].phrase + " (" + (counter + 1) + " / " + listlength + ")";
-
-
-
-                soundClipContainer.appendChild(audio);
-                soundClipContainer.appendChild(clipLabel);
-                soundClipContainer.appendChild(deleteButton);
-                soundClipContainer.appendChild(storeButton);
-                audio.controls = true;
-                audio.src = audioURL;
-
-
-                // download handling
-                // downloadLink.href = audioURL;
-                // downloadLink.innerHTML = 'Download';
-                // let filenaam = clipLabel.textContent; // not necessary anymore "global" clipName is changed 
-
-                // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
-                // downloadLink.text = 'Download';
-                // downloadLink.appendChild(downloadButton);
-                // soundClipContainer.appendChild(downloadLink);
-                soundClips.appendChild(soundClipContainer); // declared at the top
-
-                // store handling store means store on a server
-
-                // eventlisteners 
-
-                // download file
-                // downloadButton.addEventListener("click", function (e) {
-                //     // e.stopImmediatePropagation();
-
-                //     console.log('download');
-
-                //     // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
-                //     // e.preventDefault(); does not work?
-
-                // });
-
-
-                // downloadLink.addEventListener("click", function (e) {
-                //     // e.stopImmediatePropagation();
-                //     // e.preventDefault(); // does not work?
-                //     console.log('download');
-
-                //     downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
-                //     // e.preventDefault(); does not work?
-
-                // });
-
-                // delete blob
-                deleteButton.addEventListener("click", function (e) {
+                recordButton.addEventListener("click", function (e) {
                     e.preventDefault();
-                    let evtTgt = e.target;
-                    evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                    console.log('delete audiourl: ', audioURL);
-                    window.URL.revokeObjectURL(audioURL); // necessary otherwise memory leak or not from mediastream?? Does seem to work.
-                    // https://stackoverflow.com/questions/49209756/do-i-always-need-to-call-url-revokeobjecturl-explicitly
 
-                });
-                // push to server, archive
-                storeButton.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    console.log('archive');
-                    archive(e);
+                    console.log(e);
+                    startRecording(e);
                 });
 
                 document.addEventListener("keydown", function (e) {
-                    // console.log(e); // Does not work.
-                    // if (e.key === 'a') {
-                    //     console.log('archive within', e.key);
-                    //     archive(e);
-                    // }
+                    // console.log(e);
+                    if (e.key === 'r') {
+                        startRecording(e);
+                    } else if (e.key === 's') {
+                        stopRecording();
+                    } else if (e.key === 'p') {
+                        https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/paused
+                        if (document.getElementById('myrecording').paused) {
+                            document.getElementById('myrecording').play();
+                        } else {
+                            document.getElementById('myrecording').pause();
+                        }
+
+                    } else if (e.key === 'a') {
+                        console.log('archive from the top', e.key);
+                    } else {
+                        // console.log(e.key);
+                    }
 
 
                 });
 
+                function stopRecording() {
+                    if (mediaRecorder.state === "recording") {
+                        mediaRecorder.stop();
+                        console.log(mediaRecorder.state); // inactive
+                        console.log("recorder stopped");
+                        recordButton.style.background = "";
+                        recordButton.style.color = "";
+
+                        stopButton.disabled = true;
+                        recordButton.disabled = false;
+                        console.log('timeoutID after stopButton', timeoutID);
+                        // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 
 
-                function archive(e) { // post/push to the server
-                    console.log('e', e);
-                    console.log('store');
-                    console.log('clipname', clipName);
-                    console.log('extension', fileextension);
-                    let myHeaders = new Headers();
-                    myHeaders.append('Accept', 'application/json');
-                    myHeaders.append("X-clipID", clipID);
-                    myHeaders.append("X-surveyID", surveyID);
+                    }
+                    // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 
-                    myHeaders.append("X-responseID", responseID);
+                }
+
+                stopButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    clearTimeout(timeoutID); // cancel the timeout before the timeout...
+                    // https://stackoverflow.com/questions/52956179/cleartimeout-isnt-clearing-the-timeout
+                    // A function call like clearTimeout(timer) cannot change the timer variable. JS doesn't have pass-by-reference calls. – Bergi Oct 23 '18 at 19:08
+
+                    stopRecording();
+                });
+
+                mediaRecorder.onstop = function (e) {
+                    // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
+                    console.log("data available after MediaRecorder.stopButton() called.");
+
+                    // this does not make it a file from a certain type...
+                    let mimestring = '';
+                    if (mimetype === "audio/mp4") {
+                        mimestring = mimetype;
+                    } else {
+                        mimestring = `${mimetype}; codecs=opus`;
+                    }
+                    const blob = new Blob(chunks, { 'type': mimestring });
+                    // chuncks is array filled during the recording stage, '.ondataavailable' event handler
+                    chunks = [];
+                    const audioURL = window.URL.createObjectURL(blob);
+                    console.log('audiourl: ', audioURL);
+                    console.log("blob", blob);
+
+                    // VISUAL representation
+                    // if(counter === 5) {
+                    //     console.log('enough is enough');
+                    //     question.innerHTML = 'Bedankt!';
+
+                    // } else {
+                    //     // console.log('word:', counter, words[counter + 1]);
+
+                    // }
+                    // const soundClipContainer = createAudioPlayer(counter, audioURL);
+
+                    // let clipName = 'Audio' + counter;
+                    // console.log('word after stop:', counter, words[counter]);
+
+                    // let clipName = words[counter];
+                    let clipName = phrases[counter].phrase;
+
+                    // let clipID = counter + 1;
+                    let clipID = phrases[counter].id;
 
 
-                    myHeaders.append("X-filename", clipName); // becomes lowercase in the request
-                    myHeaders.append("X-tension", fileextension);
+                    const soundClipContainer = document.createElement('div');
+                    const clipLabel = document.createElement('p');
+                    const audio = document.createElement('audio');
+                    const deleteButton = document.createElement('button');
+                    // const downloadButton = document.createElement('button');
+                    // const downloadLink = document.createElement('a');
+                    const storeButton = document.createElement('button');
 
-                    fetch(endpoint, { method: "POST", mode: 'cors', headers: myHeaders, body: blob })
-                        .then((response) => {
-                            // console.log(response);
-                            if (response.ok) {
-                                // console.log('response status: ' + response.status);
-                                console.log('response na ok ', response);
+                    soundClipContainer.classList.add('clip');
+                    audio.setAttribute('controls', '');
+                    audio.setAttribute("id", "myrecording");
+                    deleteButton.textContent = '{{ question.translation.delete }}';
+                    deleteButton.className = 'delete';
 
-                                // visual feedback
-                                // file stored remove store button
+                    // downloadButton.textContent = 'Download';
+                    // downloadButton.className = 'download';
 
-                                return response.text();
-                            } else {
-                                throw Error(`Server returned ${response.status}: ${response.statusText}`)
-                            }
-                        })
-                        .then((data) => {
-                            // let data =  response.success;
-                            // console.log('response: ' + response.status );
-                            console.log('data:' + data);
-                            let json = JSON.parse(data);
-                            if (json.storestatus === 'OK') {
-                                storeButton.textContent = 'Store Succes!';
-                                localStorage.setItem('OKdata' + clipID, JSON.stringify(json)); // 'complex datastructures must be stringified'
+                    storeButton.textContent = '{{ question.translation.store }}';
+                    storeButton.className = 'store';
 
-                                console.log('store succes');
-                                if (counter === listlength - 1) {
-                                    localStorage.setItem('Finished Response ' + surveyID + '_' + responseID, 'YES');
-                                    console.log('enough is enough');
-                                    // question.innerHTML = 'Thanx!';
-                                    message.innerHTML = '"' + clipName + '" ' +  '{{ question.translation.stored_succes }}' + ' <p>{{ question.endtext | e }}</p>';
-                                    setTimeout(function () {
-                                        // message.style.transition = '.5s';
-                                        // message.style.opacity = '0';
-                                        // message.style.visibility = 'hidden';
-                                    }, 1250);
-                                    question.innerHTML = '';
+                    console.log('audioelement', audio);
+                    // clipLabel.textContent = words[counter];
+                    clipLabel.textContent = phrases[counter].phrase + " (" + (counter + 1) + " / " + listlength + ")";
 
-                                    setTimeout(function () {
-                                        // message.innerHTML = '{{ question.translation.thanx }}';
 
-                                        // message.style.transition = '0.5s';
-                                        // message.style.opacity = '1';
-                                        // message.style.visibility = 'visible';
-                                    }, 4000);
 
-                                    // remove everything
-                                    // let evtTgt = e.target;
-                                    // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                                    let clip = document.querySelector("div.clip");
-                                    if (clip !== null) {
-                                        clip.parentNode.removeChild(clip);
-                                    }
+                    soundClipContainer.appendChild(audio);
+                    soundClipContainer.appendChild(clipLabel);
+                    soundClipContainer.appendChild(deleteButton);
+                    soundClipContainer.appendChild(storeButton);
+                    audio.controls = true;
+                    audio.src = audioURL;
 
-                                    let elem = document.getElementById("buttons"); // stop and record button
-                                    elem.parentNode.removeChild(elem);
-                                    if(interrupt === false) { // not allowed to interrupts
-                                      showInterruptors(buttonSubmit, resume_li); // now allowed to interrupt
-                                    }
 
+                    // download handling
+                    // downloadLink.href = audioURL;
+                    // downloadLink.innerHTML = 'Download';
+                    // let filenaam = clipLabel.textContent; // not necessary anymore "global" clipName is changed 
+
+                    // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+                    // downloadLink.text = 'Download';
+                    // downloadLink.appendChild(downloadButton);
+                    // soundClipContainer.appendChild(downloadLink);
+                    soundClips.appendChild(soundClipContainer); // declared at the top
+
+                    // store handling store means store on a server
+
+                    // eventlisteners 
+
+                    // download file
+                    // downloadButton.addEventListener("click", function (e) {
+                    //     // e.stopImmediatePropagation();
+
+                    //     console.log('download');
+
+                    //     // downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+                    //     // e.preventDefault(); does not work?
+
+                    // });
+
+
+                    // downloadLink.addEventListener("click", function (e) {
+                    //     // e.stopImmediatePropagation();
+                    //     // e.preventDefault(); // does not work?
+                    //     console.log('download');
+
+                    //     downloadLink.setAttribute('download', `${clipName}.${fileextension}`);
+                    //     // e.preventDefault(); does not work?
+
+                    // });
+
+                    // delete blob
+                    deleteButton.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        let evtTgt = e.target;
+                        evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                        console.log('delete audiourl: ', audioURL);
+                        window.URL.revokeObjectURL(audioURL); // necessary otherwise memory leak or not from mediastream?? Does seem to work.
+                        // https://stackoverflow.com/questions/49209756/do-i-always-need-to-call-url-revokeobjecturl-explicitly
+
+                    });
+                    // push to server, archive
+                    storeButton.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        console.log('archive');
+                        archive(e);
+                    });
+
+                    document.addEventListener("keydown", function (e) {
+                        // console.log(e); // Does not work.
+                        // if (e.key === 'a') {
+                        //     console.log('archive within', e.key);
+                        //     archive(e);
+                        // }
+
+
+                    });
+
+
+
+                    function archive(e) { // post/push to the server
+                        console.log('e', e);
+                        console.log('store');
+                        console.log('clipname', clipName);
+                        console.log('extension', fileextension);
+                        let myHeaders = new Headers();
+                        myHeaders.append('Accept', 'application/json');
+                        myHeaders.append("X-clipID", clipID);
+                        myHeaders.append("X-surveyID", surveyID);
+
+                        myHeaders.append("X-responseID", responseID);
+
+
+                        myHeaders.append("X-filename", clipName); // becomes lowercase in the request
+                        myHeaders.append("X-tension", fileextension);
+
+                        fetch(endpoint, { method: "POST", mode: 'cors', headers: myHeaders, body: blob })
+                            .then((response) => {
+                                // console.log(response);
+                                if (response.ok) {
+                                    // console.log('response status: ' + response.status);
+                                    console.log('response na ok ', response);
+
+                                    // visual feedback
+                                    // file stored remove store button
+
+                                    return response.text();
                                 } else {
-                                    counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
-                                    message.innerHTML = '"' + clipName + '" ' +  ' {{ question.translation.stored_succes }}';
-                                    setTimeout(function () {
-                                        message.style.transition = '.5s';
-                                        message.style.opacity = '0';
-                                        message.style.visibility = 'hidden';
-                                    }, 1250);
-                                    // question.innerHTML = words[counter];
-                                    question.innerHTML = phrases[counter].phrase;
+                                    throw Error(`Server returned ${response.status}: ${response.statusText}`)
+                                }
+                            })
+                            .then((data) => {
+                                // let data =  response.success;
+                                // console.log('response: ' + response.status );
+                                console.log('data:' + data);
+                                let json = JSON.parse(data);
+                                if (json.storestatus === 'OK') {
+                                    storeButton.textContent = 'Store Succes!';
+                                    localStorage.setItem('OKdata' + clipID, JSON.stringify(json)); // 'complex datastructures must be stringified'
 
-                                    // remove clip div with class clip
-                                    // let evtTgt = e.target;
-                                    // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                                    let clip = document.querySelector("div.clip");
-                                    if (clip !== null) {
-                                        clip.parentNode.removeChild(clip);
+                                    console.log('store succes');
+                                    if (counter === listlength - 1) {
+                                        localStorage.setItem('Finished Response ' + surveyID + '_' + responseID, 'YES');
+                                        console.log('enough is enough');
+                                        // question.innerHTML = 'Thanx!';
+                                        message.innerHTML = '"' + clipName + '" ' +  '{{ question.translation.stored_succes }}' + ' <p>{{ question.endtext | e }}</p>';
+                                        setTimeout(function () {
+                                            // message.style.transition = '.5s';
+                                            // message.style.opacity = '0';
+                                            // message.style.visibility = 'hidden';
+                                        }, 1250);
+                                        question.innerHTML = '';
+
+                                        setTimeout(function () {
+                                            // message.innerHTML = '{{ question.translation.thanx }}';
+
+                                            // message.style.transition = '0.5s';
+                                            // message.style.opacity = '1';
+                                            // message.style.visibility = 'visible';
+                                        }, 4000);
+
+                                        // remove everything
+                                        // let evtTgt = e.target;
+                                        // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                        let clip = document.querySelector("div.clip");
+                                        if (clip !== null) {
+                                            clip.parentNode.removeChild(clip);
+                                        }
+
+                                        let elem = document.getElementById("buttons"); // stop and record button
+                                        elem.parentNode.removeChild(elem);
+                                        if(interrupt === false) { // not allowed to interrupts
+                                        showInterruptors(buttonSubmit, resume_li); // now allowed to interrupt
+                                        }
+
+                                    } else {
+                                        counter++; // now I realy understand why React can be convenient, it becomes spagetti prety quick  :-)
+                                        message.innerHTML = '"' + clipName + '" ' +  ' {{ question.translation.stored_succes }}';
+                                        setTimeout(function () {
+                                            message.style.transition = '.5s';
+                                            message.style.opacity = '0';
+                                            message.style.visibility = 'hidden';
+                                        }, 1250);
+                                        // question.innerHTML = words[counter];
+                                        question.innerHTML = phrases[counter].phrase;
+
+                                        // remove clip div with class clip
+                                        // let evtTgt = e.target;
+                                        // evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                                        let clip = document.querySelector("div.clip");
+                                        if (clip !== null) {
+                                            clip.parentNode.removeChild(clip);
+                                        }
                                     }
                                 }
-                            }
-                        })
-                        .catch(err => {
-                            alert(err);
-                        });
-                    message.style.visibility = 'visible';
-                    message.style.opacity = '1';
+                            })
+                            .catch(err => {
+                                alert(err);
+                            });
+                        message.style.visibility = 'visible';
+                        message.style.opacity = '1';
 
-                }
-
-
-                // push to server
-                // storeButton.onclick = function (e) {
-                //     archive(e);
-
-
-                // }
-
-
-
-
-                // window.addEventListener("keydown", function (e) {
-                //     // console.log(e);
-                //     if (e.key === 'a') {
-                //         archive(e);
-                //     }
-
-                // });
-            }
-
-            mediaRecorder.ondataavailable = function (e) {
-                chunks.push(e.data);
-                // console.log(e.data);
-            }
-
-
-            function visualize(stream) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // need to put it here for Safari
-                audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
-
-                const source = audioCtx.createMediaStreamSource(stream);
-
-                const analyser = audioCtx.createAnalyser();
-                analyser.fftSize = 2048;
-                const bufferLength = analyser.frequencyBinCount;
-                const dataArray = new Uint8Array(bufferLength);
-
-                source.connect(analyser);
-                //analyser.connect(audioCtx.destination);
-
-                draw();
-
-                function draw() {
-                    // canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-
-                    const WIDTH = canvas.width
-                    const HEIGHT = canvas.height;
-
-
-                    // cancelAnimationFrame(t);
-                    requestAnimationFrame(draw);
-                    // console.log('t', t);
-                    console.log('listening & drawing');
-
-
-                    analyser.getByteTimeDomainData(dataArray);
-                    // analyser.getFloatTimeDomainData(dataArray);
-
-                    canvasCtx.fillStyle = 'rgb(200, 200, 200)';
-                    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-                    canvasCtx.lineWidth = 2;
-                    canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
-
-                    canvasCtx.beginPath();
-
-                    let sliceWidth = WIDTH * 1.0 / bufferLength;
-                    let x = 0;
-
-
-                    for (let i = 0; i < bufferLength; i++) {
-
-                        let v = dataArray[i] / 128.0;
-                        let y = v * HEIGHT / 2;
-
-                        if (i === 0) {
-                            canvasCtx.moveTo(x, y);
-                        } else {
-                            canvasCtx.lineTo(x, y);
-                        }
-
-                        x += sliceWidth;
                     }
 
-                    canvasCtx.lineTo(canvas.width, canvas.height / 2);
-                    canvasCtx.stroke();
+
+                    // push to server
+                    // storeButton.onclick = function (e) {
+                    //     archive(e);
+
+
+                    // }
+
+
+
+
+                    // window.addEventListener("keydown", function (e) {
+                    //     // console.log(e);
+                    //     if (e.key === 'a') {
+                    //         archive(e);
+                    //     }
+
+                    // });
+                }
+
+                mediaRecorder.ondataavailable = function (e) {
+                    chunks.push(e.data);
+                    // console.log(e.data);
+                }
+
+
+                function visualize(stream) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // need to put it here for Safari
+                    audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+
+                    const source = audioCtx.createMediaStreamSource(stream);
+
+                    const analyser = audioCtx.createAnalyser();
+                    analyser.fftSize = 2048;
+                    const bufferLength = analyser.frequencyBinCount;
+                    const dataArray = new Uint8Array(bufferLength);
+
+                    source.connect(analyser);
+                    //analyser.connect(audioCtx.destination);
+
+                    draw();
+
+                    function draw() {
+                        // canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+                        const WIDTH = canvas.width
+                        const HEIGHT = canvas.height;
+
+
+                        // cancelAnimationFrame(t);
+                        requestAnimationFrame(draw);
+                        // console.log('t', t);
+                        console.log('listening & drawing');
+
+
+                        analyser.getByteTimeDomainData(dataArray);
+                        // analyser.getFloatTimeDomainData(dataArray);
+
+                        canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+                        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                        canvasCtx.lineWidth = 2;
+                        canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+
+                        canvasCtx.beginPath();
+
+                        let sliceWidth = WIDTH * 1.0 / bufferLength;
+                        let x = 0;
+
+
+                        for (let i = 0; i < bufferLength; i++) {
+
+                            let v = dataArray[i] / 128.0;
+                            let y = v * HEIGHT / 2;
+
+                            if (i === 0) {
+                                canvasCtx.moveTo(x, y);
+                            } else {
+                                canvasCtx.lineTo(x, y);
+                            }
+
+                            x += sliceWidth;
+                        }
+
+                        canvasCtx.lineTo(canvas.width, canvas.height / 2);
+                        canvasCtx.stroke();
+
+                    }
+
+                    // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 
                 }
 
-                // audioCtx.resume(); // Necessary for Chrome  https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 
-            }
+            })
+            .catch(function (err) {
+                console.log('The following error occured: ' + err);
+            });
 
-
-        })
-        .catch(function (err) {
-            console.log('The following error occured: ' + err);
-        });
-
-
+    }
     window.onresize = function () {
         canvas.width = mainSection.offsetWidth;
     }

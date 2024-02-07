@@ -1,15 +1,23 @@
 # log & changelog
 
 
+## Issues to solve
+
+- todo bugfix: next button disappears in LimeSurvey? I think only with no interuption flag
+- todo serverside validation in Flask on textfile
+- todo more info to browser
+- more userfriendly (JS) with changing language in question template maker
+
 ## 7-2-2024
 
+- goal succeeded: question (in JS) knows now about status (finished) and which files are stored wiht the help of local storage
 - finished flag in local storage
 - from shed to dev
-- testing and developing
+- test and develop it works
 - added it to the ninja template
-- todo: englisation from template maker
-- todo:L look into exit script after finished response
-- todo bugfix: next button disappears in LimeSurvey
+- feature: flexible input message concluded push to server
+- fix: no more ask for camera/mic permissions if survey is concluded
+
 
 ## 31-01-2024
 

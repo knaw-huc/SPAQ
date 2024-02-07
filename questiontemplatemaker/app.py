@@ -39,6 +39,12 @@ def processwordlist():
     uploaded_file = request.files['file'].read()
     uploaded_file = str(uploaded_file, 'utf-8') # comes in as a binary file, have to convert it
     lines = uploaded_file.splitlines()
+
+    # TODO server side validation at least for text files
+    if not lines:
+        app.logger.info("ERROR ", 'niets geupload')
+
+
     dictOfWords = []
     app.logger.info('lines: ', lines)
     app.logger.info(request.form)
@@ -48,7 +54,7 @@ def processwordlist():
         dictOfWords.insert(len(dictOfWords), phrase)
             
     app.logger.info("dict of words: ", dictOfWords)
-    jason = json.dumps(dictOfWords,indent=4)
+    jsonDictionary = json.dumps(dictOfWords,indent=4)
 
 
 
@@ -109,8 +115,12 @@ def processwordlist():
 
     endtext = request.form['endtext'] # todo safety or in template
     if endtext == '':
-        endtext = ' '
+        endtext = 'Thanks / Dank!'
 
+
+    finishedtext = request.form['finishedtext'] # todo safety or in template
+    if finishedtext == '':
+        finishedtext = 'Question Finished'
     # these parameters end up from the webform, in the ninja template audioapp.html
 
     question = {
@@ -121,7 +131,8 @@ def processwordlist():
         "maxrecordingtime": maxrecordingtime,
         "questiontext": questiontext,
         "endtext": endtext,
-        "dictOfWords" : jason,
+        "finishedtext": finishedtext,
+        "dictOfWords" : jsonDictionary,
         "translation" : translation
     }
 
