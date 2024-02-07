@@ -1,5 +1,16 @@
 # log & changelog
 
+
+## 7-2-2024
+
+- finished flag in local storage
+- from shed to dev
+- testing and developing
+- added it to the ninja template
+- todo: englisation from template maker
+- todo:L look into exit script after finished response
+- todo bugfix: next button disappears in LimeSurvey
+
 ## 31-01-2024
 
 - local storage in shed file

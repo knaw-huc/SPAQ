@@ -16,7 +16,7 @@ with docker-compose
     docker-compose up -d
     docker-compose stop  audioreception
     docker-compose build audioreception
-    docker-comnpose up -d
+    docker-compose up -d
 
 
 ## realtime logging with docker
