@@ -1,5 +1,8 @@
 # log & changelog
 
+## 13-2-2023
+
+- start with rememberance of already pushed soundfiles after break, shed material
 
 ## Issues to solve
 
@@ -25,7 +28,7 @@
 - inform the client with filename from the backend
 - TODO: local storage in the client, for back forth navigation
 - created a shed for html / js tests
-- sepearated css from the templates in questiontemplatemaker
+- separated css from the templates in questiontemplatemaker
 
 ## 24-01-2024
 

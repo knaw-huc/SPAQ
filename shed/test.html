@@ -350,6 +350,20 @@
           responseID = 'previewid';
   }
 
+    // Test which phrases are already submitted
+    // localStorage.setItem('finishedphases', JSON.stringify(finishedphrases));
+    let finishedphrases= JSON.parse(localStorage.getItem('finishedphrases'));
+    // console.log('phrasestorage', phrasestorage);
+    if(finishedphrases === null){
+          finishedphrases = [];
+
+          localStorage.setItem('finishedphrases', JSON.stringify(finishedphrases));
+    }
+    finishedphrases = JSON.parse(localStorage.getItem('finishedphrases'));
+
+    console.log('phrafinishedphrasessestorage', finishedphrases);
+
+
     let phrases = [
     {
         "id": 1,
@@ -364,8 +378,33 @@
         "phrase": "huc"
     }
 ];
-    let listlength = phrases.length;
 
+    if(finishedphrases.length > 0) {
+      console.log('finished phrases, er is nog wat', finishedphrases)
+      // for (i in finishedphrases) {
+      //       console.log(finishedphrases[i]);
+      //       // adapt phrases
+      //       finishedphrases.splice(i-1,1);
+
+      // }
+      for(i in phrases){
+        console.log('idphrase', phrases[i].id);
+        if(finishedphrases.includes(phrases[i].id )){
+          console.log(phrases[i].id, ' is al geweest');
+          phrases.splice(phrases[i],1);
+        }
+      }
+      console.log('phrases nu', phrases);
+
+
+    } else {
+      console.log('finished phrases, nog niets gedaan')
+
+    }
+
+    let listlength = phrases.length;
+    
+    // hmm hier nog geen rekening mee gehouden
     if (randomisation === true) {
         phrases = [...phrases].sort(() => Math.random() - 0.5);
     }
@@ -711,7 +750,12 @@
                                 if (json.storestatus === 'OK') {
                                     storeButton.textContent = 'Store Succes!';
                                     localStorage.setItem('OKdata' + clipID, JSON.stringify(json)); // 'complex datastructures must be stringified'
+                                    localStorage.setItem('finished', clipID)
+                                    finishedphrases = JSON.parse(localStorage.getItem('finishedphrases')); //array unpacking
+                                    console.log('fp', typeof(finishedphrases));
 
+                                    finishedphrases.push(clipID);
+                                    localStorage.setItem('finishedphrases', JSON.stringify(finishedphrases));
                                     console.log('store succes');
                                     if (counter === listlength - 1) {
                                         localStorage.setItem('Finished Response ' + surveyID + '_' + responseID, 'YES');
